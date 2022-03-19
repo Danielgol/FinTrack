@@ -1,0 +1,243 @@
+/*-------- Geral e Reset ---------*/
+
+body{
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, p, span{
+    margin: 0;
+    color: #666;
+}
+
+.container{
+    max-width: 1920px;
+    width: 100%;
+}
+
+/*-------- Header ---------*/
+header{
+    position: relative;
+    top: 0;
+    height: auto;
+    width: 100%;
+}
+
+/*-------- Navbar ---------*/
+nav{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 1;
+    background-color: rgb(233, 174, 66);
+    border-bottom: 1px solid #ccc;
+}
+
+nav::after{
+    clear: both;
+    content: "";
+    display: block;
+}
+
+.nav-container{
+    max-width: 1200px;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#logo-nav{
+    float: left;
+    max-width: 100px;
+    max-height: 80px;
+    margin-top: 10px;
+}
+
+.nav-container ul{
+    float: right;
+    height: 100px;
+    line-height: 100px;
+    margin: 0;
+}
+
+.nav-container li{
+    list-style: none;
+    float: left;
+    margin: 0 15px;
+}
+
+.nav-container li a{
+    text-decoration: none;
+    color: #666;
+    transition: .5s;
+}
+
+.nav-container li a:hover{
+    color: aqua;
+}
+
+/*-------- Banner ---------*/
+.banner{
+    background: rgb(209, 152, 152);
+    background-size: cover;
+    background-position: 0 55%;
+    position: relative;
+    margin-top: 100px;
+}
+
+.texto-banner{
+    position: relative;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5em;
+    padding-bottom: 5em;
+    text-align: center;
+}
+
+.texto-banner h1{
+    font-size: 40px;
+}
+
+.texto-banner p{
+   margin-top: 60px;
+   margin-bottom: 30px;
+   font-size: 18px;
+   font-weight: 300;
+}
+
+/*-------- Sobre o app ---------*/
+
+#sobre-app{
+    text-align: center;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper{
+    align-items: center;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    width: 100vw;
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+
+.wrapper h2{
+    font-size: 20px;
+
+
+}
+
+.wrapper img{
+    border-radius: 100px;
+    max-width: 200px;
+    max-height: 200px;
+    margin-right: 40px;
+}
+
+.impar{
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.par{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: rgb(202, 202, 202);
+}
+
+.par img{
+    margin-right: 0;
+    margin-left: 40px;
+}
+/*-------- Sobre nós ---------*/
+#sobre-nos{
+    text-align: justify;
+    padding: 10px 40px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(202, 202, 202);
+}
+
+#sobre-nos h2{
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+.perfis{
+    padding-top: 15px;
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+}
+
+.perfil{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+hr{
+    justify-content: center;
+	border: 0.6px solid #837b50;
+    width: 80%;
+    margin-bottom: 7px;
+}
+
+.perfil img{
+    margin: 0;
+}
+
+/*-------- Banner registro  ---------*/
+
+#registrar{
+    background-color: aqua;
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    transition: .5s;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+
+#registrar:hover{
+    background-color: #2b79eb;
+}
+
+/*-------- Footer ---------*/
+
+footer{
+    background-color: rgb(233, 174, 66);
+    padding-top: 3em;
+    padding-bottom: 40px;
+    border-top: 2px solid #666;
+    align-items: center;
+    text-align: center;
+}
+
+footer h2, footer img{
+    color: #666;
+
+}
+
+footer h2{
+    font-weight: 400;
+}
+
+#logo-footer{
+    max-width: 100px;
+    max-height: 80px;
+    margin-top: 10px;
+}
