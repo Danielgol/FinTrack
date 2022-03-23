@@ -1,95 +1,82 @@
-<body>
-    <div class="container">
-        <header>
-            <nav class="navbar">
-                <div class="nav-container">
-                    <a href="#top"><img id="logo-nav" src="../../assets/joao.jpg" alt="FinTrack"></a>
-                    <ul>
-                        <li>
-                            <a href="#sobre-app">Sobre o app</a>
-                        </li>
-                        <li>
-                            <a href="#sobre-nos">Sobre nós</a>
-                        </li>
-                        <li>
-                            <a href="#registrar" routerLink="/login" routerLinkActive="active">Registre-se</a>
-                        </li>
-                        <li>
-                            <a href="" routerLink="/login" routerLinkActive="active">Entrar</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <div class="banner">
-                <div class="texto-banner">
-                    <h1>A maneira mais simples e prática de organizar suas finanças</h1>
-                </div>
-            </div>
-        </header>
+<header>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#top"><img id="logo" src="../../assets/joao.jpg" alt="FinTrack"></a>
+            <ul>
+                <li>
+                    <a href="">Início</a>
+                </li>
+                <li>
+                    <a href="#sobre-app">Sobre o app</a>
+                </li>
+                <li>
+                    <a href="#sobre-nos">Sobre nós</a>
+                </li>
+                <li>
+                    <a href="#" routerLink="/login" routerLinkActive="active">Registre-se</a>
+                </li>
+                <li>
+                    <a href="#" routerLink="/login" routerLinkActive="active">Entrar</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="banner">
+    <div class="texto-banner">
+        <h1>A maneira mais simples e prática de organizar suas finanças</h1>
     </div>
-
-    <section id="sobre-app">
-        <div class="wrapper impar">
-            <img src="../../assets/joao.jpg">
-            <h2>Mantenha suas finanças registradas e separadas por onde estejam armazenadas</h2>
-        </div>
-        <div class="wrapper par">
-            <h2>Redescubra o jeito de analisar as finanças: agrupe as que quiser</h2>
-            <img src="../../assets/joao.jpg">
-
-        </div>
-        <div class="wrapper impar">
-            <img src="../../assets/joao.jpg">
-            <h2>Uma nova maneira de visualizar seu caixa pessoal: Veja as finanças em diferentes moedas</h2>
-        </div>
-        
-    </section>
-
-    <section id="sobre-nos">
+</div>
+<section id="sobre-app">
+    <div class="box impar">
+        <img src="../../assets/diferentes-locais.jpeg" alt="">
+        <h2>Mantenha suas finanças registradas e separadas por onde estejam armazenadas</h2>
+    </div>
+    <div class="box par">
+        <img src="../../assets/agrupe.jpg" alt="">
+        <h2>Redescubra o jeito de analisar as finanças: agrupe-as como quiser</h2>
+    </div>
+    <div class="box impar">
+        <img src="../../assets/moedas.jpg" alt="">
+        <h2>Uma nova maneira de visualizar seu caixa pessoal: Veja as finanças em diferentes moedas</h2>
+    </div>
+</section>
+<section id="sobre-nos">
+    <div class="texto-sobre-nos">
         <h2>Quem somos?</h2>
         <p>Nossa equipe é composta por estudantes de Bacharelado em Ciência da Computação na Universidade Federal Rural de Pernambuco(UFRPE) atuando principalmente nas seguintes funções, mas não se limitando a elas:</p>
-        <div class="perfis">
-            <div class="wrapper perfil">
-                <img src="../../assets/joao.jpg">
-                <p>Daniel Carneiro</p>
-                <hr>
-                <p>Desenvolvedor Back-End</p>
-            </div>
-
-            <div class="wrapper perfil">
-                <img src="../../assets/joao.jpg">
-                <p>Diego Soares</p>
-                <hr>
-                <p>Desenvolvedor Front-End</p>
-            </div>
-            <div class="wrapper perfil">
-                <img src="../../assets/joao.jpg">
-                <p>João Victor Cavalcanti</p>
-                <hr>
-                <p>UX Designer</p>
-            </div>
-        </div>
-        
-        
-    </section>
-    <section id="registre-section">
-        <div class="banner" id="banner-registro">
-            <div class="texto-banner">
-                <h2>Descomplique o jeito que você acompanha suas finanças.</h2>
-                <p>Comece a usar o FinTrack hoje</p>
-                <a id="registrar" href="#">Registre-se agora!</a>
-            </div>
+    </div>
+    <div class="perfis">
+        <div class="perfil">
+            <img src="../../assets/joao.jpg">
+            <p>Daniel Carneiro</p>
+            <hr>
+            <p>Desenvolvedor Back-End</p>
         </div>
 
-    </section>
-
-    <footer>
-        <div class="footer-container">
-            <img id="logo-footer" src="../../assets/joao.jpg" alt="FinTrack">
-            <h2>FinTrack: Organizando suas finanças</h2>
+        <div class="perfil">
+            <img src="../../assets/diego.jpg">
+            <p>Diego Soares</p>
+            <hr>
+            <p>Desenvolvedor Front-End</p>
         </div>
-        
-    </footer>
+        <div class="perfil">
+            <img src="../../assets/joao.jpg">
+            <p>João Victor Cavalcanti</p>
+            <hr>
+            <p>UX Designer</p>
+        </div>
+    </div>
+</section>
+<section id="registre-section">
+        <div class="texto-registro">
+            <h2>Descomplique o jeito que você acompanha suas finanças.</h2>
+            <p>Comece a usar o FinTrack hoje</p>
+            <a id="registrar" href="" routerLink="/login" routerLinkActive="active">Registre-se agora!</a>
+        </div>
+</section>
 
-
-</body>
+<footer>
+    <img id="logo-footer" src="../../assets/joao.jpg" alt="FinTrack">
+    <h2>FinTrack: Organizando suas finanças</h2>
+</footer>

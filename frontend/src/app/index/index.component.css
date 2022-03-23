@@ -1,28 +1,12 @@
-/*-------- Geral e Reset ---------*/
-
-body{
+*{
     margin: 0;
-    font-family: 'Open Sans', sans-serif;
-    scroll-behavior: smooth;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica;
+    color: #323232;
+    border: none;
 }
 
-h1, h2, h3, h4, h5, p, span{
-    margin: 0;
-    color: #666;
-}
-
-.container{
-    max-width: 1920px;
-    width: 100%;
-}
-
-/*-------- Header ---------*/
-header{
-    position: relative;
-    top: 0;
-    height: auto;
-    width: 100%;
-}
 
 /*-------- Navbar ---------*/
 nav{
@@ -48,7 +32,7 @@ nav::after{
     margin-left: auto;
 }
 
-#logo-nav{
+#logo{
     float: left;
     max-width: 100px;
     max-height: 80px;
@@ -71,136 +55,168 @@ nav::after{
 .nav-container li a{
     text-decoration: none;
     color: #666;
-    transition: .5s;
+    transition: .3s
 }
 
 .nav-container li a:hover{
-    color: aqua;
+    color: #4882da;
 }
-
-/*-------- Banner ---------*/
-.banner{
-    background: rgb(209, 152, 152);
-    background-size: cover;
-    background-position: 0 55%;
+header{
     position: relative;
+    top: 0;
+    height: auto;
+    width: 100%;
+}
+/*--------Banner-----------*/
+.banner{
+    position: relative;
+    display: flex;
+    background: url(../../assets/banner.png);
+    background-size: cover;
+    background-position: center;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 100vw;
+    height: 350px;
+    vertical-align: middle;
+    align-content: center;
     margin-top: 100px;
+    padding: 0 auto;
 }
 
 .texto-banner{
-    position: relative;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 5em;
-    padding-bottom: 5em;
-    text-align: center;
+    
 }
 
-.texto-banner h1{
-    font-size: 40px;
-}
-
-.texto-banner p{
-   margin-top: 60px;
-   margin-bottom: 30px;
-   font-size: 18px;
-   font-weight: 300;
-}
-
-/*-------- Sobre o app ---------*/
-
+/*------------Sobre app-----------*/
 #sobre-app{
     text-align: center;
-    padding: 10px 0;
     display: flex;
     flex-direction: column;
 }
 
-.wrapper{
-    align-items: center;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
+.box{
     display: flex;
-    width: 100vw;
-    padding-left: 10vw;
-    padding-right: 10vw;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
+    padding: 50px 100px;
 }
 
-.wrapper h2{
-    font-size: 20px;
-
-
-}
-
-.wrapper img{
+.box img{
     border-radius: 100px;
     max-width: 200px;
     max-height: 200px;
+    
+}
+
+.box.impar img{
     margin-right: 40px;
 }
 
-.impar{
-    padding-top: 40px;
-    padding-bottom: 40px;
+.box h2{
+    
+
 }
 
 .par{
-    padding-top: 40px;
-    padding-bottom: 40px;
-    background-color: rgb(202, 202, 202);
+    background-color: #ccc;
+    flex-direction: row-reverse;
+   
 }
 
-.par img{
-    margin-right: 0;
-    margin-left: 40px;
-}
-/*-------- Sobre nós ---------*/
+/*----------Sobre-nos-----------*/
+
 #sobre-nos{
-    text-align: justify;
-    padding: 10px 40px;
     display: flex;
     flex-direction: column;
-    background-color: rgb(202, 202, 202);
+    background-color: #ccc;
+    padding-bottom: 20px;
 }
 
-#sobre-nos h2{
-
-    padding-top: 10px;
-    padding-bottom: 10px;
+.texto-sobre-nos{
+    display: flex;
+    padding: 10px 100px;
+    flex-direction: column;
 }
 
+.texto-sobre-nos h2{
+    padding: 5px 0;
+    text-align: center;
+    font-size: 35px;
+}
+
+.texto-sobre-nos p{
+    padding: 5px 0;
+}
 
 .perfis{
-    padding-top: 15px;
     display: flex;
     flex-direction: row;
-    align-content: space-between;
+    justify-content: space-around;
 }
 
+
 .perfil{
-    padding: 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
+
+}
+
+.perfil img{
+    border-radius: 100px;
+    max-width: 200px;
+    max-height: 200px;
 }
 
 hr{
     justify-content: center;
 	border: 0.6px solid #837b50;
     width: 80%;
-    margin-bottom: 7px;
+    margin: 7px 0;
 }
 
-.perfil img{
-    margin: 0;
+/*------------Registro Banner----------------*/
+
+#registre-section{
+    position: relative;
+    display: flex;
+    background: url(../../assets/banner.png);
+    background-size: cover;
+    background-position: center;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 100vw;
+    height: 350px;
+    vertical-align: middle;
+    align-content: center;
+    padding: 0 auto;
 }
 
-/*-------- Banner registro  ---------*/
+.texto-registro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+
+.texto-registro h2{
+
+}
+
+.texto-registro p{
+
+}
 
 #registrar{
-    background-color: aqua;
-    border: 2px solid #fff;
+    background-color: rgb(233, 174, 66);
+    border: 1px solid rgb(0, 0, 0);
     padding: 10px 20px;
     text-transform: uppercase;
     font-weight: bold;
@@ -211,12 +227,12 @@ hr{
     text-decoration: none;
 }
 
-
 #registrar:hover{
-    background-color: #2b79eb;
+    background-color: #4882da;
 }
 
-/*-------- Footer ---------*/
+
+/*----------Footer-----------*/
 
 footer{
     background-color: rgb(233, 174, 66);
@@ -225,6 +241,7 @@ footer{
     border-top: 2px solid #666;
     align-items: center;
     text-align: center;
+    
 }
 
 footer h2, footer img{

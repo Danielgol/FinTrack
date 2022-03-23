@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Helvetica;
+  color: #323232;
+  border: none;
+}
+
+html{
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+  @media (prefers-reduced-motion: no-preference){
+    html{
+      scroll-behavior: smooth;
+    }
+  }
+  
+  :target {
+    scroll-margin-top: 100px;
+  }
