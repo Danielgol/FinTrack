@@ -1,3 +1,4 @@
+/*
 *{
     margin: 0;
     padding: 0;
@@ -8,65 +9,7 @@
 }
 
 
-/*-------- Navbar ---------*/
-nav{
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100px;
-    z-index: 1;
-    background-color: rgb(233, 174, 66);
-    border-bottom: 1px solid #ccc;
-}
 
-nav::after{
-    clear: both;
-    content: "";
-    display: block;
-}
-
-.nav-container{
-    max-width: 1200px;
-    position: relative;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-#logo{
-    float: left;
-    max-width: 100px;
-    max-height: 80px;
-    margin-top: 10px;
-}
-
-.nav-container ul{
-    float: right;
-    height: 100px;
-    line-height: 100px;
-    margin: 0;
-}
-
-.nav-container li{
-    list-style: none;
-    float: left;
-    margin: 0 15px;
-}
-
-.nav-container li a{
-    text-decoration: none;
-    color: #666;
-    transition: .3s
-}
-
-.nav-container li a:hover{
-    color: #4882da;
-}
-header{
-    position: relative;
-    top: 0;
-    height: auto;
-    width: 100%;
-}
 /*--------Banner-----------*/
 .banner{
     position: relative;
@@ -81,7 +24,7 @@ header{
     height: 350px;
     vertical-align: middle;
     align-content: center;
-    margin-top: 100px;
+    margin-top: 70px;
     padding: 0 auto;
 }
 

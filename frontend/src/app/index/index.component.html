@@ -1,26 +1,32 @@
 <header>
-    <nav>
-        <div class="nav-container">
-            <a href="#top"><img id="logo" src="../../assets/joao.jpg" alt="FinTrack"></a>
-            <ul>
-                <li>
-                    <a href="">Início</a>
-                </li>
-                <li>
-                    <a href="#sobre-app">Sobre o app</a>
-                </li>
-                <li>
-                    <a href="#sobre-nos">Sobre nós</a>
-                </li>
-                <li>
-                    <a href="#" routerLink="/login" routerLinkActive="active">Registre-se</a>
-                </li>
-                <li>
-                    <a href="#" routerLink="/login" routerLinkActive="active">Entrar</a>
-                </li>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../../assets/joao.jpg" alt="" width="50" height="50" class="d-inline-block align-text-center">
+                FinTrack
+              </a>          
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#top">Início</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#sobre-app">Sobre o app</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#sobre-nos">Sobre nós</a>
+              </li>
             </ul>
+            <form class="d-flex">
+                <button class="btn btn-outline-success me-2" type="button"  routerLink="/login" routerLinkActive="active">Entrar</button>
+                <button class="btn btn-sm btn-outline-secondary" type="button"  routerLink="/login" routerLinkActive="active">Registre-se</button>
+            </form>
+          </div>
         </div>
-    </nav>
+      </nav>
 </header>
 <div class="banner">
     <div class="texto-banner">
@@ -72,7 +78,7 @@
         <div class="texto-registro">
             <h2>Descomplique o jeito que você acompanha suas finanças.</h2>
             <p>Comece a usar o FinTrack hoje</p>
-            <a id="registrar" href="" routerLink="/login" routerLinkActive="active">Registre-se agora!</a>
+            <button type="button" class="btn btn-primary" routerLink="/login" routerLinkActive="active">Registre-se agora!</button>
         </div>
 </section>
 
