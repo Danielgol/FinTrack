@@ -25,9 +25,6 @@ body{
     overflow-x: hidden;
 }
 
-#navId{
-    background-color: #4f364a;
-}
 
 #btn-entrar{
     color: #aee637;
@@ -99,7 +96,7 @@ body{
 #sobre-nos{
     display: flex;
     flex-direction: column;
-    background-color: #4f364a;
+    background-color: #2e2e2e;
     padding-bottom: 20px;
 }
 
@@ -179,7 +176,7 @@ hr{
 /*----------Footer-----------*/
 
 footer{
-    background-color: #4f364a;
+    background-color: #212529;
     padding-top: 3em;
     padding-bottom: 40px;
     border-top: 2px solid #666;
@@ -203,93 +200,8 @@ footer h2{
 
 /*------------------------------------- RESPONSIVIDADE -------------------------------------*/
 @media (max-width: 900px) {
-    /*-------------Nav RESPONSIVA-------------*/
-
-    #responsivo{
-        display: flex;
-        justify-content: space-between;
-        }
-
-        #navbar{
-        display: block;
-        }
-      
-    #menu{
-        display: none;
-        position: absolute;
-        width: 100vw;
-        height: 0px;
-        transition: .6s;
-        visibility: hidden;
-        overflow-y: hidden;
-        z-index: 1000;
-        background-color: rgb(233, 174, 66);
-        top: 100px;
-    }
-
-    #navbar.active #menu{
-        display: block;
-        height: 100vh;
-        visibility: visible;
-        overflow-y: auto;
-    }
-    #navbar.active #menu ul{
-        display: block;
-        height: 100vh;
-    }
-    #navbar.active #menu ul li{
-        height: 7vw;
-        padding: 1rem 0;
-        margin: 0 1rem;
-    }
 
 
-    #menu a{
-        padding: 1rem 0;
-        margin: 0 1rem;
-
-    }
-
-    #btn-responsive{
-        display: flex;
-        padding: .5rem 1rem; 
-        font-size: 1rem;
-        border: none;
-        background: none;
-        cursor: pointer;
-        gap: .5rem;
-        align-items: center;
-    }
-
-    #hamburguer{
-        border-top: 2px solid;
-        color: white;
-        
-    }
-
-    #hamburguer::after, #hamburguer::before{
-        background: currentColor;
-        width: 20px;
-        height: 2px;
-        content: '';
-        display: block;
-        margin-top: 5px;
-        transition: .3s;
-        position: relative;
-    }
-
-    #navbar.active #hamburguer {
-        border-top-color: transparent;
-    }
-
-    #navbar.active #hamburguer::before {
-        transform: rotate(135deg);
-    }
-    
-    #navbar.active #hamburguer::after {
-        transform: rotate(-135deg);
-        top: -7px;
-    }
 
 
 /*------------Sobre app-----------*/
@@ -314,7 +226,6 @@ footer h2{
     }
 
     .par{
-        background-color: #ccc;
         flex-direction: column;
     
     }
