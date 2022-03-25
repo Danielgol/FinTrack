@@ -8,12 +8,11 @@
     border: none;
 }
 
-.body{
-    position: absolute;
-    background-image: url(../../assets/background.jpg);
+body{
+    background-color: rgb(51, 46, 46);
     background-size: cover;
-    height: 100%;
-    width: 100%;
+    position: relative;
+    z-index: 2;
 }
 
 textarea:focus, input:focus{
@@ -29,6 +28,9 @@ a:hover{
 }
 
 /* container login */
+@keyframes mymove {
+    50% {box-shadow: 0px 0px 20px .4vw #397B38;}
+  }
 
 #login-container{
     background-color: #FFF;
@@ -36,10 +38,15 @@ a:hover{
     margin-left: auto;
     margin-right: auto;
     padding: 20px 30px;
-
     margin-bottom: auto;
     border-radius: 20px;
     text-align: center;
+    animation: mymove 5s infinite;
+}
+
+#login-container:hover{
+    transition: 2s;
+    
 }
 
 #login-container h1{
@@ -47,10 +54,6 @@ a:hover{
 }
 
 /* formulario login */
-
-form{
-
-}
 
 label,input{
     display: block;
@@ -131,18 +134,45 @@ input[type="submit"]:hover{
     margin-bottom: 20px;
 }
 
-/*FAZENDO MERDA*/
+/*PRINCIPAL / LOGO*/
 #principal{
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 20px;
+    align-content: center;
+    padding-top: 15vh;
+    padding-bottom: auto;
 }
 
 #logo-fintrack img{
     margin: auto 7vw;
     max-width: 400px;
     width: 30vw;
+    border-radius: 50%;
+}
+
+#voltar {
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+#voltar a img{
+    height: 40px;
+    width: 40px;
+    background-color: white;
+    border-radius: 50%;
+}
+/*-------- Circle ---------*/
+
+section.images .circle {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(10deg, rgb(68, 31, 68), #977996);
+    clip-path: circle(55% at left 58%);
+    z-index: -1;
 }
 
 /*-------- Header ---------*/
@@ -203,9 +233,48 @@ nav::after{
     transition: .5s;
 }
 
-@media only screen and (max-width:600px) {
+
+@media only screen and (max-width:1000px) {
     #principal{
         flex-direction: column;
         box-sizing: border-box;
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    #logo-fintrack{
+        margin-bottom: 5vh;
+    }
+
+    body{
+        position: relative;
+    }
+
+    #login-container{
+        background-color: #FFF;
+        width: 90vw;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px 30px;
+        margin-bottom: auto;
+        border-radius: 20px;
+        text-align: center;
+    }
+
+    section.images .circle {
+        height: 0%;
+        width: 0%;
+    }
+
+    #voltar {
+        padding-left: 2vw;
+        padding-top: 1.5vh;
+    }
+    
+    #voltar a img{
+        height: 4vw;
+        width: 4vw;
+        background-color: white;
+        border-radius: 50%;
     }
 }
