@@ -1,88 +1,93 @@
-<header>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="../../assets/joao.jpg" alt="" width="50" height="50" class="d-inline-block align-text-center">
-                FinTrack
-              </a>          
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#top">Início</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#sobre-app">Sobre o app</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#sobre-nos">Sobre nós</a>
-              </li>
-            </ul>
-            <form class="d-flex">
-                <button class="btn btn-outline-success me-2" type="button"  routerLink="/login" routerLinkActive="active">Entrar</button>
-                <button class="btn btn-sm btn-outline-secondary" type="button"  routerLink="/login" routerLinkActive="active">Registre-se</button>
-            </form>
-          </div>
+<body>
+    <header>
+        <div class="container">
+            <nav id="navId" class="navbar fixed-top navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#" style="color: #aee637;">
+                        <img src="../../assets/joao.jpg" alt="" width="50" height="50" class="d-inline-block align-text-center">
+                        FinTrack
+                    </a>          
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#top" style="color: #aee637;">Início</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#sobre-app" style="color: #aee637;">Sobre o app</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#sobre-nos" style="color: #aee637;">Sobre nós</a>
+                            </li>
+                        </ul>
+                        <form class="d-flex">
+                            <button id="btn-entrar" class="btn btn-outline-success alpha me-2" type="button"  routerLink="/login" routerLinkActive="active">Entrar</button>
+                            <button id="btn-registrar" class="btn btn-sm btn-outline-secondary" type="button"  routerLink="/login" routerLinkActive="active">Registre-se</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
         </div>
-      </nav>
-</header>
-<div class="banner">
-    <div class="texto-banner">
-        <h1>A maneira mais simples e prática de organizar suas finanças</h1>
-    </div>
-</div>
-<section id="sobre-app">
-    <div class="box impar">
-        <img src="../../assets/diferentes-locais.jpeg" alt="">
-        <h2>Mantenha suas finanças registradas e separadas por onde estejam armazenadas</h2>
-    </div>
-    <div class="box par">
-        <img src="../../assets/agrupe.jpg" alt="">
-        <h2>Redescubra o jeito de analisar as finanças: agrupe-as como quiser</h2>
-    </div>
-    <div class="box impar">
-        <img src="../../assets/moedas.jpg" alt="">
-        <h2>Uma nova maneira de visualizar seu caixa pessoal: Veja as finanças em diferentes moedas</h2>
-    </div>
-</section>
-<section id="sobre-nos">
-    <div class="texto-sobre-nos">
-        <h2>Quem somos?</h2>
-        <p>Nossa equipe é composta por estudantes de Bacharelado em Ciência da Computação na Universidade Federal Rural de Pernambuco(UFRPE) atuando principalmente nas seguintes funções, mas não se limitando a elas:</p>
-    </div>
-    <div class="perfis">
-        <div class="perfil">
-            <img src="../../assets/daniel.png">
-            <p>Daniel Carneiro</p>
-            <hr>
-            <p>Desenvolvedor Back-End</p>
+        
+    </header>
+    <div class="banner">
+        <div class="texto-banner">
+            <h1>A maneira mais simples e prática de organizar suas finanças</h1>
         </div>
+    </div>
+    <section id="sobre-app">
+        <div class="box impar">
+            <img src="../../assets/diferentes-locais.jpeg" alt="">
+            <h2>Mantenha suas finanças registradas e separadas por onde estejam armazenadas</h2>
+        </div>
+        <div class="box par">
+            <img src="../../assets/agrupe.jpg" alt="">
+            <h2>Redescubra o jeito de analisar as finanças: agrupe-as como quiser</h2>
+        </div>
+        <div class="box impar">
+            <img src="../../assets/moedas.jpg" alt="">
+            <h2>Uma nova maneira de visualizar seu caixa pessoal: Veja as finanças em diferentes moedas</h2>
+        </div>
+    </section>
+    <section id="sobre-nos">
+        <div class="texto-sobre-nos">
+            <h2>Quem somos?</h2>
+            <p>Nossa equipe é composta por estudantes de Bacharelado em Ciência da Computação na Universidade Federal Rural de Pernambuco(UFRPE) atuando principalmente nas seguintes funções, mas não se limitando a elas:</p>
+        </div>
+        <div class="perfis">
+            <div class="perfil">
+                <img src="../../assets/daniel.png">
+                <p>Daniel Carneiro</p>
+                <hr>
+                <p>Desenvolvedor Back-End</p>
+            </div>
 
-        <div class="perfil">
-            <img src="../../assets/diego.jpg">
-            <p>Diego Soares</p>
-            <hr>
-            <p>Desenvolvedor Front-End</p>
+            <div class="perfil">
+                <img src="../../assets/diego.jpg">
+                <p>Diego Soares</p>
+                <hr>
+                <p>Desenvolvedor Front-End</p>
+            </div>
+            <div class="perfil">
+                <img src="../../assets/joao.jpg">
+                <p>João Victor Cavalcanti</p>
+                <hr>
+                <p>UX Designer</p>
+            </div>
         </div>
-        <div class="perfil">
-            <img src="../../assets/joao.jpg">
-            <p>João Victor Cavalcanti</p>
-            <hr>
-            <p>UX Designer</p>
-        </div>
-    </div>
-</section>
-<section id="registre-section">
-        <div class="texto-registro">
-            <h2>Descomplique o jeito que você acompanha suas finanças.</h2>
-            <p>Comece a usar o FinTrack hoje</p>
-            <button type="button" class="btn btn-primary" routerLink="/login" routerLinkActive="active">Registre-se agora!</button>
-        </div>
-</section>
+    </section>
+    <section id="registre-section">
+            <div class="texto-registro">
+                <h2>Descomplique o jeito que você acompanha suas finanças.</h2>
+                <p>Comece a usar o FinTrack hoje</p>
+                <button type="button" class="btn btn-primary" routerLink="/login" routerLinkActive="active">Registre-se agora!</button>
+            </div>
+    </section>
 
-<footer>
-    <img id="logo-footer" src="../../assets/joao.jpg" alt="FinTrack">
-    <h2>FinTrack: Organizando suas finanças</h2>
-</footer>
+    <footer>
+        <img id="logo-footer" src="../../assets/joao.jpg" alt="FinTrack">
+        <h2>FinTrack: Organizando suas finanças</h2>
+    </footer>
+</body>

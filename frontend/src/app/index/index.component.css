@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+@font-face {
+    font-family: Source;
+    src: url(../../assets/Fontes/static/SourceCodePro-ExtraLight.ttf);
+}
+@font-face {
+    font-family: Work;
+    src: url(../../assets/Fontes/static/WorkSans-Thin.ttf);
+}
 /*
 *{
     margin: 0;
@@ -7,8 +16,26 @@
     color: #323232;
     border: none;
 }
+*/
+body{
+    font-family: Work, monospace;
+    font-weight: 900;
+    background-color: #383939;
+    color: #aee637;
+    overflow-x: hidden;
+}
 
+#navId{
+    background-color: #4f364a;
+}
 
+#btn-entrar{
+    color: #aee637;
+    border-color: #aee637;
+}
+#btn-registrar{
+    color: #aee637;
+}
 
 /*--------Banner-----------*/
 .banner{
@@ -29,7 +56,8 @@
 }
 
 .texto-banner{
-    
+    font-family: Source, monospace;
+    font-weight: 600;
 }
 
 /*------------Sobre app-----------*/
@@ -59,13 +87,9 @@
     margin-right: 40px;
 }
 
-.box h2{
-    
-
-}
 
 .par{
-    background-color: #ccc;
+    background-color: #2e2e2e;
     flex-direction: row-reverse;
    
 }
@@ -75,7 +99,7 @@
 #sobre-nos{
     display: flex;
     flex-direction: column;
-    background-color: #ccc;
+    background-color: #4f364a;
     padding-bottom: 20px;
 }
 
@@ -122,7 +146,7 @@
 
 hr{
     justify-content: center;
-	border: 0.6px solid #837b50;
+	border: 0.6px solid #aee637;
     width: 80%;
     margin: 7px 0;
 }
@@ -152,53 +176,21 @@ hr{
 
 }
 
-
-
-.texto-registro h2{
-
-}
-
-.texto-registro p{
-
-}
-
-#registrar{
-    background-color: rgb(233, 174, 66);
-    border: 1px solid rgb(0, 0, 0);
-    padding: 10px 20px;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: black;
-    cursor: pointer;
-    transition: .5s;
-    border-radius: 5px;
-    text-decoration: none;
-}
-
-#registrar:hover{
-    background-color: #4882da;
-}
-
-
 /*----------Footer-----------*/
 
 footer{
-    background-color: rgb(233, 174, 66);
+    background-color: #4f364a;
     padding-top: 3em;
     padding-bottom: 40px;
     border-top: 2px solid #666;
     align-items: center;
     text-align: center;
-    
 }
 
-footer h2, footer img{
-    color: #666;
 
-}
 
 footer h2{
-    font-weight: 400;
+    font-weight: 900;
 }
 
 #logo-footer{
@@ -301,9 +293,7 @@ footer h2{
 
 
 /*------------Sobre app-----------*/
-    #sobre-app{
 
-    }
 
     .box{
         display: flex;
@@ -312,10 +302,6 @@ footer h2{
         padding: 20px 40px;
     }
 
-    .box img{
-        
-        
-    }
 
     .box.impar img{
         margin-right: 0;
@@ -361,9 +347,7 @@ footer h2{
 
    
 
-    .perfil img{
 
-    }
 
     hr{
         width: 80%;
