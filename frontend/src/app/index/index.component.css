@@ -20,8 +20,8 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-    width: 100vw;
-    height: 350px;
+    width: 100%;
+    height: 70vh;
     vertical-align: middle;
     align-content: center;
     margin-top: 70px;
@@ -109,10 +109,15 @@
 
 }
 
+.perfil p{
+    margin: 0;
+}
+
 .perfil img{
     border-radius: 100px;
     max-width: 200px;
     max-height: 200px;
+    margin-top: 10px;
 }
 
 hr{
@@ -201,3 +206,239 @@ footer h2{
     max-height: 80px;
     margin-top: 10px;
 }
+
+
+
+/*------------------------------------- RESPONSIVIDADE -------------------------------------*/
+@media (max-width: 900px) {
+    /*-------------Nav RESPONSIVA-------------*/
+
+    #responsivo{
+        display: flex;
+        justify-content: space-between;
+        }
+
+        #navbar{
+        display: block;
+        }
+      
+    #menu{
+        display: none;
+        position: absolute;
+        width: 100vw;
+        height: 0px;
+        transition: .6s;
+        visibility: hidden;
+        overflow-y: hidden;
+        z-index: 1000;
+        background-color: rgb(233, 174, 66);
+        top: 100px;
+    }
+
+    #navbar.active #menu{
+        display: block;
+        height: 100vh;
+        visibility: visible;
+        overflow-y: auto;
+    }
+    #navbar.active #menu ul{
+        display: block;
+        height: 100vh;
+    }
+    #navbar.active #menu ul li{
+        height: 7vw;
+        padding: 1rem 0;
+        margin: 0 1rem;
+    }
+
+
+    #menu a{
+        padding: 1rem 0;
+        margin: 0 1rem;
+
+    }
+
+    #btn-responsive{
+        display: flex;
+        padding: .5rem 1rem; 
+        font-size: 1rem;
+        border: none;
+        background: none;
+        cursor: pointer;
+        gap: .5rem;
+        align-items: center;
+    }
+
+    #hamburguer{
+        border-top: 2px solid;
+        color: white;
+        
+    }
+
+    #hamburguer::after, #hamburguer::before{
+        background: currentColor;
+        width: 20px;
+        height: 2px;
+        content: '';
+        display: block;
+        margin-top: 5px;
+        transition: .3s;
+        position: relative;
+    }
+
+    #navbar.active #hamburguer {
+        border-top-color: transparent;
+    }
+
+    #navbar.active #hamburguer::before {
+        transform: rotate(135deg);
+    }
+    
+    #navbar.active #hamburguer::after {
+        transform: rotate(-135deg);
+        top: -7px;
+    }
+
+
+/*------------Sobre app-----------*/
+    #sobre-app{
+
+    }
+
+    .box{
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 20px 40px;
+    }
+
+    .box img{
+        
+        
+    }
+
+    .box.impar img{
+        margin-right: 0;
+    }
+
+    .box h2{
+        text-align: center;
+        font-size: 20px;
+
+    }
+
+    .par{
+        background-color: #ccc;
+        flex-direction: column;
+    
+    }
+
+ /*-----------SOBRE NÓS RESPONSIVO-----------*/
+
+    #sobre-nos{
+        padding-bottom: 20px;
+    }
+
+    .texto-sobre-nos{
+        text-align: justify;
+        padding: 10px 40px;
+
+    }
+
+    .texto-sobre-nos h2{
+        padding: 5px 0;
+        font-size: 35px;
+    }
+
+    .texto-sobre-nos p{
+        padding: 5px 0;
+    }
+
+    .perfis{
+        flex-direction: column;
+    }
+
+
+   
+
+    .perfil img{
+
+    }
+
+    hr{
+        width: 80%;
+        margin: 7px 0;
+    }
+
+     /*-----------SOBRE NÓS RESPONSIVO-----------*/
+
+     #sobre-nos{
+        padding-bottom: 20px;
+    }
+
+    .texto-sobre-nos{
+        text-align: justify;
+        padding: 10px 40px;
+
+    }
+
+    .texto-sobre-nos h2{
+        padding: 5px 0;
+        font-size: 35px;
+    }
+
+    .texto-sobre-nos p{
+        padding: 5px 0;
+    }
+
+    .perfis{
+        flex-direction: row;
+    }
+
+    hr{
+        width: 80%;
+        margin: 7px 0;
+    }
+
+
+    /*-------FOOTER Resp---------*/
+
+    footer h2{
+        font-size: 20px;
+    }
+
+}
+
+/*--------------CELULARES----------------*/
+
+@media only screen and (max-width:600px) {
+    /*-----------SOBRE NÓS RESPONSIVO-----------*/
+
+    #sobre-nos{
+        padding-bottom: 20px;
+    }
+
+    .texto-sobre-nos{
+        text-align: justify;
+        padding: 10px 40px;
+
+    }
+
+    .texto-sobre-nos h2{
+        padding: 5px 0;
+        font-size: 35px;
+    }
+
+
+    .perfis{
+        flex-direction: column;
+    }
+
+
+    hr{
+        width: 80%;
+        margin: 7px 0;
+    }
+
+
+  }
