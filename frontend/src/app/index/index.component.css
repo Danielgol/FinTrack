@@ -1,25 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
 @font-face {
     font-family: Source;
-    src: url(../../assets/Fontes/static/SourceCodePro-ExtraLight.ttf);
+    src: url(../../assets/Fontes/static/SourceCodePro-Light.ttf);
 }
 @font-face {
     font-family: Work;
-    src: url(../../assets/Fontes/static/WorkSans-Thin.ttf);
+    src: url(../../assets/Fontes/static/WorkSans-Light.ttf);
 }
-/*
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Helvetica;
-    color: #323232;
-    border: none;
-}
-*/
+:target {
+    scroll-margin-top: 75px;
+  }
+
 body{
     font-family: Work, monospace;
-    font-weight: 900;
+   
     background-color: #383939;
     color: #aee637;
     overflow-x: hidden;
@@ -136,6 +130,7 @@ body{
 
 .perfil img{
     border-radius: 100px;
+    width: 200px;
     max-width: 200px;
     max-height: 200px;
     margin-top: 10px;
@@ -187,7 +182,7 @@ footer{
 
 
 footer h2{
-    font-weight: 900;
+    
 }
 
 #logo-footer{
