@@ -1,15 +1,35 @@
+@font-face {
+    font-family: Source;
+    src: url(../../assets/Fontes/static/SourceCodePro-ExtraLight.ttf);
+}
+
+@font-face {
+    font-family: SourceBold;
+    src: url(../../assets/Fontes/static/SourceCodePro-Bold.ttf);
+}
+
+@font-face {
+    font-family: Work;
+    src: url(../../assets/Fontes/static/WorkSans-Thin.ttf);
+}
+
+@font-face {
+    font-family: WorkBold;
+    src: url(../../assets/Fontes/static/WorkSans-Bold.ttf);
+}
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Helvetica;
-    color: #323232;
+    color: white;
     border: none;
+    font-family: WorkBold, sans-serif;
 }
 
 body{
-    background-color: rgb(51, 46, 46);
+    background-color: #2e2e2e;
     background-size: cover;
     position: relative;
     z-index: 2;
@@ -24,16 +44,17 @@ a{
 }
 
 a:hover{
-    color: #08558b;
+    color: #aee637;
 }
 
 /* container login */
+/*
 @keyframes mymove {
-    50% {box-shadow: 0px 0px 20px .4vw #397B38;}
-  }
+    50% {box-shadow: 0px 0px 20px .4vw #aee637;}
+  }*/
 
 #register-container{
-    background-color: #FFF;
+    background-color: #343a40;
     width: 400px;
     margin-left: auto;
     margin-right: auto;
@@ -42,15 +63,12 @@ a:hover{
     border-radius: 20px;
     text-align: center;
     animation: mymove 5s infinite;
-}
-
-#register-container:hover{
-    transition: 2s;
-    
+    box-shadow: 0px 0px 15px .1vw #aee637;
 }
 
 #register-container h1{
     margin-top: 20px;
+    font-family: SourceBold;
 }
 
 /* formulario login */
@@ -67,14 +85,16 @@ label{
 }
 
 input{
-    border-bottom: 2px solid #323232;
+    border: 2px solid #2e2e2e;
+    border-radius: 20px;
     padding: 10px;
     font-size: 1rem;
     margin-bottom: 20px;
+    background-color: #383939;
 }
 
 input:focus{
-    border-bottom: 2px solid #08558b;
+    border: 1px solid #aee637;
 }
 
 #forgot-pass{
@@ -91,12 +111,12 @@ input[type="submit"]{
     border-radius: 20px;
     margin-top: 30px;
     color: #FFF;
-    background-color: #08558b;
+    background-color: #afe637a8;
     cursor: pointer;
 }
 
 input[type="submit"]:hover{
-    background-color: #1B223C;
+    background-color: #afe63757;
     transition: .5s;
 }
 
@@ -140,15 +160,14 @@ input[type="submit"]:hover{
     flex-direction: row;
     align-items: center;
     align-content: center;
-    padding-top: 15vh;
+    padding-top: 8vh;
     padding-bottom: auto;
 }
 
 #logo-fintrack img{
     margin: auto 7vw;
-    max-width: 400px;
+    max-width: 500px;
     width: 30vw;
-    border-radius: 50%;
 }
 
 #voltar {
@@ -170,7 +189,7 @@ section.images .circle {
     width: 100%;
     bottom: 0;
     left: 0;
-    background: linear-gradient(10deg, rgb(68, 31, 68), #977996);
+    background: linear-gradient(10deg, #343a40, #2d4f70);
     clip-path: circle(55% at left 58%);
     z-index: -1;
 }
@@ -251,7 +270,6 @@ nav::after{
     }
 
     #register-container{
-        background-color: #FFF;
         width: 90vw;
         margin-left: auto;
         margin-right: auto;
@@ -274,7 +292,6 @@ nav::after{
     #voltar a img{
         height: 4vw;
         width: 4vw;
-        background-color: white;
         border-radius: 50%;
     }
 }
