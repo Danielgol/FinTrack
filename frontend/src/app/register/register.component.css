@@ -1,35 +1,15 @@
-@font-face {
-    font-family: Source;
-    src: url(../../assets/Fontes/static/SourceCodePro-ExtraLight.ttf);
-}
-
-@font-face {
-    font-family: SourceBold;
-    src: url(../../assets/Fontes/static/SourceCodePro-Bold.ttf);
-}
-
-@font-face {
-    font-family: Work;
-    src: url(../../assets/Fontes/static/WorkSans-Thin.ttf);
-}
-
-@font-face {
-    font-family: WorkBold;
-    src: url(../../assets/Fontes/static/WorkSans-Bold.ttf);
-}
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Helvetica;
-    color: white;
+    color: #323232;
     border: none;
-    font-family: WorkBold, sans-serif;
 }
 
 body{
-    background-color: #2e2e2e;
+    background-color: rgb(51, 46, 46);
     background-size: cover;
     position: relative;
     z-index: 2;
@@ -44,17 +24,16 @@ a{
 }
 
 a:hover{
-    color: #aee637;
+    color: #08558b;
 }
 
 /* container login */
-/*
 @keyframes mymove {
-    50% {box-shadow: 0px 0px 20px .4vw #aee637;}
-  }*/
+    50% {box-shadow: 0px 0px 20px .4vw #397B38;}
+  }
 
-#login-container{
-    background-color: #343a40;
+#register-container{
+    background-color: #FFF;
     width: 400px;
     margin-left: auto;
     margin-right: auto;
@@ -63,12 +42,15 @@ a:hover{
     border-radius: 20px;
     text-align: center;
     animation: mymove 5s infinite;
-    box-shadow: 0px 0px 15px .1vw #aee637;
 }
 
-#login-container h1{
+#register-container:hover{
+    transition: 2s;
+    
+}
+
+#register-container h1{
     margin-top: 20px;
-    font-family: SourceBold;
 }
 
 /* formulario login */
@@ -85,16 +67,14 @@ label{
 }
 
 input{
-    border: 2px solid #2e2e2e;
-    border-radius: 20px;
+    border-bottom: 2px solid #323232;
     padding: 10px;
     font-size: 1rem;
     margin-bottom: 20px;
-    background-color: #383939;
 }
 
 input:focus{
-    border: 1px solid #aee637;
+    border-bottom: 2px solid #08558b;
 }
 
 #forgot-pass{
@@ -111,12 +91,12 @@ input[type="submit"]{
     border-radius: 20px;
     margin-top: 30px;
     color: #FFF;
-    background-color: #afe637a8;
+    background-color: #08558b;
     cursor: pointer;
 }
 
 input[type="submit"]:hover{
-    background-color: #afe63757;
+    background-color: #1B223C;
     transition: .5s;
 }
 
@@ -146,11 +126,11 @@ input[type="submit"]:hover{
 
 /*Container registrar*/
 
-#register-container p{
+#login-container p{
     margin-bottom: 10px;
 }
 
-#register-container{
+#login-container{
     margin-bottom: 20px;
 }
 
@@ -166,8 +146,9 @@ input[type="submit"]:hover{
 
 #logo-fintrack img{
     margin: auto 7vw;
-    max-width: 500px;
+    max-width: 400px;
     width: 30vw;
+    border-radius: 50%;
 }
 
 #voltar {
@@ -189,7 +170,7 @@ section.images .circle {
     width: 100%;
     bottom: 0;
     left: 0;
-    background: linear-gradient(10deg, #343a40, #2d4f70);
+    background: linear-gradient(10deg, rgb(68, 31, 68), #977996);
     clip-path: circle(55% at left 58%);
     z-index: -1;
 }
@@ -269,7 +250,8 @@ nav::after{
         position: relative;
     }
 
-    #login-container{
+    #register-container{
+        background-color: #FFF;
         width: 90vw;
         margin-left: auto;
         margin-right: auto;
@@ -292,6 +274,7 @@ nav::after{
     #voltar a img{
         height: 4vw;
         width: 4vw;
+        background-color: white;
         border-radius: 50%;
     }
 }
