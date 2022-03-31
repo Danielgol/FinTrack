@@ -11,15 +11,15 @@
         </section>
         <div id="register-container">
             <h1>Registre-se</h1>
-            <form action="">
+            <form [formGroup]="form" (submit)="submit()">
                 <label for="nome">Digite seu nome</label>
-                <input type="text" name="nome" id="nome" placeholder="Digite seu nome" autocomplete="off">
+                <input formControlName="name" type="text" name="nome" id="nome" placeholder="Digite seu nome" autocomplete="off">
                 <label for="email">E-mail</label>
-                <input type="email" name="email" id="email" placeholder="Digite seu e-mail" autocomplete="off">
+                <input formControlName="email" type="email" name="email" id="email" placeholder="Digite seu e-mail" autocomplete="off">
                 <label for="password">Digite uma senha</label>
-                <input type="password" name="password" id="password" placeholder="Digite sua senha">
+                <input formControlName="password" type="password" name="password" id="password" placeholder="Digite sua senha">
                 <label for="password">Confirme sua senha</label>
-                <input type="password" name="confirmed-password" id="confirmed-password" placeholder="Confirme sua senha">
+                <input formControlName="confirmedPassword" type="password" name="confirmedPassword" id="confirmedPassword" placeholder="Confirme sua senha">
                 <input type="submit" value="Entrar">
             </form>
             <div id="social-container">
