@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+
 
 @Component({
   selector: 'app-login',
@@ -12,4 +14,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  faFacebookF = faFacebookF;
+  faLinkedinIn = faLinkedinIn;
 }
