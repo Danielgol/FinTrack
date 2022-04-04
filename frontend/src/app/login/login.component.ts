@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../services/auth/auth-service.service';
-
+import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 
 
 @Component({
@@ -60,4 +60,6 @@ export class LoginComponent implements OnInit {
   }
   */
 
+  faFacebookF = faFacebookF;
+  faLinkedinIn = faLinkedinIn;
 }
