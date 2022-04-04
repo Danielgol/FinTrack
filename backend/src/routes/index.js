@@ -11,7 +11,8 @@ router.post('/example', exampleController.create)
 router.put('/example/:index', exampleController.update)
 router.delete('/example/:index', exampleController.delete)
 
-
+router.post('/login', mockController.login)
 router.post('/register', mockController.register)
+router.post('/getInfo', mockController.getInfo)
 
 module.exports = router

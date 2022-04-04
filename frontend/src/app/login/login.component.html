@@ -48,11 +48,11 @@
         </section>
         <div id="login-container">
             <h1>Login</h1>
-            <form action="">
+            <form [formGroup]="form" (submit)="submit()">
                 <label for="email">E-mail</label>
-                <input type="email" name="email" id="email" placeholder="Digite seu e-mail" autocomplete="off">
+                <input formControlName="email" type="email" name="email" id="email" placeholder="Digite seu e-mail" autocomplete="off">
                 <label for="password">Digite uma senha</label>
-                <input type="password" name="password" id="password" placeholder="Digite sua senha">
+                <input formControlName="password" type="password" name="password" id="password" placeholder="Digite sua senha">
                 <input type="submit" value="Entrar">
             </form>
             <div id="social-container">
