@@ -2,15 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 export interface Response {
-  id: any,
+  email: any,
   token: string,
   expiresIn: any
 }
 
 export interface Info {
-  id: any,
-  sobrenome: string,
-  saldo: any
+  maletas: any,
 }
 
 @Injectable({
@@ -57,13 +55,14 @@ export class AuthService {
   
 
   logout() {
-    localStorage.removeItem("id");
+    // Enviar mensagem para retirar o token do servidor
+    localStorage.removeItem("email");
     localStorage.removeItem("token");
     localStorage.removeItem("expiresIn");
   }
 
   private setSession(res: any) {
-    localStorage.setItem('id', res.id);
+    localStorage.setItem('email', res.email);
     localStorage.setItem('token', res.token);
     localStorage.setItem('expiresIn', res.expiresIn);
     /*
@@ -79,5 +78,7 @@ export class AuthService {
       observe:'body'
     });
   }
+
+
 
 }

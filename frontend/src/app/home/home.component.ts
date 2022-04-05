@@ -12,6 +12,8 @@ import { AuthService } from '../services/auth/auth-service.service';
 })
 export class HomeComponent implements OnInit {
 
+  maletas: any;
+
   constructor(private _authService: AuthService,
               private router: Router) { }
 
@@ -22,13 +24,14 @@ export class HomeComponent implements OnInit {
   
 
   getInfo(): void{
-    const id = localStorage.getItem('id');
+    const email = localStorage.getItem('email');
     const token = localStorage.getItem('token');
 
-    const objToken = {'id': id, 'token': token};
+    const objToken = {'email': email, 'token': token};
 
     this._authService.getInfo(objToken).subscribe(res => {
-      console.log(res.sobrenome)
+      this.maletas = res;
+      console.log(this.maletas);
     });
   }
 

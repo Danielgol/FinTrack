@@ -30,13 +30,13 @@ export class LoginComponent implements OnInit {
 
   submit(): void{
     this._authservice.login(this.form.getRawValue()).subscribe(res => {
-      localStorage.setItem('id', res.id);
+      localStorage.setItem('email', res.email);
       localStorage.setItem('token', res.token);
       localStorage.setItem('expiresIn', res.expiresIn);
 
       this.router.navigate(['/home']);
     }, error => { 
-      console.log("HTTP_UNAUTHORIZED!")
+      console.log("LOGIN_FAILED!")
     });
 
     /*
