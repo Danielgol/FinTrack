@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +22,8 @@ export class RegisterComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: '',
       email: '',
-      password: ''
+      password: '',
+      confirmedPassword: ''
     });
   }
 
@@ -33,5 +36,7 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(['login']);
     });
   }
-
-}
+  faFacebook = faFacebookF;
+  faLinkedin = faLinkedinIn;
+  anglesLeft = faAnglesLeft;
+} 

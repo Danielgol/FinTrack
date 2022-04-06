@@ -130,17 +130,16 @@ input[type="submit"]:hover{
     border-radius: 50%;
     line-height: 40px;
     color: #FFF;
-    margin: 0 10px;
+    margin: 0 5px;
     cursor: pointer;
+    padding: 8px;
 }
 
 #logo-facebook{
-    padding: 8px 12px;
     background-color: #3B5998;
 }
 
 #logo-linkedin{
-    padding: 8px 12px;
     background-color: #0077B5;  
 }
 
@@ -170,16 +169,14 @@ input[type="submit"]:hover{
     width: 30vw;
 }
 
-#voltar {
-    padding-left: 20px;
+#voltar{
     padding-top: 10px;
 }
 
-#voltar a img{
-    height: 40px;
-    width: 40px;
-    background-color: white;
-    border-radius: 50%;
+#voltar fa-icon{
+    color: #FFF;
+    padding-left: 20px;
+    padding-top: 10px;
 }
 /*-------- Circle ---------*/
 
@@ -287,11 +284,5 @@ nav::after{
     #voltar {
         padding-left: 2vw;
         padding-top: 1.5vh;
-    }
-    
-    #voltar a img{
-        height: 4vw;
-        width: 4vw;
-        border-radius: 50%;
     }
 }
