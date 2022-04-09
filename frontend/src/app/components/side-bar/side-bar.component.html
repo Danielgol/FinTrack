@@ -1,0 +1,91 @@
+<body>
+    <!--Main Navigation-->
+
+<header>
+    <!-- Sidebar -->
+    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+      <div class="position-sticky">
+        <div class="list-group list-group-flush mx-3 mt-4">
+
+          <a [routerLink]="['home']" class="list-group-item list-group-item-action py-2 ripple active">
+            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Home</span>
+          </a>
+
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+            ><i class="fas fa-lock fa-fw me-3"></i><span>Criar Maleta</span>
+          </a>
+
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+            ><i class="fas fa-chart-line fa-fw me-3"></i><span>Criar Grupo</span>
+          </a>
+
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+            <i class="fas fa-chart-pie fa-fw me-3"></i><span>Configurações</span>
+          </a>
+
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+            ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Sobre Nós</span>
+          </a>
+
+        </div>
+      </div>
+    </nav>
+    <!-- Sidebar -->
+  
+    <!-- Navbar -->
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-mdb-toggle="collapse"
+          data-mdb-target="#sidebarMenu"
+          aria-controls="sidebarMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+  
+        <!-- Brand -->
+        <a class="navbar-brand" [routerLink]="['home']">
+          <img
+            src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+            height="25"
+            alt="MDB Logo"
+            loading="lazy"
+          />
+        </a>
+        
+        <!-- Right links -->
+        <ul class="navbar-nav ms-auto d-flex flex-row">
+  
+          <!-- Avatar -->
+          <div class="nav-item dropdown">
+            <button class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown">
+              Diego Soares
+            </button>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a href="#" class="dropdown-item mb-control" data-box="#mb-signout">Sign Out  <span class="fa fa-sign-out"></span></a>      
+            </div>
+          </div>
+
+        </ul>
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+  </header>
+  <!--Main Navigation-->
+  
+  <!--Main layout-->
+  <main style="margin-top: 58px;">
+
+    <router-outlet></router-outlet>
+    
+  </main>
+  <!--Main layout-->
+
+</body>

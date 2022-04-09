@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getInfo();
+    console.log(this.maletas)
   }
 
   
@@ -31,7 +32,8 @@ export class HomeComponent implements OnInit {
 
     this._authService.getInfo(objToken).subscribe(res => {
       this.maletas = res;
-      console.log(this.maletas);
+      //this.banco = this.maletas[0].name
+      //console.log(this.maletas);
     });
   }
 

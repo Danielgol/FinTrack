@@ -13,12 +13,6 @@ const accounts = [
     {email: 'joao', name: 'joao cavalcanti', password: '111'},
 ];
 
-const simpleDatabase = [
-    {email: 'daniel', sobrenome: 'Rosa', saldo: 850},
-    {email: 'diego', sobrenome: 'Pires', saldo: -1000},
-    {email: 'joao', sobrenome: 'Cavalcanti', saldo: 1200},
-];
-
 const maletas = [
     {email: 'daniel', name: 'B-BRA', value: 1000.00, prefix: 'BRL', key: '1'},
     {email: 'daniel', name: 'ITAU', value: 900.00, prefix: 'BRL', key: '2'},
@@ -45,10 +39,6 @@ const grupos = [
     {email: 'joao', name: 'Dinheiro', prefix: 'BRL', bags: ['1', '3', '4']},
     {email: 'joao', name: 'Outro', prefix: 'BRL', bags: ['1', '3']},
 ];
-
-
-
-// ID = EMAIL (MUDAR)
 
 
 
