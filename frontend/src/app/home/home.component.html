@@ -1,1 +1,44 @@
-<p>home works!</p>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="container">
+        <nav id="navId" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#" style="color: #aee637;">
+                    <img src="../../assets/joao.jpg" alt="" width="50" height="50" class="d-inline-block align-text-center">
+                    FinTrack
+                </a>          
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <button class="btn nav-link" type="button" aria-current="page" style="color: #aee637;">Dashboard</button>
+
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link btn" type="button" style="color: #aee637;" routerLink="/createMaleta" routerLinkActive="active">Criar Maleta</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn nav-link" type="button" style="color: #aee637;" routerLink="/createGrupo" routerLinkActive="active">Criar Grupo</button>
+                        </li>
+                    </ul>
+                    
+                    <button id="btn-logout" class="btn btn-sm btn-outline-secondary" type="button" (click)="logout()">{{nome}}&nbsp;&nbsp;<span class="fa fa-sign-out"></span></button>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+    
+
+
+  <!--Main layout-->
+  <main>
+    
+
+  </main>
+  <!--Main layout-->
+
+</body>

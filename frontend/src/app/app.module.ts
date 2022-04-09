@@ -9,7 +9,9 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CreateMaletaComponent } from './create-maleta/create-maleta.component';
+import { CreateGrupoComponent } from './create-grupo/create-grupo.component'
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
     IndexComponent,
     LoginComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    CreateMaletaComponent,
+    CreateGrupoComponent
   ],
   imports: [
     BrowserModule,
