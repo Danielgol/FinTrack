@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../services/auth/auth-service.service';
+import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import { faAnglesLeft, faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -12,6 +14,7 @@ import { AuthService } from '../services/auth/auth-service.service';
 })
 export class HomeComponent implements OnInit {
 
+  nome: any;
   maletas: any;
 
   constructor(private _authService: AuthService,
@@ -32,8 +35,8 @@ export class HomeComponent implements OnInit {
 
     this._authService.getInfo(objToken).subscribe(res => {
       this.maletas = res;
-      //this.banco = this.maletas[0].name
-      //console.log(this.maletas);
+      this.nome = "NOME AQUI";
+      console.log(this.maletas);
     });
   }
 
@@ -44,4 +47,6 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+
+  anglesLeft = faAnglesLeft;
 }

@@ -1,0 +1,29 @@
+<div id="principal" class="col-md-12">
+    <div id="criarGrupo" class="container">
+        <p>OLA MUNDO SOU EU AQUI</p>
+        <div id="login-container" class="col-md-5">
+            <h1>Criar Grupo</h1>
+            <form [formGroup]="form">
+                <label for="name">Nome:</label>
+                <input formControlName="name" type="text" name="name" id="name" placeholder="Digite o nome do grupo" autocomplete="off">
+    
+                <label for="currency">Moeda</label>
+                    <select name="currency" id="currency">
+                        <option value="real">R$(Real)</option>
+                        <option value="dolar">$(Dólar)</option>
+                        <option value="libra">£(Libra)</option>
+                        <option value="euro">€(Euro)</option>
+                     </select>
+                
+            </form>
+        </div>
+    </div>
+    
+
+    <div id="maleta-container" class="col-md-7">
+        <h1>Selecione as maletas</h1>
+        <form [formGroup]="form">
+            <input type="submit" value="Salvar">
+        </form>
+    </div>
+</div>

@@ -1,0 +1,172 @@
+@font-face {
+    font-family: Source;
+    src: url(../../assets/Fontes/static/SourceCodePro-ExtraLight.ttf);
+}
+
+@font-face {
+    font-family: SourceBold;
+    src: url(../../assets/Fontes/static/SourceCodePro-Bold.ttf);
+}
+
+@font-face {
+    font-family: Work;
+    src: url(../../assets/Fontes/static/WorkSans-Thin.ttf);
+}
+
+@font-face {
+    font-family: WorkBold;
+    src: url(../../assets/Fontes/static/WorkSans-Bold.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica;
+    color: white;
+    border: none;
+    font-family: WorkBold, sans-serif;
+}
+
+textarea:focus, input:focus{
+    outline:none;
+}
+
+a{
+    font-size: .8rem;
+}
+
+a:hover{
+    color: #aee637;
+}
+
+/* container login */
+/*
+@keyframes mymove {
+    50% {box-shadow: 0px 0px 20px .4vw #aee637;}
+  }*/
+
+#login-container{
+    background-color: #343a40;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 30px;
+    margin-bottom: auto;
+    border-radius: 20px;
+    text-align: center;
+    animation: mymove 5s infinite;
+    box-shadow: 0px 0px 15px .1vw #aee637;
+    margin-bottom: 20px;
+}
+
+#login-container h1{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-family: SourceBold;
+    font-size: 30px;
+}
+
+/* formulario login */
+
+label,input,select{
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+label{
+    font-weight: bold;
+    font-size: .8rem;
+}
+
+input{
+    border: 2px solid #2e2e2e;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    background-color: #383939;
+}
+
+select{
+    text-align: center;
+    border: 2px solid #2e2e2e;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    background-color: #383939;
+}
+
+input:focus{
+    border: 1px solid #aee637;
+}
+
+select:focus{
+    border: 1px solid #aee637;
+}
+
+input[type="submit"]{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    height: 40px;
+    border-radius: 20px;
+    margin-top: 30px;
+    color: #FFF;
+    background-color: #afe637a8;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover{
+    background-color: #afe63757;
+    transition: .5s;
+}
+/* redes sociais*/
+
+/*Container registrar*/
+
+/*PRINCIPAL / LOGO*/
+#principal{
+    display: fixed;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    vertical-align: middle;
+    padding-top: 15vh;
+    padding-bottom: auto;
+}
+/*-------- Circle ---------*/
+
+
+/*-------- Header ---------*/
+header{
+    position: relative;
+    top: 0;
+    height: auto;
+    width: 100%;
+}
+
+/*-------- Navbar ---------*/
+
+
+@media only screen and (max-width:1000px) {
+    #principal{
+        flex-direction: column;
+        box-sizing: border-box;
+        margin-top: 0;
+        padding-top: 10vh;
+    }
+
+    #login-container{
+        width: 90vw;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px 30px;
+        margin-bottom: 20px;
+        border-radius: 20px;
+        text-align: center;
+    }
+}
