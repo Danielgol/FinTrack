@@ -12,24 +12,23 @@ import { MainComponent } from './components/main/main.component';
 
 
 const routes: Routes = [
+  
+  // Utilizar CanActivate para decidir se é a tela index ou homepage
+
   {path: "", component: IndexComponent},
   {path: "login", component: LoginComponent},
-
-  /*
   {path: "register", component: RegisterComponent},
+  
   {
-    path: "main",
-    component: MainComponent, children:[
+    path: "",
+    component: MainComponent,
+    children:[
       {path: "home", component: HomeComponent},
-      {path: "login", component: LoginComponent},
+      {path: "createGrupo", component: CreateGrupoComponent},
+      {path: "createMaleta", component: CreateMaletaComponent},
     ]
   },
-  */
 
-  {path: "home", component: HomeComponent},
-  {path: "register", component: RegisterComponent},
-  {path: "createGrupo", component: CreateGrupoComponent},
-  {path: "createMaleta", component: CreateMaletaComponent}
 ];
 
 @NgModule({
