@@ -2,7 +2,7 @@
     <!--Main Navigation-->
 
 <header>
-    <!-- Sidebar -->
+    <!-- Sidebar 
     <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-dark">
       <div class="position-sticky">
         <div class="list-group list-group-flush mx-3 mt-4">
@@ -30,62 +30,97 @@
         </div>
       </div>
     </nav>
-    <!-- Sidebar -->
+    Sidebar -->
   
     <!-- Navbar -->
-    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
-      <!-- Container wrapper -->
-      <div class="container-fluid">
-        <!-- Toggle button -->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-mdb-toggle="collapse"
-          data-mdb-target="#sidebarMenu"
-          aria-controls="sidebarMenu"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <i class="fas fa-bars"></i>
-        </button>
-  
-        <!-- Brand -->
-        <a class="navbar-brand" [routerLink]="['home']">
-          <img
-            src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
-            height="25"
-            alt="MDB Logo"
-            loading="lazy"
-          />
-        </a>
-        
-        <!-- Right links -->
-        <ul class="navbar-nav ms-auto d-flex flex-row">
-  
-          <!-- Avatar -->
-          <div class="nav-item dropdown">
-            <button class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown">
-              SEU NOME
-            </button>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a href="#" class="dropdown-item mb-control" data-box="#mb-signout">Sign Out  <span class="fa fa-sign-out"></span></a>      
-            </div>
-          </div>
+    <div class="container">
+      <nav id="navId" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+              <a class="navbar-brand" href="#" style="color: #aee637;">
+                  <img src="../../assets/joao.jpg" alt="" width="50" height="50" class="d-inline-block align-text-center">
+                  FinTrack
+              </a>          
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                          <button [routerLink]="['home']" class="btn nav-link" type="button" aria-current="page" style="color: #aee637;">Dashboard</button>
 
-        </ul>
-      </div>
-      <!-- Container wrapper -->
-    </nav>
-    <!-- Navbar -->
+                      </li>
+                      <li class="nav-item">
+                          <button [routerLink]="['createMaleta']" class="nav-link btn" type="button" style="color: #aee637;"  routerLinkActive="active">Criar Maleta</button>
+                      </li>
+                      <li class="nav-item">
+                          <button [routerLink]="['createGrupo']" class="btn nav-link" type="button" style="color: #aee637;"  routerLinkActive="active">Criar Grupo</button>
+                      </li>
+                  </ul>
+                  <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+        
+                 </div>
+  
+                    
+  
+                  <button id="btn-logout" class="btn btn-sm btn-outline-secondary" type="button" >NINGUEM AQUI&nbsp;&nbsp;<span class="fa fa-sign-out"></span></button>
+
+              </div>
+          </div>
+      </nav>
+    </div>
+     <!-- Navbar -->
+
+     
+    <div class="wrapper">
+      
+      <!-- Sidebar -->
+      <nav id="sidebar" class="bg-dark">
+          <div class="sidebar-header ">
+              <h3>Fintrack</h3>
+          </div>
+  
+          <ul class="list-unstyled components">
+              <p>Organizando suas finanças</p>
+              <li>
+                  <a [routerLink]="['home']" href="#"><i class="fas fa-tachometer-alt fa-fw me-3"></i>Dashboard</a>
+              </li>
+              <li>
+                  <a [routerLink]="['createMaleta']" href="#"><i class="fas fa-lock fa-fw me-3"></i>Criar Maleta</a>
+              </li>
+              <li>
+                  <a [routerLink]="['createGrupo']" href="#"><i class="fas fa-chart-line fa-fw me-3"></i>Criar Grupo</a>
+              </li>
+          </ul>
+      </nav>
+  
+  </div>
   </header>
-  <!--Main Navigation-->
+
   
   <!--Main layout-->
   <main style="margin-top: 58px;">
-
     <router-outlet></router-outlet>
     
   </main>
   <!--Main layout-->
 
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <!-- Popper.JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+  <script>
+    $(document).ready(function () {
+
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+
+    });
+  </script>
 </body>
