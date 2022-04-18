@@ -55,9 +55,8 @@ a:hover{
     margin-bottom: auto;
     border-radius: 20px;
     text-align: center;
-    animation: mymove 5s infinite;
-    box-shadow: 0px 0px 15px .1vw #aee637;
     margin-bottom: 20px;
+    border: 1px solid #aee637;
 }
 
 #login-container h1{
@@ -81,9 +80,8 @@ a:hover{
     margin-bottom: auto;
     border-radius: 20px;
     text-align: center;
-    animation: mymove 5s infinite;
-    box-shadow: 0px 0px 15px .1vw #aee637;
     margin-bottom: 20px;
+    border: 1px solid #aee637;
 }
 
 #maleta-container h1{
