@@ -49,8 +49,8 @@ a:hover{
 #login-container{
     background-color: #343a40;
     width: 400px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 30px;
+    margin-right: 10px;
     padding: 20px 30px;
     margin-bottom: auto;
     border-radius: 20px;
@@ -74,8 +74,8 @@ a:hover{
 #maleta-container{
     background-color: #343a40;
     width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 10px;
+    margin-right: 30px;
     padding: 20px 30px;
     margin-bottom: auto;
     border-radius: 20px;
@@ -181,7 +181,7 @@ header{
 /*-------- Navbar ---------*/
 
 
-@media only screen and (max-width:1000px) {
+@media all and (max-width: 1000px){
     #principal{
         flex-direction: column;
         box-sizing: border-box;
@@ -189,10 +189,12 @@ header{
         padding-top: 10vh;
     }
 
+    
+
     #login-container{
         width: 90vw;
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 20px;
+        margin-right: 20px;
         padding: 20px 30px;
         margin-bottom: 20px;
         border-radius: 20px;
@@ -201,8 +203,39 @@ header{
 
     #maleta-container{
         width: 90vw;
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 20px 30px;
+        margin-bottom: 20px;
+        border-radius: 20px;
+        text-align: center;
+    }
+}
+
+@media all and (max-width: 1500px) and (min-width: 1000px){
+    #principal{
+        flex-direction: column;
+        box-sizing: border-box;
+        margin-top: 0;
+        padding-top: 10vh;
+    }
+
+    
+
+    #login-container{
+        width: 70vw;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 20px 30px;
+        margin-bottom: 20px;
+        border-radius: 20px;
+        text-align: center;
+    }
+
+    #maleta-container{
+        width: 70vw;
+        margin-left: 20px;
+        margin-right: 20px;
         padding: 20px 30px;
         margin-bottom: 20px;
         border-radius: 20px;
