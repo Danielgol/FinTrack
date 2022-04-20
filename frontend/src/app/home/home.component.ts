@@ -14,6 +14,7 @@ import { faAnglesLeft, faCoffee } from '@fortawesome/free-solid-svg-icons';
 })
 export class HomeComponent implements OnInit {
 
+  objectKeys = Object.keys;
   nome: any;
   maletas: any;
 

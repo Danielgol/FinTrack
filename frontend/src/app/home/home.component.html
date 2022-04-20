@@ -54,7 +54,20 @@
                         Maletas
                     </div>
                     <div class="card-body">
-                        Aqui as maletas disponibilizadas em cards
+
+                        <div *ngIf="maletas">
+                          <div id="maleta-container" *ngFor="let maleta of objectKeys(maletas)">
+                            <h3>
+                              <span class="label label-primary">{{maletas[maleta].name}}</span>
+                              <span class="label label-primary">
+                                {{maletas[maleta].prefix}}
+                                {{maletas[maleta].value}}
+                              </span>
+                              <!--<span> {{ cryptos[crypto].USD | currency:'USD':true }}</span>-->
+                            </h3>
+                          </div>
+                        </div>
+
                     </div>
                     
                 </div>
