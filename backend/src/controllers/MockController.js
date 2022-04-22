@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken')
 
+const Maleta = require('../models/Maleta');
 const Usuario = require('../models/Usuario');
+
 
 const {
     HTTP_OK,
@@ -43,20 +45,22 @@ var tokens = [];
 
 module.exports = {
 
-    login(req, res) {
-        const email = req.body.email;
-        const password = req.body.password;
+    async login(req, res) {
+        const {email, password} = req.body;
 
-        if(userExists(email, password)){
+        try{
+            const usuario = await Usuario.findOne({email: email});
+            if(usuario.hash_password === password){
+                //const token = jwt.sign(user, 'mudarparaoutracoisa' , {expiresIn: 360})
+                const token = 'eu sou um token';
+                const objToken = {email: email, token: token, expiresIn: 360};
 
-            //const token = jwt.sign(user, 'mudarparaoutracoisa' , {expiresIn: 360})
-            const token = 'eu sou um token';
-            const objToken = {email: email, token: token, expiresIn: 360};
-            tokens.push(objToken);
+                tokens.push(objToken);
 
-            console.log("Login Success: "+email)
-            return res.status(HTTP_OK).json(objToken);
-        }
+                console.log("Login Success: "+email)
+                return res.status(HTTP_OK).json(objToken);
+            }
+        }catch(error){}
 
         console.log("Login Failed: "+email);
         return res.status(HTTP_UNAUTHORIZED).send()
