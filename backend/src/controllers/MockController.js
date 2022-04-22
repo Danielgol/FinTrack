@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken')
 
+const Usuario = require('../models/Usuario');
+
 const {
     HTTP_OK,
     HTTP_NOT_FOUND,
@@ -7,11 +9,6 @@ const {
     HTTP_UNAUTHORIZED
 } = require('../utils/Constants')
 
-const accounts = [
-    {email: 'daniel', name: 'daniel carneiro', password: '123'},
-    {email: 'diego', name: 'diego soares', password: '321'},
-    {email: 'joao', name: 'joao cavalcanti', password: '111'},
-];
 
 const maletas = [
     {email: 'daniel', name: 'B-BRA', value: 1000.00, prefix: 'BRL', key: '1'},
@@ -67,21 +64,31 @@ module.exports = {
 
 
 
-    register(req, res) {
-        const name = req.body.name;
-        const email = req.body.email;
-        const password = req.body.password;
+    async register(req, res) {
+        const {name, email, password} = req.body;
 
-        if(userExists(email, password)){
-            console.log(email+" Arealdy exists!")
-            return res.json({message: 'EMAIL ALREADY EXISTS'});
+        try{
+            const usuario = await Usuario.findOne({email: email});
+            console.log(usuario.email+" já está sendo utilizado!")
+            return res.status(500).send();
+        }catch(error){}
+
+        hash_password = password;
+
+        const usuario = {
+            name,
+            email,
+            hash_password,
         }
 
-        const user = {email: email, name: name, password: password};
-        accounts.push(user);
-
-        console.log("Register: "+name);
-        return res.status(HTTP_OK).send();
+        try{
+            await Usuario.create(usuario);
+            console.log("Register: "+usuario.email);
+            return res.status(HTTP_CREATED).send();
+        }catch(error){
+            console.log("Erro na criação do usuário!");
+            return res.status(500).send();
+        }
     },
 
 

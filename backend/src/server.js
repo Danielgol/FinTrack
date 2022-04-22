@@ -25,15 +25,14 @@ app.use(cors());
 app.use(express.json());
 app.use(routes);
 
-
 const DB_USER = 'dcrosa';
 const DB_PASSWORD = encodeURIComponent('202N81dVA0TOzVaI');
+const DB_CONNECTION = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@apicluster.twtrr.mongodb.net/fintrack?retryWrites=true&w=majority`;
+
 const PORT = process.env.PORT || 3000;
 
-mongoose.connect(
-    `mongodb+srv://${DB_USER}:${DB_PASSWORD}@apicluster.twtrr.mongodb.net/fintrack?retryWrites=true&w=majority`,
-    ).then(() => {
-
-        app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-
-    }).catch((err) => console.log('Não foi possível conectar ao banco!'))
+mongoose.connect(DB_CONNECTION,).then(() => {
+    app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+}).catch((err) =>
+    console.log('Não foi possível conectar ao banco!')
+);
