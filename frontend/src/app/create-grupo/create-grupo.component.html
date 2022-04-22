@@ -22,6 +22,18 @@
 
     <div id="maleta-container" class="col-md-7">
         <h1>Selecione as maletas</h1>
+        <div *ngIf="maletas">
+            <div id="maleta-container" *ngFor="let maleta of objectKeys(maletas)">
+                <h3>
+                    <span class="label label-primary">{{maletas[maleta].name}}</span>
+                    <span class="label label-primary">
+                        {{maletas[maleta].prefix}}
+                        {{maletas[maleta].value}}
+                    </span>
+                    <!--<span> {{ cryptos[crypto].USD | currency:'USD':true }}</span>-->
+                </h3>
+            </div>
+        </div>
         <form [formGroup]="form">
             <input type="submit" value="Salvar">
         </form>
