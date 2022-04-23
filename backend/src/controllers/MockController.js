@@ -5,6 +5,7 @@ const Maleta = require('../models/Maleta');
 const Usuario = require('../models/Usuario');
 
 // https://www.youtube.com/watch?v=K5QaTfE5ylk&t=1727s&ab_channel=MatheusBattisti-HoradeCodar
+// https://www.youtube.com/watch?v=RaweREhpBX8&ab_channel=Rocketseat
 
 const {
     HTTP_OK,
@@ -45,12 +46,6 @@ const grupos = [
 
 
 
-
-
-//var tokens = [];
-
-
-
 module.exports = {
 
     async login(req, res) {
@@ -58,20 +53,20 @@ module.exports = {
 
         try{
             const usuario = await Usuario.findOne({email: email});
-            if(usuario.hash_password === password){
-                //const token = jwt.sign(user, 'mudarparaoutracoisa' , {expiresIn: 360})
-                const token = 'eu sou um token';
-                const objToken = {email: email, token: token, expiresIn: 360};
+            const hash_password = encryptPassword(password);
 
-                tokens.push(objToken);
-
-                console.log("Login Success: "+email)
-                return res.status(HTTP_OK).json(objToken);
+            if(usuario.hash_password === hash_password){
+                console.log("Login Success: "+email);
+                const token = generateToken({email, password});
+                return res.status(HTTP_OK).json({'email': email ,'token': token});
             }
-        }catch(error){}
+        }catch(error){
+            console.log(email+" não autenticado!");
+            return res.status(HTTP_UNAUTHORIZED).send();
+        }
 
-        console.log("Login Failed: "+email);
-        return res.status(HTTP_UNAUTHORIZED).send()
+        console.log(email+" não autenticado!");
+        return res.status(HTTP_UNAUTHORIZED).send();
     },
 
 
@@ -85,7 +80,7 @@ module.exports = {
             return res.status(HTTP_INTERNAL_ERROR).send();
         }catch(error){}
 
-        hash_password = password;
+        const hash_password = encryptPassword(password);
 
         const usuario = {
             name,
@@ -97,10 +92,10 @@ module.exports = {
             await Usuario.create(usuario);
             console.log("Register: "+usuario.email);
             return res.status(HTTP_CREATED).send();
-        }catch(error){
-            console.log("Erro na criação do usuário!");
-            return res.status(HTTP_INTERNAL_ERROR).send();
-        }
+        }catch(error){}
+
+        console.log("Erro na criação do usuário!");
+        return res.status(HTTP_INTERNAL_ERROR).send();
     },
 
 
@@ -109,13 +104,11 @@ module.exports = {
 
         const {email, token} = req.body;
 
-        /*
-        if(!isRequestValid(req)){
-            console.log("INVALID REQUEST!");
+        if(!verifyToken(email, token)){
+            console.log("Token Inválido!");
             return res.status(HTTP_UNAUTHORIZED).send();
-        }
-        */
-
+        }        
+        
         var data = [];
 
         try{
@@ -132,38 +125,34 @@ module.exports = {
     
 }
 
-/*
-getInfo(req, res) {
-        if(!isRequestValid(req)){
-            console.log("INVALID REQUEST!");
-            return res.status(HTTP_UNAUTHORIZED).send();
-        }
 
-        const email = req.body.email;
+function verifyToken(email, token){
+    var decoded = {};
 
-        var info = [];
-        for(var i=0; i<maletas.length; i++){
-            if(maletas[i].email === email){
-                info.push(maletas[i]);
-            }
-        }
+    try{
+        decoded = jwt.verify(token, 'hash_unica_do_servidor');
+    }catch(error){
+        console.log("Token Inválido!");
+        return false;
+    }
 
-        console.log(email+": "+info.length+" items");
-        return res.status(HTTP_OK).json(info);
-    },
-
-
-
-function isRequestValid(req) {
-    const id = req.body.id;
-    const token = req.body.token;
-    for(var i=0; i<tokens.length; i++){
-        if(tokens[i].id === id){
-            if(tokens[i].token === token){
-                return true;
-            }
+    try{
+        if(email !== decoded.email){
+            console.log("Token Inválido!");
             return false;
         }
+    }catch(error){
+        console.log("Tipo de requisição inválida!");
+        return false;
     }
+
+    return true;
 }
-*/
+
+function generateToken(obj){
+    return jwt.sign(obj, 'hash_unica_do_servidor' , {expiresIn: "20s"});
+}
+
+function encryptPassword(password){
+    return password;
+}
