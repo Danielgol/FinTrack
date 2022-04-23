@@ -4,7 +4,7 @@ const Grupo = mongoose.model('Grupo',{
 	email: String,
 	name: String,
 	prefix: String,
-	//bags: Array,
+	maletas: Array,
 });
 
 module.exports = Grupo;

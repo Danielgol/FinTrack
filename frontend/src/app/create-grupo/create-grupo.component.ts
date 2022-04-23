@@ -12,6 +12,7 @@ import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons';
 })
 export class CreateGrupoComponent implements OnInit {
 
+  selectedMaletas: any;
   form: any;
 
   objectKeys = Object.keys;
@@ -23,6 +24,7 @@ export class CreateGrupoComponent implements OnInit {
     private router: Router) { }
 
     ngOnInit(): void {
+      this.selectedMaletas = [];
       this.getInfo();
       this.form = this.formBuilder.group({
         email: '',
@@ -41,6 +43,21 @@ export class CreateGrupoComponent implements OnInit {
         this.nome = "NOME AQUI";
         console.log(this.maletas);
       });
+    }
+
+    OnCheckboxSelect(id: any, event: any): void{
+      if (event.target.checked === true) {
+        this.selectedMaletas.push({id: id, checked: event.target.checked});
+        console.log('Selected Ids ', this.selectedMaletas);
+      }
+      if (event.target.checked === false) {
+        this.selectedMaletas = this.selectedMaletas.filter((item: any) => item.id !== id);
+        console.log('Selected Ids ', this.selectedMaletas);
+      }
+    }
+
+    submit(): void{
+      console.log(this.selectedMaletas);
     }
 
 }

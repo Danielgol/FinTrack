@@ -14,5 +14,8 @@ router.delete('/example/:index', exampleController.delete)
 router.post('/login', mockController.login)
 router.post('/register', mockController.register)
 router.post('/getInfo', mockController.getInfo)
+router.post('/createMaleta', mockController.createMaleta)
+router.post('/createGrupo', mockController.createGrupo)
+router.post('/getGrupos', mockController.getGrupos)
 
 module.exports = router

@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-//const Grupo = require('../models/Grupo');
+const Grupo = require('../models/Grupo');
 const Maleta = require('../models/Maleta');
 const Usuario = require('../models/Usuario');
 
@@ -44,6 +44,11 @@ const grupos = [
 ];
 */
 
+
+/*
+Ainda falta fazer a verificação de cada campo dos formulários:
+Variaveis nulas, nomes inválidos, etc.
+*/
 
 
 module.exports = {
@@ -122,6 +127,86 @@ module.exports = {
         console.log(email+": "+data.length+" items");
         return res.status(HTTP_OK).json(data);
     },
+
+
+
+    async createMaleta(req, res) {
+
+        const {email, token, name, value, prefix} = req.body;
+
+        if(!verifyToken(email, token)){
+            console.log("Token Inválido!");
+            return res.status(HTTP_UNAUTHORIZED).send();
+        }
+
+        const maleta = {
+            email,
+            name,
+            value,
+            prefix,
+        }
+
+        try{
+            await Maleta.create(maleta);
+            console.log("Maleta Criada: "+maleta.name);
+            return res.status(HTTP_CREATED).send();
+        }catch(error){}
+
+        console.log("Erro na criação da maleta!");
+        return res.status(HTTP_INTERNAL_ERROR).send();
+    },
+
+
+
+    async createGrupo(req, res) {
+
+        const {email, token, name, prefix, maletas} = req.body;
+
+        if(!verifyToken(email, token)){
+            console.log("Token Inválido!");
+            return res.status(HTTP_UNAUTHORIZED).send();
+        }
+
+        const grupo = {
+            email,
+            name,
+            prefix,
+            maletas
+        }
+
+        try{
+            await Grupo.create(grupo);
+            console.log("Grupo Criado: "+grupo.name);
+            return res.status(HTTP_CREATED).send();
+        }catch(error){}
+
+        console.log("Erro na criação do grupo!");
+        return res.status(HTTP_INTERNAL_ERROR).send();
+    },
+
+
+
+    async getGrupos(req, res) {
+
+        const {email, token} = req.body;
+
+        if(!verifyToken(email, token)){
+            console.log("Token Inválido!");
+            return res.status(HTTP_UNAUTHORIZED).send();
+        }
+
+        var data = [];
+
+        try{
+            const grupos = await Grupo.find({email: email});
+            data = grupos;
+        }catch(error){
+            console.log("Ocorreu um erro durante a solicitação!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        return res.status(HTTP_OK).json(data);
+    },
     
 }
 
@@ -150,7 +235,7 @@ function verifyToken(email, token){
 }
 
 function generateToken(obj){
-    return jwt.sign(obj, 'hash_unica_do_servidor' , {expiresIn: "20s"});
+    return jwt.sign(obj, 'hash_unica_do_servidor' , {expiresIn: "5m"});
 }
 
 function encryptPassword(password){
