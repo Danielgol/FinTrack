@@ -1,17 +1,20 @@
 const jwt = require('jsonwebtoken')
 
+//const Grupo = require('../models/Grupo');
 const Maleta = require('../models/Maleta');
 const Usuario = require('../models/Usuario');
 
+// https://www.youtube.com/watch?v=K5QaTfE5ylk&t=1727s&ab_channel=MatheusBattisti-HoradeCodar
 
 const {
     HTTP_OK,
     HTTP_NOT_FOUND,
     HTTP_CREATED,
-    HTTP_UNAUTHORIZED
+    HTTP_UNAUTHORIZED,
+    HTTP_INTERNAL_ERROR
 } = require('../utils/Constants')
 
-
+/*
 const maletas = [
     {email: 'daniel', name: 'B-BRA', value: 1000.00, prefix: 'BRL', key: '1'},
     {email: 'daniel', name: 'ITAU', value: 900.00, prefix: 'BRL', key: '2'},
@@ -38,10 +41,15 @@ const grupos = [
     {email: 'joao', name: 'Dinheiro', prefix: 'BRL', bags: ['1', '3', '4']},
     {email: 'joao', name: 'Outro', prefix: 'BRL', bags: ['1', '3']},
 ];
+*/
 
 
 
-var tokens = [];
+
+
+//var tokens = [];
+
+
 
 module.exports = {
 
@@ -74,7 +82,7 @@ module.exports = {
         try{
             const usuario = await Usuario.findOne({email: email});
             console.log(usuario.email+" já está sendo utilizado!")
-            return res.status(500).send();
+            return res.status(HTTP_INTERNAL_ERROR).send();
         }catch(error){}
 
         hash_password = password;
@@ -91,13 +99,41 @@ module.exports = {
             return res.status(HTTP_CREATED).send();
         }catch(error){
             console.log("Erro na criação do usuário!");
-            return res.status(500).send();
+            return res.status(HTTP_INTERNAL_ERROR).send();
         }
     },
 
 
 
-    getInfo(req, res) {
+    async getInfo(req, res) {
+
+        const {email, token} = req.body;
+
+        /*
+        if(!isRequestValid(req)){
+            console.log("INVALID REQUEST!");
+            return res.status(HTTP_UNAUTHORIZED).send();
+        }
+        */
+
+        var data = [];
+
+        try{
+            const maletas = await Maleta.find({email: email});
+            data = maletas;
+        }catch(error){
+            console.log("Ocorreu um erro durante a solicitação!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        console.log(email+": "+data.length+" items");
+        return res.status(HTTP_OK).json(data);
+    },
+    
+}
+
+/*
+getInfo(req, res) {
         if(!isRequestValid(req)){
             console.log("INVALID REQUEST!");
             return res.status(HTTP_UNAUTHORIZED).send();
@@ -115,8 +151,7 @@ module.exports = {
         console.log(email+": "+info.length+" items");
         return res.status(HTTP_OK).json(info);
     },
-    
-}
+
 
 
 function isRequestValid(req) {
@@ -131,15 +166,4 @@ function isRequestValid(req) {
         }
     }
 }
-
-function userExists(email, password) {
-    for(var i=0; i<accounts.length; i++){
-        if(accounts[i].email === email){
-            if(accounts[i].password === password){
-                return true;
-            }
-            return false;
-        }
-    }
-    return false;
-}
+*/

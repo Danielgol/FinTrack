@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
-const Maleta = mongoose.model('Maleta', {
+const Grupo = mongoose.model('Grupo',{
 	email: String,
 	name: String,
-	value: Number,
 	prefix: String,
+	//bags: Array,
 });
 
-module.exports = Maleta;
+module.exports = Grupo;
