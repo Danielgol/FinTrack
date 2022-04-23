@@ -59,6 +59,11 @@ a:hover{
     border: 1px solid #aee637;
 }
 
+.card-maleta{
+    max-height: 400px;
+    overflow: auto;
+}
+
 #login-container h1{
     margin-top: 5px;
     margin-bottom: 5px;

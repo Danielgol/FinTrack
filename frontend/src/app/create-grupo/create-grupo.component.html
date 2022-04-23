@@ -22,17 +22,13 @@
 
     <div id="maleta-container" class="col-md-7">
         <h1>Selecione as maletas</h1>
-        <div *ngIf="maletas">
-            <div id="maleta-container" *ngFor="let maleta of objectKeys(maletas)">
-                <h3>
-                    <span class="label label-primary">{{maletas[maleta].name}}</span>
-                    <span class="label label-primary">
-                        {{maletas[maleta].prefix}}
-                        {{maletas[maleta].value}}
-                    </span>
-                    <!--<span> {{ cryptos[crypto].USD | currency:'USD':true }}</span>-->
-                </h3>
+        <div class="card-maleta" *ngIf="maletas">
+            <div class="form-check" *ngFor="let maleta of objectKeys(maletas)">
+                <label class="form-check-label" for="inlineCheckbox1">{{maletas[maleta].name}}</label>
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                
             </div>
+            <!--<span> {{ cryptos[crypto].USD | currency:'USD':true }}</span>-->
         </div>
         <form [formGroup]="form">
             <input type="submit" value="Salvar">
