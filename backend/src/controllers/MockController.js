@@ -53,6 +53,21 @@ Variaveis nulas, nomes inválidos, etc.
 
 module.exports = {
 
+
+
+    auth(req, res){
+        const {email, token} = req.body;
+
+        if(!verifyToken(email, token)){
+            console.log("Token Inválido!");
+            return res.status(HTTP_UNAUTHORIZED).send();
+        }
+
+        return res.status(HTTP_OK).send();
+    },
+
+
+
     async login(req, res) {
         const {email, password} = req.body;
 
@@ -235,7 +250,7 @@ function verifyToken(email, token){
 }
 
 function generateToken(obj){
-    return jwt.sign(obj, 'hash_unica_do_servidor' , {expiresIn: "5m"});
+    return jwt.sign(obj, 'hash_unica_do_servidor' , {expiresIn: "10s"});
 }
 
 function encryptPassword(password){

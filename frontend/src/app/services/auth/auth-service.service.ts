@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
+
 export interface Response {
   email: any,
   token: string,
-  expiresIn: any
 }
 
-export interface Info {
+export interface Maletas {
   maletas: any,
 }
 
@@ -18,13 +18,28 @@ export class AuthService {
 
   constructor(private _http: HttpClient) { }
 
+
+  async isLogged(){
+    const email = localStorage.getItem('email');
+    const token = localStorage.getItem('token');
+    
+    const url = 'http://localhost:3000/auth';
+
+    try{
+      const some = await this._http.post(url, {'email': email, 'token': token}).toPromise();
+      return true;
+    }catch(error){
+      console.log(error);
+      return false;
+    }
+  }
+
   login(body: any){
     const url = 'http://localhost:3000/login';
     return this._http.post<Response>(url, body,{
       observe:'body'
     });
   }
-
 
   /*
   https://blog.angular-university.io/angular-jwt-authentication/
@@ -36,49 +51,16 @@ export class AuthService {
   https://github.com/AzharHusain/token-based-authentication/
   */
 
-
-
-  /*
-  login(body: any){
-    var log = false;
-    const url = 'http://localhost:3000/login';
-    this._http.post<Response>(url, body).subscribe(res => {
-      this.setSession(res);
-      log = true;
-    }, error => { 
-      log = false;
-    });
-    return log;
-  }
-  */
-
-  
-
   logout() {
-    // Enviar mensagem para retirar o token do servidor
     localStorage.removeItem("email");
     localStorage.removeItem("token");
-    localStorage.removeItem("expiresIn");
   }
 
-  private setSession(res: any) {
-    localStorage.setItem('email', res.email);
-    localStorage.setItem('token', res.token);
-    localStorage.setItem('expiresIn', res.expiresIn);
-    /*
-    const expiresAt = moment().add(authResult.expiresIn,'second');
-    localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
-    */
-  }
-
-  getInfo(body: any){
+  getMaletas(body: any) {
     const url = 'http://localhost:3000/getInfo';
-    return this._http.post<Info>(url, body,{
+    return this._http.post<Maletas>(url, body,{
       observe:'body'
     });
   }
-
-
 
 }

@@ -5,6 +5,9 @@ import { AuthService } from '../services/auth/auth-service.service';
 import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons';
 
+
+
+
 @Component({
   selector: 'app-create-grupo',
   templateUrl: './create-grupo.component.html',
@@ -25,20 +28,18 @@ export class CreateGrupoComponent implements OnInit {
 
     ngOnInit(): void {
       this.selectedMaletas = [];
-      this.getInfo();
+      this.getMaletas();
       this.form = this.formBuilder.group({
-        email: '',
-        password: ''
+        name: '',
+        prefix: ''
       });
     }
 
-    getInfo(): void{
+    getMaletas(): void{
       const email = localStorage.getItem('email');
       const token = localStorage.getItem('token');
 
-      const objToken = {'email': email, 'token': token};
-
-      this._authService.getInfo(objToken).subscribe(res => {
+      this._authService.getMaletas({'email': email, 'token': token}).subscribe(res => {
         this.maletas = res;
         this.nome = "NOME AQUI";
         console.log(this.maletas);

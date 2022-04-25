@@ -33,10 +33,9 @@ export class LoginComponent implements OnInit {
     this._authservice.login(this.form.getRawValue()).subscribe(res => {
       localStorage.setItem('email', res.email);
       localStorage.setItem('token', res.token);
-      localStorage.setItem('expiresIn', res.expiresIn);
 
       this.router.navigate(['/home']);
-    }, error => { 
+    }, error => {
       console.log("LOGIN_FAILED!")
     });
 

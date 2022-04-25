@@ -18,28 +18,24 @@ export class HomeComponent implements OnInit {
   maletas: any;
 
   constructor(private _authService: AuthService,
-              private router: Router) { }
+              private router: Router) {}
 
   ngOnInit(): void {
-    this.getInfo();
+    this.getMaletas();
     console.log(this.maletas)
   }
 
   
-
-  getInfo(): void{
+  getMaletas(): void{
     const email = localStorage.getItem('email');
     const token = localStorage.getItem('token');
 
-    const objToken = {'email': email, 'token': token};
-
-    this._authService.getInfo(objToken).subscribe(res => {
+    this._authService.getMaletas({'email': email, 'token': token}).subscribe(res => {
       this.maletas = res;
       this.nome = "NOME AQUI";
       console.log(this.maletas);
     });
   }
-
 
 
   logout(): void{
