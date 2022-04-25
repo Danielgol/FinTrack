@@ -2,36 +2,7 @@
     <!--Main Navigation-->
 
 <header>
-    <!-- Sidebar 
-    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-dark">
-      <div class="position-sticky">
-        <div class="list-group list-group-flush mx-3 mt-4">
 
-          <a [routerLink]="['home']" class="list-group-item list-group-item-action py-2 ripple active">
-            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Home</span>
-          </a>
-
-          <a [routerLink]="['createMaleta']"  class="list-group-item list-group-item-action py-2 ripple"
-            ><i class="fas fa-lock fa-fw me-3"></i><span>Criar Maleta</span>
-          </a>
-
-          <a [routerLink]="['createGrupo']"  class="list-group-item list-group-item-action py-2 ripple"
-            ><i class="fas fa-chart-line fa-fw me-3"></i><span>Criar Grupo</span>
-          </a>
-
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-            <i class="fas fa-chart-pie fa-fw me-3"></i><span>Configurações</span>
-          </a>
-
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-            ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Sobre Nós</span>
-          </a>
-
-        </div>
-      </div>
-    </nav>
-    Sidebar -->
-  
     <!-- Navbar -->
     <div class="container">
       
@@ -41,7 +12,7 @@
               <button id="sidebarCollapse" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-              <a class="navbar-brand" href="#"  routerLink="/login" routerLinkActive="active" style="color: #aee637;">
+              <a class="navbar-brand" [routerLink]="['home']" style="color: #aee637;">
                   <img src="../../assets/joao.jpg" alt="" width="50" height="50" class="d-inline-block align-text-center">
                   FinTrack
               </a>          
@@ -65,7 +36,7 @@
   
                     
   
-                  <button id="btn-logout" class="btn btn-sm btn-outline-secondary" type="button" >NINGUEM AQUI&nbsp;&nbsp;<span class="fa fa-sign-out"></span></button>
+                  <button id="btn-logout" class="btn btn-sm btn-outline-secondary" type="button" (click)="logout()">{{nome}}&nbsp;&nbsp;<span class="fa fa-sign-out"></span></button>
 
               </div>
           </div>
