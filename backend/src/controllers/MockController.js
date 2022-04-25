@@ -250,7 +250,7 @@ function verifyToken(email, token){
 }
 
 function generateToken(obj){
-    return jwt.sign(obj, 'hash_unica_do_servidor' , {expiresIn: "10s"});
+    return jwt.sign(obj, 'hash_unica_do_servidor' , {expiresIn: "2m"});
 }
 
 function encryptPassword(password){
