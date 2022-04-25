@@ -21,12 +21,12 @@ const routes: Routes = [
   {
     path: "",
     component: MainComponent,
+    canActivateChild: [ AuthGuard ],
     children:[
       {path: "home", component: HomeComponent},
       {path: "createGrupo", component: CreateGrupoComponent},
       {path: "createMaleta", component: CreateMaletaComponent},
     ],
-    canActivate: [ AuthGuard ]
   },
 
 ];
