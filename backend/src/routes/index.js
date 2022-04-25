@@ -11,12 +11,18 @@ router.post('/example', exampleController.create)
 router.put('/example/:index', exampleController.update)
 router.delete('/example/:index', exampleController.delete)
 
+
+
 router.post('/auth', mockController.auth)
 router.post('/login', mockController.login)
 router.post('/register', mockController.register)
-router.post('/getInfo', mockController.getInfo)
+router.post('/getUserInfo', mockController.getUserInfo)
+
+router.post('/getMaletas', mockController.getMaletas)
 router.post('/createMaleta', mockController.createMaleta)
-router.post('/createGrupo', mockController.createGrupo)
+
 router.post('/getGrupos', mockController.getGrupos)
+router.post('/createGrupo', mockController.createGrupo)
+
 
 module.exports = router

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth-service.service';
+import { MaletaService } from '../services/maleta/maleta-service.service';
 import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { faAnglesLeft, faCoffee } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,10 +15,10 @@ import { faAnglesLeft, faCoffee } from '@fortawesome/free-solid-svg-icons';
 export class HomeComponent implements OnInit {
 
   objectKeys = Object.keys;
-  nome: any;
   maletas: any;
 
   constructor(private _authService: AuthService,
+              private _maletaService: MaletaService,
               private router: Router) {}
 
   ngOnInit(): void {
@@ -30,9 +31,8 @@ export class HomeComponent implements OnInit {
     const email = localStorage.getItem('email');
     const token = localStorage.getItem('token');
 
-    this._authService.getMaletas({'email': email, 'token': token}).subscribe(res => {
+    this._maletaService.getMaletas({'email': email, 'token': token}).subscribe(res => {
       this.maletas = res;
-      this.nome = "NOME AQUI";
       console.log(this.maletas);
     });
   }

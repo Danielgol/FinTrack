@@ -7,10 +7,6 @@ export interface Response {
   token: string,
 }
 
-export interface Maletas {
-  maletas: any,
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -18,13 +14,11 @@ export class AuthService {
 
   constructor(private _http: HttpClient) { }
 
-
   async isLogged(){
     const email = localStorage.getItem('email');
     const token = localStorage.getItem('token');
     
     const url = 'http://localhost:3000/auth';
-
     try{
       const some = await this._http.post(url, {'email': email, 'token': token}).toPromise();
       return true;
@@ -41,6 +35,11 @@ export class AuthService {
     });
   }
 
+  logout() {
+    localStorage.removeItem("email");
+    localStorage.removeItem("token");
+  }
+
   /*
   https://blog.angular-university.io/angular-jwt-authentication/
   https://www.luiztools.com.br/post/autenticacao-json-web-token-jwt-em-nodejs/
@@ -50,17 +49,5 @@ export class AuthService {
   https://www.youtube.com/watch?v=toRmWFzB6-E&ab_channel=AzharHusain
   https://github.com/AzharHusain/token-based-authentication/
   */
-
-  logout() {
-    localStorage.removeItem("email");
-    localStorage.removeItem("token");
-  }
-
-  getMaletas(body: any) {
-    const url = 'http://localhost:3000/getInfo';
-    return this._http.post<Maletas>(url, body,{
-      observe:'body'
-    });
-  }
 
 }

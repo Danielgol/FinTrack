@@ -12,8 +12,7 @@ import { AuthGuard } from './services/authguard/auth-guard.service';
 
 
 const routes: Routes = [
-  
-  // Utilizar CanActivate para decidir se é a tela index ou homepages
+
   {path: "", component: IndexComponent},
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
