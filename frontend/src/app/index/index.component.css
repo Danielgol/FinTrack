@@ -181,12 +181,12 @@ footer{
 
 
 footer h2{
-    
+    font-size: 25px;
 }
 
 #logo-footer{
-    max-width: 100px;
-    max-height: 80px;
+    max-width: 250px; 
+    max-height: 189px;
     margin-top: 10px;
 }
 
