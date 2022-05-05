@@ -9,7 +9,7 @@
       <nav id="navId" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         
           <div class="container-fluid">
-              <button id="sidebarCollapse" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <button id="sidebarCollapse" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
               <a class="navbar-brand" [routerLink]="['home']" style="color: #aee637;">
@@ -30,6 +30,9 @@
                       </li>
                       <li class="nav-item">
                           <button [routerLink]="['createGrupo']" class="btn nav-link" type="button" style="color: #aee637;"  routerLinkActive="active">Criar Grupo</button>
+                      </li>
+                      <li class="nav-item">
+                        <button [routerLink]="['maleta']" class="btn nav-link" type="button" style="color: #aee637;"  routerLinkActive="active">Maleta</button>
                       </li>
                   </ul>
                   
@@ -59,11 +62,14 @@
                   <a [routerLink]="['home']" href="#"><i class="fas fa-tachometer-alt fa-fw me-3"></i>Dashboard</a>
               </li>
               <li class="nav-item">
-                  <a [routerLink]="['createMaleta']" href="#"><i class="fas fa-lock fa-fw me-3"></i>Criar Maleta</a>
-              </li >
-              <li class="nav-item">
-                  <a [routerLink]="['createGrupo']" href="#"><i class="fas fa-chart-line fa-fw me-3"></i>Criar Grupo</a>
+                  <a [routerLink]="['createMaleta']" href="#"><i class="fas fa-solid fa-briefcase me-3"></i>Criar Maleta</a>
               </li>
+              <li class="nav-item">
+                  <a [routerLink]="['createGrupo']" href="#"><i class="fas fa-solid fa-building-columns fa-fw me-3"></i>Criar Grupo</a>
+              </li>
+              <li class="nav-item">
+                <a [routerLink]="['maleta']" href="#"><i class="fas fa-chart-line fa-fw me-3"></i>Maleta</a>
+            </li>
           </ul>
       </nav>
   

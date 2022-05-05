@@ -9,6 +9,7 @@ import { CreateGrupoComponent } from './create-grupo/create-grupo.component';
 import { CreateMaletaComponent } from './create-maleta/create-maleta.component';
 import { MainComponent } from './components/main/main.component';
 import { AuthGuard } from './services/authguard/auth-guard.service';
+import { MaletaComponent } from './maleta/maleta.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
       {path: "home", component: HomeComponent},
       {path: "createGrupo", component: CreateGrupoComponent},
       {path: "createMaleta", component: CreateMaletaComponent},
+      {path: "maleta", component: MaletaComponent}
     ],
   },
 
