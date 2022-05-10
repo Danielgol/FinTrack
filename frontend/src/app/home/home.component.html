@@ -39,11 +39,13 @@
                         <div *ngIf="maletas">
                           <div id="maleta-container" *ngFor="let maleta of objectKeys(maletas)">
                             <h3>
-                              <span class="label label-primary">{{maletas[maleta].name}}</span>
-                              <span class="label label-primary">
-                                {{maletas[maleta].prefix}}
-                                {{maletas[maleta].value}}
-                              </span>
+                              <button class="btn btn-success" >
+                                <span class="label label-primary">{{maletas[maleta].name}}</span>
+                                <span class="label label-primary">
+                                    {{maletas[maleta].prefix}}
+                                    {{maletas[maleta].value}}
+                                </span>
+                              </button>
                               <!--<span> {{ cryptos[crypto].USD | currency:'USD':true }}</span>-->
                             </h3>
                           </div>
@@ -63,23 +65,34 @@
                             Grupos
                         </div>
                         <div class="card-body">
-                            <div class="carousel slide" data-ride="carousel">
+                            <div id="carouselControl" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselControl" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselControl" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carouselControl" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                  </div>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <div class="row">
-                                            <div class="col">Grupo 1 </div>
-                                            <div class="col">Grupo 2 </div>
-                                            <div class="col">Grupo 3</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">Grupo 4</div>
-                                            <div class="col">Grupo 5</div>
-                                            <div class="col">Grupo 6</div>
+                                        <button class="btn btn-success">
+                                            grupo 1
+                                        </button>
+                                    </div>
+                                    <div class="carousel-item" >
+                                        <div class="card bg-dark mb-3">
+                                            grupo 2
                                         </div>
                                     </div>
                                 </div>
-                             </div>
-                            
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselControl" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                  </button>
+                                  <button class="carousel-control-next" type="button" data-bs-target="#carouselControl" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                  </button>
+                            </div>
+                             
                         </div>
                         
                     </div>
@@ -90,14 +103,14 @@
         
         <div class="cotacao-card">
             <div class="row">
-                <div class="col-sm-5 grid">
+                <div class="col-sm-7 grid">
                     <div class="card bg-dark mb-3">
                         <div class="card-header">
                             Cotação do Bitcoin
                         </div>
                         <div class="card-body">
-                            <div id="divChart" style="display: block; width: 400px; height: 100px;">
-                                <canvas id="myChart" width="400" height="100"></canvas>
+                            <div id="divChart" class="img-fluid" style="display: block;">
+                                <canvas id="myChart" ></canvas>
                             </div>
                         </div>
                         <div class="card-footer">
