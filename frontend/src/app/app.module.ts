@@ -16,6 +16,7 @@ import { CreateGrupoComponent } from './create-grupo/create-grupo.component';
 import { MainComponent } from './components/main/main.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { MaletaComponent } from './maleta/maleta.component';
+import { PageNotFoundComponent } from './components/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MaletaComponent } from './maleta/maleta.component';
     MainComponent,
     SideBarComponent,
     MaletaComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

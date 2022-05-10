@@ -34,7 +34,7 @@ export class SideBarComponent implements OnInit {
 
   logout(): void{
     this._authService.logout();
-    this.router.navigate(['/']);
+    this.router.navigate(['']);
   }
 
   anglesLeft = faAnglesLeft;

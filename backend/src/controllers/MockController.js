@@ -215,6 +215,27 @@ module.exports = {
 
         return res.status(HTTP_OK).json(data);
     },
+
+
+
+    getBTC(req, res) {
+        const apiUrl = 'https://api.coindesk.com/v1/bpi/currentprice.json';
+
+        https.get(apiUrl, (resp) => {
+            let data = '';
+
+            resp.on('data', (chunk) => {
+                data += chunk;
+            });
+
+            resp.on('end', () => {
+                data = JSON.parse(data);
+                var btc_value = parseFloat(data.bpi.USD.rate.replace(',',''));
+                console.log(btc_value);
+                res.send(btc_value+'');
+            });
+        });
+    },
     
 }
 
@@ -244,7 +265,7 @@ function verifyToken(email, token){
 }
 
 function generateToken(obj){
-    return jwt.sign(obj, 'hash_unica_do_servidor' , {expiresIn: "2m"});
+    return jwt.sign(obj, 'hash_unica_do_servidor' , {expiresIn: "10m"});
 }
 
 function encryptPassword(password){
