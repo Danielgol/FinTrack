@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+
+import { MaletaService } from '../services/maleta/maleta-service.service';
 import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-create-maleta',
@@ -15,13 +17,25 @@ export class CreateMaletaComponent implements OnInit {
   form: any;
 
   constructor(private formBuilder: FormBuilder,
-    private router: Router) { }
+              private _maletaservice: MaletaService,
+              private router: Router) { }
 
-    ngOnInit(): void {
-      this.form = this.formBuilder.group({
-        email: '',
-        password: ''
-      });
-    }
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      email: localStorage.getItem('email'),
+      name: '',
+      value: '',
+      prefix: '',
+      token: localStorage.getItem('token')
+    });
+  }
+
+  submit(): void{
+    this._maletaservice.createMaleta(this.form.getRawValue()).subscribe(res => {
+      this.router.navigate(['/home']);
+    }, error => {
+      console.log("Maleta não foi criada!")
+    });
+  }
 
 }

@@ -19,4 +19,11 @@ export class MaletaService {
     });
   }
 
+  createMaleta(body: any){
+    const url = 'http://localhost:3000/createMaleta';
+    return this._http.post<Maletas>(url, body,{
+      observe:'body'
+    });
+  }
+
 }

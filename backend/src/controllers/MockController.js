@@ -142,6 +142,8 @@ module.exports = {
 
         const {email, token, name, value, prefix} = req.body;
 
+        console.log(email, token, name, value, prefix)
+
         if(!verifyToken(email, token)){
             console.log("Token Inválido!");
             return res.status(HTTP_UNAUTHORIZED).send();
