@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AuthService } from '../services/auth/auth-service.service';
-import { MaletaService } from '../services/maleta/maleta-service.service';
 import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons';
 
+import { GrupoService } from '../services/grupo/grupo-service.service';
+import { MaletaService } from '../services/maleta/maleta-service.service';
 
 
 @Component({
@@ -19,21 +19,16 @@ export class CreateGrupoComponent implements OnInit {
   form: any;
 
   objectKeys = Object.keys;
-  nome: any;
   maletas: any;
 
   constructor(private formBuilder: FormBuilder,
-    private _authService: AuthService,
+    private _grupoService: GrupoService,
     private _maletaService: MaletaService,
     private router: Router) { }
 
     ngOnInit(): void {
       this.selectedMaletas = [];
       this.getMaletas();
-      this.form = this.formBuilder.group({
-        name: '',
-        prefix: ''
-      });
     }
 
     getMaletas(): void{
@@ -42,7 +37,6 @@ export class CreateGrupoComponent implements OnInit {
 
       this._maletaService.getMaletas({'email': email, 'token': token}).subscribe(res => {
         this.maletas = res;
-        this.nome = "NOME AQUI";
         console.log(this.maletas);
       });
     }
@@ -59,7 +53,26 @@ export class CreateGrupoComponent implements OnInit {
     }
 
     submit(): void{
-      console.log(this.selectedMaletas);
+      const id_maletas = this.selectedMaletas.map((item: any) => {
+          return item.id
+      });
+
+      const name = (<HTMLInputElement>document.getElementById("name")).value;
+      const prefix = (<HTMLInputElement>document.getElementById("prefix")).value;
+
+      this.form = this.formBuilder.group({
+        email: localStorage.getItem('email'),
+        token: localStorage.getItem('token'),
+        name: name,
+        prefix: prefix,
+        maletas: this.formBuilder.array(id_maletas)
+      });
+
+      this._grupoService.createGrupo(this.form.getRawValue()).subscribe(res => {
+        this.router.navigate(['/home']);
+      }, error => {
+        console.log("Grupo não foi criado!")
+      });
     }
 
 }

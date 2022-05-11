@@ -177,6 +177,16 @@ module.exports = {
             return res.status(HTTP_UNAUTHORIZED).send();
         }
 
+        if (!(name && prefix && maletas)) {
+            console.log("Erro na criação do grupo!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        if(maletas.length == 0){
+            console.log("Erro na criação do grupo!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
         const grupo = {
             email,
             name,

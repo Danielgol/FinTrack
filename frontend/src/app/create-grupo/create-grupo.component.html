@@ -7,12 +7,12 @@
                 <label for="name">Nome:</label>
                 <input formControlName="name" type="text" name="name" id="name" placeholder="Digite o nome do grupo" autocomplete="off">
     
-                <label for="currency">Moeda</label>
-                <select name="currency" id="currency">
-                    <option value="real">R$(Real)</option>
-                    <option value="dolar">$(Dólar)</option>
-                    <option value="libra">£(Libra)</option>
-                    <option value="euro">€(Euro)</option>
+                <label for="prefix">Moeda</label>
+                <select formControlName="prefix" name="prefix" id="prefix">
+                    <option value="BRL">R$(Real)</option>
+                    <option value="USD">$(Dólar)</option>
+                    <option value="GBP">£(Libra)</option>
+                    <option value="EU">€(Euro)</option>
                 </select>
             </form>
         </div>

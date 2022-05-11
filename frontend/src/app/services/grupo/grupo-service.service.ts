@@ -1,26 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-export interface Maletas {
-  maletas: any,
+export interface Grupos {
+  grupos: any,
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class MaletaService {
+export class GrupoService {
 
   constructor(private _http: HttpClient) { }
 
-  getMaletas(body: any) {
-    const url = 'http://localhost:3000/getMaletas';
-    return this._http.post<Maletas>(url, body,{
+  getGrupo(body: any) {
+    const url = 'http://localhost:3000/getGrupos';
+    return this._http.post<Grupos>(url, body,{
       observe:'body'
     });
   }
 
-  createMaleta(body: any){
-    const url = 'http://localhost:3000/createMaleta';
+  createGrupo(body: any){
+    const url = 'http://localhost:3000/createGrupo';
     return this._http.post(url, body,{
       observe:'body'
     });
