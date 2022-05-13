@@ -20,6 +20,7 @@ router.post('/getUserInfo', mockController.getUserInfo)
 
 router.post('/getMaletas', mockController.getMaletas)
 router.post('/createMaleta', mockController.createMaleta)
+router.post('/getMaletaByName', mockController.getMaletaByName)
 
 router.post('/getGrupos', mockController.getGrupos)
 router.post('/createGrupo', mockController.createGrupo)

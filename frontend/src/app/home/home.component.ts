@@ -97,6 +97,9 @@ export class HomeComponent implements OnInit {
   }
   */
 
+  onSelectMaleta(id: any): void{
+    this.router.navigate(['/maleta', id]);
+  }
   
   getMaletas(): void{
     const email = localStorage.getItem('email');

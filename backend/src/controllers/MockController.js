@@ -114,6 +114,29 @@ module.exports = {
 
 
 
+    async getMaletaByName(req, res) {
+
+        const {email, token, name} = req.body;
+
+        if(!verifyToken(email, token)){
+            console.log("Token Inválido!");
+            return res.status(HTTP_UNAUTHORIZED).send();
+        }        
+        
+        var maleta;
+
+        try{
+            maleta = await Maleta.findOne({email: email, name: name})
+        }catch(error){
+            console.log("Ocorreu um erro durante a solicitação!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        return res.status(HTTP_OK).json(maleta);
+    },
+
+
+
     async getMaletas(req, res) {
 
         const {email, token} = req.body;

@@ -39,7 +39,7 @@
                         <div *ngIf="maletas">
                           <div id="maleta-container" *ngFor="let maleta of objectKeys(maletas)">
                             <h3>
-                              <button class="btn btn-success" >
+                              <button (click)="onSelectMaleta(maletas[maleta].name)" class="btn btn-success" >
                                 <span class="label label-primary">{{maletas[maleta].name}}</span>
                                 <span class="label label-primary">
                                     {{maletas[maleta].prefix}}

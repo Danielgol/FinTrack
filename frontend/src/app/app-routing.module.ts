@@ -27,7 +27,7 @@ const routes: Routes = [
       {path: "home", component: HomeComponent},
       {path: "createGrupo", component: CreateGrupoComponent},
       {path: "createMaleta", component: CreateMaletaComponent},
-      {path: "maleta", component: MaletaComponent},
+      {path: "maleta/:id", component: MaletaComponent},
       {path: '**', component: PageNotFoundComponent}
     ],
   },
