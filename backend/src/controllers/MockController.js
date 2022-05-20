@@ -1,3 +1,4 @@
+const https = require('https');
 const jwt = require('jsonwebtoken')
 
 const Grupo = require('../models/Grupo');
@@ -25,21 +26,15 @@ Variaveis nulas, nomes inválidos, etc.
 module.exports = {
 
 
+    // GET
     auth(req, res){
-        const {email, token} = req.body;
-
-        if(!verifyToken(email, token)){
-            console.log("Token Inválido!");
-            return res.status(HTTP_UNAUTHORIZED).send();
-        }
-
         return res.status(HTTP_OK).send();
     },
 
 
-
+    // POST
     async login(req, res) {
-        const {email, password} = req.body;
+        const { email, password } = req.body;
 
         try{
             const usuario = await Usuario.findOne({email: email});
@@ -60,9 +55,9 @@ module.exports = {
     },
 
 
-
+    // POST
     async register(req, res) {
-        const {name, email, password} = req.body;
+        const { name, email, password } = req.body;
 
         try{
             const usuario = await Usuario.findOne({email: email});
@@ -89,15 +84,12 @@ module.exports = {
     },
 
 
-
+    // GET
     async getUserInfo(req, res) {
 
-        const {email, token} = req.body;
-
-        if(!verifyToken(email, token)){
-            console.log("Token Inválido!");
-            return res.status(HTTP_UNAUTHORIZED).send();
-        }        
+        const token = req.headers["authorization"].replace("Bearer ","");
+        const decoded = jwt.verify(token, 'hash_unica_do_servidor');
+        const email = decoded.email
         
         var name = "";
 
@@ -113,15 +105,14 @@ module.exports = {
     },
 
 
-
+    // GET
     async getMaletaByName(req, res) {
 
-        const {email, token, name} = req.body;
+        const token = req.headers["authorization"].replace("Bearer ","");
+        const decoded = jwt.verify(token, 'hash_unica_do_servidor');
+        const email = decoded.email
 
-        if(!verifyToken(email, token)){
-            console.log("Token Inválido!");
-            return res.status(HTTP_UNAUTHORIZED).send();
-        }        
+        const { name } = req.params
         
         var maleta;
 
@@ -136,15 +127,12 @@ module.exports = {
     },
 
 
-
+    // GET
     async getMaletas(req, res) {
 
-        const {email, token} = req.body;
-
-        if(!verifyToken(email, token)){
-            console.log("Token Inválido!");
-            return res.status(HTTP_UNAUTHORIZED).send();
-        }        
+        const token = req.headers["authorization"].replace("Bearer ","");
+        const decoded = jwt.verify(token, 'hash_unica_do_servidor');
+        const email = decoded.email    
         
         var data = [];
 
@@ -160,17 +148,16 @@ module.exports = {
     },
 
 
-
+    // POST
     async createMaleta(req, res) {
 
-        const {email, token, name, value, prefix} = req.body;
+        const token = req.headers["authorization"].replace("Bearer ","");
+        const decoded = jwt.verify(token, 'hash_unica_do_servidor');
+        const email = decoded.email
 
-        console.log(email, token, name, value, prefix)
+        const { name, value, prefix } = req.body;
 
-        if(!verifyToken(email, token)){
-            console.log("Token Inválido!");
-            return res.status(HTTP_UNAUTHORIZED).send();
-        }
+        console.log(email, name, value, prefix)
 
         const maleta = {
             email,
@@ -190,15 +177,35 @@ module.exports = {
     },
 
 
+    // GET
+    async getGrupos(req, res) {
 
+        const token = req.headers["authorization"].replace("Bearer ","");
+        const decoded = jwt.verify(token, 'hash_unica_do_servidor');
+        const email = decoded.email
+
+        var data = [];
+
+        try{
+            const grupos = await Grupo.find({email: email});
+            data = grupos;
+        }catch(error){
+            console.log("Ocorreu um erro durante a solicitação!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        return res.status(HTTP_OK).json(data);
+    },
+
+
+    // POST
     async createGrupo(req, res) {
 
-        const {email, token, name, prefix, maletas} = req.body;
+        const token = req.headers["authorization"].replace("Bearer ","");
+        const decoded = jwt.verify(token, 'hash_unica_do_servidor');
+        const email = decoded.email
 
-        if(!verifyToken(email, token)){
-            console.log("Token Inválido!");
-            return res.status(HTTP_UNAUTHORIZED).send();
-        }
+        const { name, prefix, maletas } = req.body;
 
         if (!(name && prefix && maletas)) {
             console.log("Erro na criação do grupo!");
@@ -228,32 +235,11 @@ module.exports = {
     },
 
 
+    // GET
+    getCriptoPrice(req, res) {
 
-    async getGrupos(req, res) {
+        const { id } = req.params
 
-        const {email, token} = req.body;
-
-        if(!verifyToken(email, token)){
-            console.log("Token Inválido!");
-            return res.status(HTTP_UNAUTHORIZED).send();
-        }
-
-        var data = [];
-
-        try{
-            const grupos = await Grupo.find({email: email});
-            data = grupos;
-        }catch(error){
-            console.log("Ocorreu um erro durante a solicitação!");
-            return res.status(HTTP_INTERNAL_ERROR).send();
-        }
-
-        return res.status(HTTP_OK).json(data);
-    },
-
-
-
-    getBTC(req, res) {
         const apiUrl = 'https://api.coindesk.com/v1/bpi/currentprice.json';
 
         https.get(apiUrl, (resp) => {
@@ -271,32 +257,33 @@ module.exports = {
             });
         });
     },
+
+
+    // GET
+    getCriptoHistory(req, res) {
+
+        const site = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=";
+        const currency = "usd";
+        const settings = "&order=market_cap_desc&per_page=20&page=1&sparkline=true&price_change_percentage=";
+        const price_change_percentage = "7d";
+        const url = site + currency + settings + price_change_percentage;
+
+        https.get(url, (resp) => {
+            let data = '';
+
+            resp.on('data', (chunk) => {
+                data += chunk;
+            });
+
+            resp.on('end', () => {
+                data = JSON.parse(data);
+                res.send(data);
+            });
+        });
+
+    }
+
     
-}
-
-
-
-function verifyToken(email, token){
-    var decoded = {};
-
-    try{
-        decoded = jwt.verify(token, 'hash_unica_do_servidor');
-    }catch(error){
-        console.log("Token Inválido!");
-        return false;
-    }
-
-    try{
-        if(email !== decoded.email){
-            console.log("Token Inválido!");
-            return false;
-        }
-    }catch(error){
-        console.log("Tipo de requisição inválida!");
-        return false;
-    }
-
-    return true;
 }
 
 function generateToken(obj){

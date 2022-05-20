@@ -1,12 +1,15 @@
 const dotenv = require('dotenv')
 dotenv.config({path: "./src/vars/.env"})
 
+const jwt = require('jsonwebtoken');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
 const routes = require('./routes');
+
+const { HTTP_UNAUTHORIZED } = require('./utils/Constants');
 
 /* https://celke.com.br/artigo/como-permitir-acesso-a-api-com-cors-parte-7
 app.use((req, res, next) => {
@@ -23,6 +26,61 @@ app.use((req, res, next) => {
     next();
 });
 */
+
+app.use((req, res, next) => {
+    if(req.method === "OPTIONS"){
+        next();
+    }else{
+        //console.log("POP: "+req.method+" --- "+req.originalUrl+" --- "+req.headers["authorization"]);
+        if(req.originalUrl === "/login"){
+            next();
+        }else{
+            if(req.headers["authorization"]){
+                const token = req.headers["authorization"].replace("Bearer ","");
+                if(verifyToken(token)) {
+                    next();
+                }else{
+                    return res.status(HTTP_UNAUTHORIZED).send()
+                }
+            }else{
+                console.log("Sem Token!");
+                return res.status(403).json({ error: 'No credentials sent!' });
+            }
+        }
+    }
+});
+
+
+
+
+
+
+/*
+ATENÇÃO: PESSOA QUE ESTÁ LOGADA ESTÁ CONSEGUINDO PEGAR O PRÓPRIO TOKEN E FAZER
+UMA REQUISIÇÃO GET/OUTRO_EMAIL E IRÁ CONSEGUIR PEGAR AS INFORMAÇÕES.
+*/
+
+
+
+
+function verifyToken(token){
+    try{
+        const decoded = jwt.verify(token, 'hash_unica_do_servidor');
+        return true;
+    }catch(error){
+        console.log("Token Inválido!");
+        return false;
+    }
+}
+
+
+
+
+
+
+
+
+
 
 app.use(cors());
 app.use(express.json());

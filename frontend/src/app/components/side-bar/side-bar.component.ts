@@ -24,10 +24,7 @@ export class SideBarComponent implements OnInit {
   }
 
   getUserInfo(): void{
-    const email = localStorage.getItem('email');
-    const token = localStorage.getItem('token');
-
-    this._usuarioService.getUserInfo({'email': email, 'token': token}).subscribe(res => {
+    this._usuarioService.getUserInfo().subscribe(res => {
       this.name = res.name;
     });
   }

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
+import { AuthService } from '../auth/auth-service.service';
+
 export interface Maletas {
   maletas: any,
 }
@@ -10,18 +12,19 @@ export interface Maletas {
 })
 export class MaletaService {
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient,
+              private _authService: AuthService) { }
 
-  getMaletaByName(body: any){
-    const url = 'http://localhost:3000/getMaletaByName';
-    return this._http.post<any>(url, body,{
+  getMaletaByName(name: any) {
+    const url = 'http://localhost:3000/getMaletaByName/'+name;
+    return this._http.get<any>(url,{
       observe:'body'
     });
   }
 
-  getMaletas(body: any) {
+  getMaletas() {
     const url = 'http://localhost:3000/getMaletas';
-    return this._http.post<Maletas>(url, body,{
+    return this._http.get<Maletas>(url,{
       observe:'body'
     });
   }

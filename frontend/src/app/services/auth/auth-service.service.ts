@@ -15,12 +15,9 @@ export class AuthService {
   constructor(private _http: HttpClient) { }
 
   async isLogged(){
-    const email = localStorage.getItem('email');
-    const token = localStorage.getItem('token');
-    
     const url = 'http://localhost:3000/auth';
     try{
-      const some = await this._http.post(url, {'email': email, 'token': token}).toPromise();
+      const some = await this._http.get(url).toPromise();
       return true;
     }catch(error){
       console.log(error);
@@ -38,6 +35,14 @@ export class AuthService {
   logout() {
     localStorage.removeItem("email");
     localStorage.removeItem("token");
+  }
+
+  getToken() {
+    return localStorage.getItem("token");
+  }
+
+  getEmail() {
+    return localStorage.getItem("email");
   }
 
   /*

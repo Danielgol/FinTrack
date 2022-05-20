@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,9 @@ import { MainComponent } from './components/main/main.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { MaletaComponent } from './maleta/maleta.component';
 import { PageNotFoundComponent } from './components/notfound/notfound.component';
+
+import { TokenInterceptorService } from './services/token-interceptor/token-interceptor.service';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +43,11 @@ import { PageNotFoundComponent } from './components/notfound/notfound.component'
     ReactiveFormsModule,
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 

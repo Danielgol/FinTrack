@@ -20,10 +20,7 @@ export class MaletaComponent implements OnInit {
   }
 
   getMaletaInfo(name: any): void{
-    const email = localStorage.getItem('email');
-    const token = localStorage.getItem('token');
-
-    const maleta = this._maletaservice.getMaletaByName({'email': email, 'token': token, 'name': name}).subscribe(
+    const maleta = this._maletaservice.getMaletaByName(name).subscribe(
       res => {
         this.maleta = res;
         console.log(this.maleta);

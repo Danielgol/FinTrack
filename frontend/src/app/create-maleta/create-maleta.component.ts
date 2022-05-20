@@ -22,11 +22,9 @@ export class CreateMaletaComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      email: localStorage.getItem('email'),
       name: '',
       value: '',
       prefix: '',
-      token: localStorage.getItem('token')
     });
   }
 

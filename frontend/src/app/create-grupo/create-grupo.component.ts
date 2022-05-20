@@ -32,10 +32,7 @@ export class CreateGrupoComponent implements OnInit {
     }
 
     getMaletas(): void{
-      const email = localStorage.getItem('email');
-      const token = localStorage.getItem('token');
-
-      this._maletaService.getMaletas({'email': email, 'token': token}).subscribe(res => {
+      this._maletaService.getMaletas().subscribe(res => {
         this.maletas = res;
         console.log(this.maletas);
       });
@@ -61,8 +58,6 @@ export class CreateGrupoComponent implements OnInit {
       const prefix = (<HTMLInputElement>document.getElementById("prefix")).value;
 
       this.form = this.formBuilder.group({
-        email: localStorage.getItem('email'),
-        token: localStorage.getItem('token'),
         name: name,
         prefix: prefix,
         maletas: this.formBuilder.array(id_maletas)

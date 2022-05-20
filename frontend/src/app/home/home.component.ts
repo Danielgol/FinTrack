@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth-service.service';
 import { MaletaService } from '../services/maleta/maleta-service.service';
+import { ApiService } from '../services/api/api-service.service';
 import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { faAnglesLeft, faCoffee } from '@fortawesome/free-solid-svg-icons';
 
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private _authService: AuthService,
               private _maletaService: MaletaService,
+              private _apiService: ApiService,
               private router: Router) {}
 
   /*
@@ -54,20 +56,7 @@ export class HomeComponent implements OnInit {
     this.getMaletas();
     console.log(this.maletas)
 
-    Chart.register(...registerables);
-    this.chart = new Chart("myChart", {
-      type: 'line',
-      data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-          datasets: [{
-            data: this.coin_data,
-            borderColor: '#00AEFF',
-            fill: false
-          }]
-      },
-    });
-
-
+    this.getCriptoHistory("btc")
   }
 
   /*
@@ -102,13 +91,45 @@ export class HomeComponent implements OnInit {
   }
   
   getMaletas(): void{
-    const email = localStorage.getItem('email');
-    const token = localStorage.getItem('token');
-
-    this._maletaService.getMaletas({'email': email, 'token': token}).subscribe(res => {
+    this._maletaService.getMaletas().subscribe(res => {
       this.maletas = res;
       console.log(this.maletas);
     });
+  }
+
+  getCriptoPrice(cripto: any): void{
+    this._apiService.getCriptoPrice(cripto).subscribe(res => {
+      console.log(res)
+    })
+  }
+
+  getCriptoHistory(cripto: any): void{
+    this._apiService.getCriptoHistory(cripto).subscribe(res => {
+
+      var resp_json = JSON.parse(JSON.stringify(res));
+
+      console.log(resp_json)
+
+      this.coin_data = resp_json[0].sparkline_in_7d.price
+      var labels = []
+
+      for(var i=0; i<this.coin_data.length; i++){
+        labels.push(i)
+      }
+
+      Chart.register(...registerables);
+      this.chart = new Chart("myChart", {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+              data: this.coin_data,
+              borderColor: '#00AEFF',
+              fill: false
+            }]
+        },
+      });
+    })
   }
 
 
