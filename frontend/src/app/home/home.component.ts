@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   maletas: any;
 
   chart: any;
-  coin_data = [1.0, 5.4, 3.2, 9.5, 7.3, 4.2];
+  coin_data = [];
 
   /*
   cryptos: any;
@@ -27,9 +27,6 @@ export class HomeComponent implements OnInit {
   btc_data = [null];
   time_data = ['','','',''];
   */
-
-
-
 
   constructor(private _authService: AuthService,
               private _maletaService: MaletaService,
@@ -49,15 +46,6 @@ export class HomeComponent implements OnInit {
     }, 10000);
   }
   */
-
-
-
-  ngOnInit(): void {
-    this.getMaletas();
-    console.log(this.maletas)
-
-    this.getCriptoHistory("btc")
-  }
 
   /*
   refreshData(){
@@ -85,6 +73,12 @@ export class HomeComponent implements OnInit {
     });
   }
   */
+
+  ngOnInit(): void {
+    this.getMaletas();
+    console.log(this.maletas)
+    this.getCriptoHistory("btc")
+  }  
 
   onSelectMaleta(id: any): void{
     this.router.navigate(['/maleta', id]);
@@ -132,17 +126,14 @@ export class HomeComponent implements OnInit {
     })
   }
 
-
   logout(): void{
     this._authService.logout();
     this.router.navigate(['/']);
   }
 
-
   loadChart() {
     return 
   }
-
 
   anglesLeft = faAnglesLeft;
 }

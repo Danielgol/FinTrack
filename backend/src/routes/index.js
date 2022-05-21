@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
 
-const exampleController = require('../controllers/ExampleController')
-const mockController = require('../controllers/MockController')
+const ApiController = require('../controllers/ApiController')
 
-// Attach each endpoint to a specific function, on this case functions from controller
+
 /*
+const exampleController = require('../controllers/ExampleController')
 router.get('/example', exampleController.list)
 router.get('/example/:index', exampleController.retrieve)
 router.post('/example', exampleController.create)
@@ -14,24 +14,24 @@ router.delete('/example/:index', exampleController.delete)
 */
 
 
+router.get('/auth', ApiController.auth)
+router.post('/login', ApiController.login)
+router.post('/register', ApiController.register)
 
+router.get('/getUserInfo', ApiController.getUserInfo)
 
+router.get('/getMaletas', ApiController.getMaletas)
+router.get('/getMaletaByName/:name', ApiController.getMaletaByName)
+router.post('/createMaleta', ApiController.createMaleta)
 
-router.get('/auth', mockController.auth)
-router.post('/login', mockController.login)
-router.post('/register', mockController.register)
+router.get('/getRegistros/:id', ApiController.getRegistros)
+router.post('/createRegistro', ApiController.createRegistro)
 
-router.get('/getUserInfo', mockController.getUserInfo)
+router.get('/getGrupos', ApiController.getGrupos)
+router.post('/createGrupo', ApiController.createGrupo)
 
-router.get('/getMaletas', mockController.getMaletas)
-router.get('/getMaletaByName/:name', mockController.getMaletaByName)
-router.post('/createMaleta', mockController.createMaleta)
-
-router.get('/getGrupos', mockController.getGrupos)
-router.post('/createGrupo', mockController.createGrupo)
-
-router.get('/getCriptoPrice/:id', mockController.getCriptoPrice)
-router.get('/getCriptoHistory/:id', mockController.getCriptoHistory)
+router.get('/getCriptoPrice/:id', ApiController.getCriptoPrice)
+router.get('/getCriptoHistory/:id', ApiController.getCriptoHistory)
 
 
 module.exports = router

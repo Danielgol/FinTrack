@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MaletaService } from '../services/maleta/maleta-service.service';
+import { RegistroService } from '../services/registro/registro-service.service';
 
 @Component({
   selector: 'app-maleta',
@@ -9,10 +11,15 @@ import { MaletaService } from '../services/maleta/maleta-service.service';
 })
 export class MaletaComponent implements OnInit {
 
+  objectKeys = Object.keys;
+  form: any;
   maleta: any;
+  registros: any;
   
   constructor(private router: ActivatedRoute,
-              private _maletaservice: MaletaService) { }
+              private formBuilder: FormBuilder,
+              private _maletaService: MaletaService,
+              private _registroService: RegistroService) { }
 
   ngOnInit(): void {
     const name = this.router.snapshot.paramMap.get('id');
@@ -20,12 +27,38 @@ export class MaletaComponent implements OnInit {
   }
 
   getMaletaInfo(name: any): void{
-    const maleta = this._maletaservice.getMaletaByName(name).subscribe(
-      res => {
+    const maleta = this._maletaService.getMaletaByName(name).subscribe(res => {
         this.maleta = res;
-        console.log(this.maleta);
+
+        this.form = this.formBuilder.group({
+          id_maleta: this.maleta._id,
+          descricao: '',
+          prefix: this.maleta.prefix,
+          value: ''
+        });
+
+        this.getRegistros(this.maleta._id);
     }, error => {
-      console.log("Maleta não foi criada!")
+      console.log("Não foi possível encontrar as informações da maleta!")
+    });
+  }
+
+  getRegistros(id: any): void{
+    this._registroService.getRegistros(id).subscribe(res =>{
+      this.registros = res;
+      console.log(this.registros)
+    }, error => {
+      console.log("Não foi possível encontrar os registros!")
+    });
+  }
+
+  createRegistro(): void{
+    this._registroService.createRegistro(this.form.getRawValue()).subscribe(res =>{
+      this.getRegistros(this.maleta._id);
+      const name = this.router.snapshot.paramMap.get('id');
+      this.getMaletaInfo(name);
+    }, error => {
+      console.log("Houve um erro no cadastro do registro!")
     });
   }
 

@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 const Grupo = require('../models/Grupo');
 const Maleta = require('../models/Maleta');
 const Usuario = require('../models/Usuario');
+const Registro = require('../models/Registro');
 
 // https://www.youtube.com/watch?v=K5QaTfE5ylk&t=1727s&ab_channel=MatheusBattisti-HoradeCodar
 // https://www.youtube.com/watch?v=RaweREhpBX8&ab_channel=Rocketseat
@@ -14,14 +15,11 @@ const {
     HTTP_CREATED,
     HTTP_UNAUTHORIZED,
     HTTP_INTERNAL_ERROR
-} = require('../utils/Constants')
+} = require('../utils/Constants');
+
+const SERVER_HASHCODE = 'hash_unica_do_servidor';
 
 
-
-/*
-Ainda falta fazer a verificação de cada campo dos formulários:
-Variaveis nulas, nomes inválidos, etc.
-*/
 
 module.exports = {
 
@@ -88,7 +86,7 @@ module.exports = {
     async getUserInfo(req, res) {
 
         const token = req.headers["authorization"].replace("Bearer ","");
-        const decoded = jwt.verify(token, 'hash_unica_do_servidor');
+        const decoded = jwt.verify(token, SERVER_HASHCODE);
         const email = decoded.email
         
         var name = "";
@@ -106,10 +104,31 @@ module.exports = {
 
 
     // GET
+    async getMaletas(req, res) {
+
+        const token = req.headers["authorization"].replace("Bearer ","");
+        const decoded = jwt.verify(token, SERVER_HASHCODE);
+        const email = decoded.email    
+        
+        var data = [];
+
+        try{
+            const maletas = await Maleta.find({email: email});
+            data = maletas;
+        }catch(error){
+            console.log("Ocorreu um erro durante a solicitação!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        return res.status(HTTP_OK).json(data);
+    },
+
+
+    // GET
     async getMaletaByName(req, res) {
 
         const token = req.headers["authorization"].replace("Bearer ","");
-        const decoded = jwt.verify(token, 'hash_unica_do_servidor');
+        const decoded = jwt.verify(token, SERVER_HASHCODE);
         const email = decoded.email
 
         const { name } = req.params
@@ -128,17 +147,19 @@ module.exports = {
 
 
     // GET
-    async getMaletas(req, res) {
+    async getRegistros(req, res) {
 
         const token = req.headers["authorization"].replace("Bearer ","");
-        const decoded = jwt.verify(token, 'hash_unica_do_servidor');
-        const email = decoded.email    
+        const decoded = jwt.verify(token, SERVER_HASHCODE);
+        const email = decoded.email
+
+        const { id } = req.params
         
         var data = [];
 
         try{
-            const maletas = await Maleta.find({email: email});
-            data = maletas;
+            const registros = await Registro.find({id_maleta: id, email: email});
+            data = registros;
         }catch(error){
             console.log("Ocorreu um erro durante a solicitação!");
             return res.status(HTTP_INTERNAL_ERROR).send();
@@ -149,10 +170,49 @@ module.exports = {
 
 
     // POST
+    async createRegistro(req, res) {
+
+        const token = req.headers["authorization"].replace("Bearer ","");
+        const decoded = jwt.verify(token, SERVER_HASHCODE);
+        const email = decoded.email    
+        
+        const { id_maleta, descricao, prefix, value } = req.body;
+
+        const registro = {
+            email,
+            id_maleta,
+            descricao,
+            prefix,
+            value,
+        }
+
+        var maleta = {};
+
+        try{
+            maleta = await Maleta.findOne({email: email});
+        }catch(error){
+            console.log("Ocorreu um erro durante a solicitação!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        try{
+            maleta.value += value
+            await maleta.save();
+            await Registro.create(registro);
+            console.log("Historico Criado: "+registro.value);
+            return res.status(HTTP_CREATED).send();
+        }catch(error){}
+
+        console.log("Erro na criação do Registro!");
+        return res.status(HTTP_INTERNAL_ERROR).send();
+    },
+
+
+    // POST
     async createMaleta(req, res) {
 
         const token = req.headers["authorization"].replace("Bearer ","");
-        const decoded = jwt.verify(token, 'hash_unica_do_servidor');
+        const decoded = jwt.verify(token, SERVER_HASHCODE);
         const email = decoded.email
 
         const { name, value, prefix } = req.body;
@@ -181,7 +241,7 @@ module.exports = {
     async getGrupos(req, res) {
 
         const token = req.headers["authorization"].replace("Bearer ","");
-        const decoded = jwt.verify(token, 'hash_unica_do_servidor');
+        const decoded = jwt.verify(token, SERVER_HASHCODE);
         const email = decoded.email
 
         var data = [];
@@ -202,7 +262,7 @@ module.exports = {
     async createGrupo(req, res) {
 
         const token = req.headers["authorization"].replace("Bearer ","");
-        const decoded = jwt.verify(token, 'hash_unica_do_servidor');
+        const decoded = jwt.verify(token, SERVER_HASHCODE);
         const email = decoded.email
 
         const { name, prefix, maletas } = req.body;
@@ -287,7 +347,7 @@ module.exports = {
 }
 
 function generateToken(obj){
-    return jwt.sign(obj, 'hash_unica_do_servidor' , {expiresIn: "10m"});
+    return jwt.sign(obj, SERVER_HASHCODE , {expiresIn: "10m"});
 }
 
 function encryptPassword(password){
