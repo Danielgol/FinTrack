@@ -3,9 +3,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { AuthService } from '../auth/auth-service.service';
 
-export interface Grupos {
-  grupos: any,
-}
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +12,9 @@ export class GrupoService {
   constructor(private _http: HttpClient,
               private _authService: AuthService) { }
 
-  getGrupo() {
+  getGrupos() {
     const url = 'http://localhost:3000/getGrupos';
-    return this._http.get<Grupos>(url, {
+    return this._http.get<any>(url, {
       observe:'body'
     });
   }

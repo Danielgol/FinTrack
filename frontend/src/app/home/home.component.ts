@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth-service.service';
+import { GrupoService } from '../services/grupo/grupo-service.service';
 import { MaletaService } from '../services/maleta/maleta-service.service';
 import { ApiService } from '../services/api/api-service.service';
 import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { faAnglesLeft, faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 import { Chart, registerables } from 'node_modules/chart.js'
+
+
 
 @Component({
   selector: 'app-home',
@@ -17,9 +20,13 @@ export class HomeComponent implements OnInit {
 
   objectKeys = Object.keys;
   maletas: any;
+  grupos: any;
+  grupo_atual: any;
+  saldo_grupo: any;
 
   chart: any;
   coin_data = [];
+
 
   /*
   cryptos: any;
@@ -30,6 +37,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private _authService: AuthService,
               private _maletaService: MaletaService,
+              private _grupoService: GrupoService,
               private _apiService: ApiService,
               private router: Router) {}
 
@@ -76,8 +84,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMaletas();
-    console.log(this.maletas)
-    this.getCriptoHistory("btc")
+    this.getGrupos();
+    this.getCriptoHistory("btc");
   }  
 
   onSelectMaleta(id: any): void{
@@ -89,6 +97,33 @@ export class HomeComponent implements OnInit {
       this.maletas = res;
       console.log(this.maletas);
     });
+  }
+
+  getGrupos(): void{
+    this._grupoService.getGrupos().subscribe(res => {
+      this.grupos = res;
+      if(this.grupos.length > 0){
+        this.grupo_atual = this.grupos[0];
+        this.calcularSaldoGrupo();
+      }
+      console.log(this.grupos);
+    });
+  }
+
+  calcularSaldoGrupo(): void{
+    var saldo = 0;
+
+    for(var i=0; i<this.grupo_atual.maletas.length; i++){
+      for(var j=0; j<this.maletas.length; j++){
+        if(this.grupo_atual.maletas[i] === this.maletas[j]._id){
+          saldo += this.maletas[j].value
+          break;
+        }
+      }
+    }
+
+    console.log(saldo)
+    this.saldo_grupo = saldo;
   }
 
   getCriptoPrice(cripto: any): void{
@@ -108,7 +143,7 @@ export class HomeComponent implements OnInit {
       var labels = []
 
       for(var i=0; i<this.coin_data.length; i++){
-        labels.push(i)
+        labels.push("")
       }
 
       Chart.register(...registerables);

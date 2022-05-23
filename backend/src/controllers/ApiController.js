@@ -189,7 +189,7 @@ module.exports = {
         var maleta = {};
 
         try{
-            maleta = await Maleta.findOne({email: email});
+            maleta = await Maleta.findOne({email: email, _id: id_maleta});
         }catch(error){
             console.log("Ocorreu um erro durante a solicitação!");
             return res.status(HTTP_INTERNAL_ERROR).send();
@@ -323,7 +323,7 @@ module.exports = {
     getCriptoHistory(req, res) {
 
         const site = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=";
-        const currency = "usd";
+        const currency = "brl";
         const settings = "&order=market_cap_desc&per_page=20&page=1&sparkline=true&price_change_percentage=";
         const price_change_percentage = "7d";
         const url = site + currency + settings + price_change_percentage;
