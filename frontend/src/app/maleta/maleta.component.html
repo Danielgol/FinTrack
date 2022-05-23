@@ -1,7 +1,7 @@
 <body>
     <main>
         <div class="container mt-2">
-            <div class="row ">
+            <div class="row d-flex justify-content-center">
                 <div class="col-md-6 grid">
                     <div class="card bg-dark mb-3">
                         <div class="card-header">
@@ -17,7 +17,7 @@
                         <div class="card-header">
                             Histórico
                         </div>
-                        <div class="card-body">
+                        <div class="card-body scroll">
                             <div id="reg-container" *ngFor="let reg of objectKeys(registros)">
                                 <div class="card-body">
                                     {{registros[reg].value}} {{registros[reg].descricao}}
@@ -47,14 +47,16 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6 grid">
+            <div class="row justify-content-center">
+                <div class="col-md-8 grid">
                     <div class="card bg-dark mb-3">
                         <div class="card-header">
-                            titulo do gráfico
+                            titulo do gráfico AQUI
                         </div>
                         <div class="card-body">
-                            gráfico aqui
+                            <div id="divChart" class="img-fluid" style="display: block;">
+                                <canvas id="myChart" ></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>

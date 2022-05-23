@@ -20,6 +20,8 @@ body{
 }
 
 
+
+  
 #btn-entrar{
     color: #aee637;
     border-color: #aee637;
@@ -28,6 +30,11 @@ body{
     color: #aee637;
 }
 
+.scroll {
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+  
 /*--------Banner-----------*/
 .banner{
     position: relative;
@@ -299,8 +306,26 @@ footer h2{
 }
 
 /*--------------CELULARES----------------*/
+@media only screen and (min-width:450px) {
+    ::-webkit-scrollbar {
+        width: 12px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(200,200,200,1);
+        border-radius: 10px;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color:#aee637;
+        -webkit-box-shadow: inset 0 0 6px rgba(90,90,90,0.7);
+      }
+}
 
 @media only screen and (max-width:600px) {
+    
+    
     /*-----------SOBRE NÓS RESPONSIVO-----------*/
 
     #sobre-nos{
