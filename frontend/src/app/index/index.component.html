@@ -1,4 +1,4 @@
-<body>
+<body class="scroll">
     <header>
         <!-- navbar -->
         <div class="container">
@@ -83,7 +83,7 @@
             <div class="texto-registro">
                 <h2>Descomplique o jeito que você acompanha suas finanças.</h2>
                 <p>Comece a usar o FinTrack hoje</p>
-                <button type="button" class="btn btn-danger" routerLink="/register" routerLinkActive="active">Registre-se agora!</button>
+                <button type="button" class="btn btn-primary" routerLink="/register" routerLinkActive="active">Registre-se agora!</button>
             </div>
     </section>
 
@@ -91,4 +91,11 @@
         <img id="logo-footer" src="../../assets/Logo-completa.png" alt="FinTrack">
         <h2>Organizando suas finanças</h2>
     </footer>
+    <script>
+        const body = document.getElementsByTagName('body');
+        if(screen.width < 600){
+            body.classList.remove("scroll");
+        }
+    </script>
 </body>
+

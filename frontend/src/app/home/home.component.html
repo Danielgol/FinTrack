@@ -17,9 +17,9 @@
         </div>
     </div>
     -->
-    <div class="container-fluid mt-2">
-        <div class="row-fluid d-flex justify-content-around">
-            <div class="col-sm-5 grid">
+    <div class="container mt-2">
+        <div class="row d-flex justify-content-around">
+            <div class="col-md-5 grid">
                 <div class="card bg-dark mb-3">
                     <div class="card-header">
                         Saldo
@@ -69,12 +69,12 @@
                     
                 </div>
             </div>
-            <div class="col-sm-5 grid">
+            <div class="col-md-5 grid">
                 <div class="card bg-dark mb-3">
                     <div class="card-header">
                         Maletas
                     </div>
-                    <div class="card-body">
+                    <div class="card-body scroll">
 
                         <div *ngIf="maletas">
                           <div id="maleta-container" *ngFor="let maleta of objectKeys(maletas)">
@@ -105,12 +105,7 @@
                             Cotação do Bitcoin
                         </div>
                         <div class="card-body">
-                            <div id="divChart" class="img-fluid" style="display: block;">
-                                <canvas id="myChart" ></canvas>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            footer do card
+                            GRÁFICO AQUI
                         </div>
                     </div>
                 </div>
