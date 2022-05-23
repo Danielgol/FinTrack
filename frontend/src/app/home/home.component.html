@@ -17,9 +17,9 @@
         </div>
     </div>
     -->
-    <div class="container mt-2">
-        <div class="row">
-            <div class="col grid">
+    <div class="container-fluid mt-2">
+        <div class="row-fluid d-flex justify-content-around">
+            <div class="col-sm-5 grid">
                 <div class="card bg-dark mb-3">
                     <div class="card-header">
                         Saldo
@@ -28,8 +28,41 @@
                         R$ 2000,00
                     </div>
                 </div>
+                <div class="card bg-dark mb-3">
+                    <div class="card-header">
+                        Grupos
+                    </div>
+                    <div class="card-body">
+                        <div id="carouselControl" class="carousel slide" data-ride="carousel">
+                            
+                            <div class="carousel-inner d-flex justify-content-center">
+                                <div class="carousel-item active">
+                                    <button class="btn btn-success">
+                                        aasasasas
+                                    </button>
+                                </div>
+                                <div class="carousel-item"  *ngFor="let maleta of objectKeys(maletas)">
+                                    <button class="btn btn-success">
+                                        {{maletas[maleta].name}}
+                                    </button>
+                                </div>
+                                
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselControl" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                              </button>
+                              <button class="carousel-control-next" type="button" data-bs-target="#carouselControl" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                              </button>
+                        </div>
+                         
+                    </div>
+                    
+                </div>
             </div>
-            <div class="col grid">
+            <div class="col-sm-5 grid">
                 <div class="card bg-dark mb-3">
                     <div class="card-header">
                         Maletas
@@ -56,60 +89,10 @@
                 </div>
             </div>
         </div>
-
-        <div class="grupo-card">
-            <div class="row">
-                <div class="col-sm-5 grid">
-                    <div class="card bg-dark mb-3">
-                        <div class="card-header">
-                            Grupos
-                        </div>
-                        <div class="card-body">
-                            <div id="carouselControl" class="carousel slide" data-ride="carousel">
-                                
-                                <div class="carousel-inner d-flex justify-content-center">
-                                    <div class="carousel-item active">
-                                        <button class="btn btn-success">
-                                            grupo 1
-                                        </button>
-                                    </div>
-                                    <div class="carousel-item" >
-                                        <button class="btn btn-success">
-                                            grupo 2
-                                        </button>
-                                    </div>
-                                    <div class="carousel-item" >
-                                        <button class="btn btn-success">
-                                            grupo 3
-                                        </button>
-                                    </div>
-                                    <div class="carousel-item" >
-                                        <button class="btn btn-success">
-                                            grupo 4
-                                        </button>
-                                    </div>
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselControl" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                  </button>
-                                  <button class="carousel-control-next" type="button" data-bs-target="#carouselControl" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                  </button>
-                            </div>
-                             
-                        </div>
-                        
-                    </div>
-                </div>
-                
-            </div>
-        </div>
         
         <div class="cotacao-card">
-            <div class="row">
-                <div class="col-sm-7 grid">
+            <div class="row justify-content-center" >
+                <div class="col-sm-8 grid">
                     <div class="card bg-dark mb-3">
                         <div class="card-header">
                             Cotação do Bitcoin

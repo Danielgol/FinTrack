@@ -158,10 +158,14 @@ input[type="submit"]:hover{
     background-color: #afe63757;
     transition: .5s;
 }
-/* redes sociais*/
 
-/*Container registrar*/
-
+#inlineCheckbox1{
+    transition: .5s;
+    display: block;
+    margin-left: .005vw;
+    width: 100%;
+    text-align: left;
+}
 /*PRINCIPAL / LOGO*/
 #principal{
     display: flex;
