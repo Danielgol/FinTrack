@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
   chart: any;
   coin_data = [];
 
-
   /*
   cryptos: any;
   chart: any;
@@ -111,7 +110,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  
   getMaletas(): void{
     this._maletaService.getMaletas().subscribe(res => {
       this.maletas = res;

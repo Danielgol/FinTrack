@@ -83,4 +83,11 @@ export class MaletaComponent implements OnInit {
     });
   }
 
+  removeRegistro(registro: any): void {
+    this._registroService.removeRegistro(registro._id).subscribe(res => {
+      const index = this.registros.indexOf(registro);
+      this.registros.splice(registro, 1)
+    });
+  }
+
 }

@@ -18,9 +18,16 @@ export class RegistroService {
     });
   }
 
-  createRegistro(body: any){
+  createRegistro(body: any) {
     const url = 'http://localhost:3000/createRegistro';
     return this._http.post(url, body,{
+      observe:'body'
+    });
+  }
+
+  removeRegistro(id: any){
+    const url = 'http://localhost:3000/removeRegistro/'+id;
+    return this._http.delete(url, {
       observe:'body'
     });
   }

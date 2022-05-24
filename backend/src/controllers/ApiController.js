@@ -248,6 +248,29 @@ module.exports = {
     },
 
 
+    // DELETE
+    async removeRegistro(req, res) {
+
+        const token = req.headers["authorization"].replace("Bearer ","");
+        const decoded = jwt.verify(token, SERVER_HASHCODE);
+        const email = decoded.email
+
+        const { id } = req.params
+        
+        var registro;
+
+        try{
+            registro = await Registro.findOne({email: email, _id: id})
+            await registro.remove();
+        }catch(error){
+            console.log("Ocorreu um erro durante a remoção do Registro!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        return res.status(HTTP_OK).send();
+    },
+
+
     // POST
     async createMaleta(req, res) {
 
@@ -350,7 +373,7 @@ module.exports = {
             grupo = await Grupo.findOne({email: email, _id: id})
             await grupo.remove();
         }catch(error){
-            console.log("Ocorreu um erro durante a remoção da maleta!");
+            console.log("Ocorreu um erro durante a remoção do Grupo!");
             return res.status(HTTP_INTERNAL_ERROR).send();
         }
 

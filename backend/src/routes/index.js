@@ -27,7 +27,7 @@ router.delete('/removeMaleta/:name', ApiController.removeMaletaByName)
 
 router.get('/getRegistros/:id', ApiController.getRegistros)
 router.post('/createRegistro', ApiController.createRegistro)
-//router.delete('/removeRegistro/:id', ApiController.removeRegistro)
+router.delete('/removeRegistro/:id', ApiController.removeRegistro)
 
 router.get('/getGrupos', ApiController.getGrupos)
 router.post('/createGrupo', ApiController.createGrupo)
