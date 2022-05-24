@@ -18,10 +18,10 @@
                             Histórico
                         </div>
                         <div class="card-body scroll">
-                            <div id="reg-container" *ngFor="let reg of objectKeys(registros)">
-                                <div class="card-body">
-                                    {{registros[reg].value}} {{registros[reg].descricao}}
-                                </div>
+                            <div class="card-body" *ngFor="let reg of objectKeys(registros)">
+                                <span>{{registros[reg].value}} {{registros[reg].descricao}}</span>
+                              <!--<button class="btn btn-warning"><i class="fa-solid fa-rotate-left"></i></button>-->
+                                <button style="margin-left: 5px;" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-center">

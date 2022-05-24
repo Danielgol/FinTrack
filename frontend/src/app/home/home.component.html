@@ -33,18 +33,17 @@
                         Grupos
                     </div>
                     <div class="card-body">
-                        <div id="carouselControl" class="carousel slide" data-ride="carousel">
+                        <div id="carouselControl" class="carousel slide d-flex" data-ride="carousel">
                             
-                            <div class="carousel-inner d-flex justify-content-center">
+                            <div class="carousel-inner ">
                                 <div class="carousel-item active">
-                                    <button class="btn btn-success">
-                                        PRIMEIRO
-                                    </button>
+                                    <p>Selecione um grupo para visualizar o saldo.  </p>
                                 </div>
                                 <div class="carousel-item"  *ngFor="let grupo of objectKeys(grupos)">
                                     <button (click)="onSelectGrupo(grupos[grupo])" class="btn btn-success">
-                                        {{grupos[grupo].name}}
+                                        {{grupos[grupo].name}} 
                                     </button>
+                                    <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
                                 </div>
                                 <!--<ul *ngFor="let grupo of objectKeys(grupos); let i = index; let active = ">
                                     <div [ngClass]="i == 0 ? 'carousel-item active' : 'carousel-item' ">
@@ -79,13 +78,14 @@
                         <div *ngIf="maletas">
                           <div id="maleta-container" *ngFor="let maleta of objectKeys(maletas)">
                             <h3>
-                              <button (click)="onSelectMaleta(maletas[maleta].name)" class="btn btn-success" >
+                              <button style="width: 200px;" (click)="onSelectMaleta(maletas[maleta].name)" class="btn btn-success" >
                                 <span class="label label-primary">{{maletas[maleta].name}}</span>
                                 <span class="label label-primary">
                                     {{maletas[maleta].prefix}}
                                     {{maletas[maleta].value}}
                                 </span>
                               </button>
+                              <button class="excluir btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
                               <!--<span> {{ cryptos[crypto].USD | currency:'USD':true }}</span>-->
                             </h3>
                           </div>
