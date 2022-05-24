@@ -99,6 +99,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  onSelectGrupo(grupo: any): void{
+    this.grupo_atual = grupo;
+    this.calcularSaldoGrupo();
+  }
+
   getGrupos(): void{
     this._grupoService.getGrupos().subscribe(res => {
       this.grupos = res;

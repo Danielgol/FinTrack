@@ -22,7 +22,7 @@
             <div class="col-md-5 grid">
                 <div class="card bg-dark mb-3">
                     <div class="card-header">
-                        Saldo
+                        Saldo {{grupo_atual.name}}
                     </div>
                     <div class="card-body">
                         R$ {{saldo_grupo}}
@@ -42,7 +42,7 @@
                                     </button>
                                 </div>
                                 <div class="carousel-item"  *ngFor="let grupo of objectKeys(grupos)">
-                                    <button class="btn btn-success">
+                                    <button (click)="onSelectGrupo(grupos[grupo])" class="btn btn-success">
                                         {{grupos[grupo].name}}
                                     </button>
                                 </div>
@@ -105,7 +105,9 @@
                             Cotação do Bitcoin
                         </div>
                         <div class="card-body">
-                            GRÁFICO AQUI
+                            <div id="divChart" class="img-fluid" style="display: block;">
+                                <canvas id="myChart" ></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
