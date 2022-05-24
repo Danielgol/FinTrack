@@ -27,6 +27,11 @@ export class CreateGrupoComponent implements OnInit {
     private router: Router) { }
 
     ngOnInit(): void {
+      this.form = this.formBuilder.group({
+        name: '',
+        prefix: '',
+        maletas: ''
+      });
       this.selectedMaletas = [];
       this.getMaletas();
     }
