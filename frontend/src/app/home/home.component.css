@@ -11,6 +11,10 @@ body {
   margin: auto;
 }*/
 
+.excluir{
+  height: 38px;
+}
+
 .scroll {
   max-height: 200px;
   overflow-y: auto;
