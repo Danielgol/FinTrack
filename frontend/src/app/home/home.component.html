@@ -20,14 +20,22 @@
     <div class="container mt-2">
         <div class="row d-flex justify-content-around">
             <div class="col-md-5 grid">
+
                 <div class="card bg-dark mb-3">
-                    <div class="card-header">
-                        Saldo {{grupo_atual.name}}
-                    </div>
-                    <div class="card-body">
-                        R$ {{saldo_grupo}}
-                    </div>
+                    <ul *ngIf="grupos.length > 0; else templateName" class="card-header">
+                        <div class="card-header">
+                            Saldo {{grupo_atual.name}}
+                        </div>
+                        <div class="card-body">
+                            R$ {{saldo_grupo}}
+                        </div>
+                    </ul>
+
+                    <ng-template #templateName class="card-header">
+                        Você não possui nenhum Grupo!
+                    </ng-template>
                 </div>
+
                 <div class="card bg-dark mb-3">
                     <div class="card-header">
                         Grupos
