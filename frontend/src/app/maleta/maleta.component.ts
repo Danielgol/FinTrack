@@ -52,7 +52,28 @@ export class MaletaComponent implements OnInit {
     });
   }
 
-  createRegistro(): void{
+  clickPlus(): void{
+    this.createRegistro(1);
+  }
+
+  clickMinus(): void{
+    this.createRegistro(-1);
+  }
+
+  createRegistro(signal: number): void{
+
+    var value: number = parseFloat((<HTMLInputElement>document.getElementById("value")).value);
+    const descricao = (<HTMLInputElement>document.getElementById("descricao")).value;
+
+    value *= signal
+
+    this.form = this.formBuilder.group({
+      id_maleta: this.maleta._id,
+      descricao: descricao,
+      prefix: this.maleta.prefix,
+      value: value
+    });
+
     this._registroService.createRegistro(this.form.getRawValue()).subscribe(res =>{
       this.getRegistros(this.maleta._id);
       const name = this.router.snapshot.paramMap.get('id');
