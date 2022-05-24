@@ -335,6 +335,39 @@ module.exports = {
     },
 
 
+    // DELETE
+    async removeGrupo(req, res) {
+
+        const token = req.headers["authorization"].replace("Bearer ","");
+        const decoded = jwt.verify(token, SERVER_HASHCODE);
+        const email = decoded.email
+
+        const { id } = req.params
+        
+        var grupo;
+
+        try{
+            grupo = await Grupo.findOne({email: email, _id: id})
+            await grupo.remove();
+        }catch(error){
+            console.log("Ocorreu um erro durante a remoção da maleta!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        var data = [];
+
+        try{
+            const grupos = await Grupo.find({email: email});
+            data = grupos;
+        }catch(error){
+            console.log("Ocorreu um erro durante a solicitação!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        return res.status(HTTP_OK).json(data);
+    },
+
+
     // GET
     getCriptoPrice(req, res) {
 

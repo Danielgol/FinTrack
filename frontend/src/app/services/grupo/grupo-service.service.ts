@@ -26,4 +26,11 @@ export class GrupoService {
     });
   }
 
+  removeGrupo(id: any) {
+    const url = 'http://localhost:3000/removeGrupo/'+id;
+    return this._http.delete(url, {
+      observe:'body'
+    });
+  }
+
 }

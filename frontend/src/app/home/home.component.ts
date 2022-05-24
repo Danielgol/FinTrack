@@ -96,19 +96,27 @@ export class HomeComponent implements OnInit {
     this._maletaService.removeMaletaByName(name).subscribe(res => {
       this.maletas = res;
       this.calcularSaldoGrupo();
-    })
-  }
-  
-  getMaletas(): void{
-    this._maletaService.getMaletas().subscribe(res => {
-      this.maletas = res;
-      console.log(this.maletas);
     });
   }
 
   onSelectGrupo(grupo: any): void{
     this.grupo_atual = this.grupos.indexOf(grupo);
     this.calcularSaldoGrupo();
+  }
+
+  onDeleteGrupo(grupo: any): void{
+    this._grupoService.removeGrupo(grupo._id).subscribe(res => {
+      this.grupos = res;
+      this.grupo_atual = 0;
+    });
+  }
+
+  
+  getMaletas(): void{
+    this._maletaService.getMaletas().subscribe(res => {
+      this.maletas = res;
+      console.log(this.maletas);
+    });
   }
 
   getGrupos(): void{

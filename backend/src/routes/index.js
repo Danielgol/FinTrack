@@ -21,15 +21,17 @@ router.post('/register', ApiController.register)
 router.get('/getUserInfo', ApiController.getUserInfo)
 
 router.get('/getMaletas', ApiController.getMaletas)
-router.get('/getMaletaByName/:name', ApiController.getMaletaByName)
+router.get('/getMaleta/:name', ApiController.getMaletaByName)
 router.post('/createMaleta', ApiController.createMaleta)
-router.delete('/removeMaletaByName/:name', ApiController.removeMaletaByName)
+router.delete('/removeMaleta/:name', ApiController.removeMaletaByName)
 
 router.get('/getRegistros/:id', ApiController.getRegistros)
 router.post('/createRegistro', ApiController.createRegistro)
+//router.delete('/removeRegistro/:id', ApiController.removeRegistro)
 
 router.get('/getGrupos', ApiController.getGrupos)
 router.post('/createGrupo', ApiController.createGrupo)
+router.delete('/removeGrupo/:id', ApiController.removeGrupo)
 
 router.get('/getCriptoPrice/:id', ApiController.getCriptoPrice)
 router.get('/getCriptoHistory/:id', ApiController.getCriptoHistory)
