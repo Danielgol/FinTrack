@@ -88,8 +88,15 @@ export class HomeComponent implements OnInit {
     this.getCriptoHistory("btc");
   }  
 
-  onSelectMaleta(id: any): void{
-    this.router.navigate(['/maleta', id]);
+  onSelectMaleta(name: any): void{
+    this.router.navigate(['/maleta', name]);
+  }
+
+  onDeleteMaleta(name: any): void{
+    this._maletaService.removeMaletaByName(name).subscribe(res => {
+      this.maletas = res;
+      this.calcularSaldoGrupo();
+    })
   }
   
   getMaletas(): void{
@@ -100,7 +107,7 @@ export class HomeComponent implements OnInit {
   }
 
   onSelectGrupo(grupo: any): void{
-    this.grupo_atual = grupo;
+    this.grupo_atual = this.grupos.indexOf(grupo);
     this.calcularSaldoGrupo();
   }
 
@@ -108,7 +115,7 @@ export class HomeComponent implements OnInit {
     this._grupoService.getGrupos().subscribe(res => {
       this.grupos = res;
       if(this.grupos.length > 0){
-        this.grupo_atual = this.grupos[0];
+        this.grupo_atual = 0;
         this.calcularSaldoGrupo();
       }
       console.log(this.grupos);
@@ -118,9 +125,9 @@ export class HomeComponent implements OnInit {
   calcularSaldoGrupo(): void{
     var saldo = 0;
 
-    for(var i=0; i<this.grupo_atual.maletas.length; i++){
+    for(var i=0; i<this.grupos[this.grupo_atual].maletas.length; i++){
       for(var j=0; j<this.maletas.length; j++){
-        if(this.grupo_atual.maletas[i] === this.maletas[j]._id){
+        if(this.grupos[this.grupo_atual].maletas[i] === this.maletas[j]._id){
           saldo += this.maletas[j].value
           break;
         }

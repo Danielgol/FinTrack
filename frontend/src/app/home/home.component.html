@@ -24,10 +24,10 @@
                 <div class="card bg-dark mb-3">
                     <ul *ngIf="grupos.length > 0; else templateName" class="card-header">
                         <div class="card-header">
-                            Saldo {{grupo_atual.name}}
+                            Saldo {{grupos[grupo_atual].name}}
                         </div>
                         <div class="card-body">
-                            R$ {{saldo_grupo}}
+                            {{grupos[grupo_atual].prefix}} {{saldo_grupo}}
                         </div>
                     </ul>
 
@@ -101,7 +101,7 @@
                                     {{maletas[maleta].value}}
                                 </span>
                               </button>
-                              <button class="excluir btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                              <button (click)="onDeleteMaleta(maletas[maleta].name)" class="excluir btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
                               <!--<span> {{ cryptos[crypto].USD | currency:'USD':true }}</span>-->
                             </h3>
                           </div>

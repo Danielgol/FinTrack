@@ -23,6 +23,7 @@ router.get('/getUserInfo', ApiController.getUserInfo)
 router.get('/getMaletas', ApiController.getMaletas)
 router.get('/getMaletaByName/:name', ApiController.getMaletaByName)
 router.post('/createMaleta', ApiController.createMaleta)
+router.delete('/removeMaletaByName/:name', ApiController.removeMaletaByName)
 
 router.get('/getRegistros/:id', ApiController.getRegistros)
 router.post('/createRegistro', ApiController.createRegistro)

@@ -146,6 +146,46 @@ module.exports = {
     },
 
 
+    // DELETE
+    async removeMaletaByName(req, res) {
+
+        const token = req.headers["authorization"].replace("Bearer ","");
+        const decoded = jwt.verify(token, SERVER_HASHCODE);
+        const email = decoded.email
+
+        const { name } = req.params
+        
+        var maleta;
+
+        try{
+            maleta = await Maleta.findOne({email: email, name: name})
+            var grupos = Grupo.find({email: email})
+            for(var i=0; i<grupos.length; i++){
+                const index = grupos[i].maletas.indexOf(maleta._id);
+                if(index >= 0){
+                    grupos[i].maletas.splice(index, 1)
+                    await grupos[i].save()
+                }
+            }
+            await maleta.remove();
+        }catch(error){
+            console.log("Ocorreu um erro durante a remoção da maleta!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        var data = [];
+        try{
+            const maletas = await Maleta.find({email: email});
+            data = maletas;
+        }catch(error){
+            console.log("Ocorreu um erro durante a solicitação!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        return res.status(HTTP_OK).json(data);
+    },
+
+
     // GET
     async getRegistros(req, res) {
 

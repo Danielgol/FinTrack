@@ -15,6 +15,13 @@ export class MaletaService {
   constructor(private _http: HttpClient,
               private _authService: AuthService) { }
 
+  removeMaletaByName(name: any) {
+    const url = 'http://localhost:3000/removeMaletaByName/'+name;
+    return this._http.delete<any>(url,{
+      observe:'body'
+    });
+  }
+
   getMaletaByName(name: any) {
     const url = 'http://localhost:3000/getMaletaByName/'+name;
     return this._http.get<any>(url,{
