@@ -43,4 +43,11 @@ export class MaletaService {
     });
   }
 
+  getMaletasByGrupo(name: any){
+    const url = 'http://localhost:3000/getMaletasByGrupo/'+name;
+    return this._http.get<Maletas>(url,{
+      observe:'body'
+    });
+  }
+
 }

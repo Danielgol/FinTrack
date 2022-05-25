@@ -19,6 +19,13 @@ export class GrupoService {
     });
   }
 
+  getGrupo(name: any) {
+    const url = 'http://localhost:3000/getGrupo/' + name;
+    return this._http.get<any>(url, {
+      observe:'body'
+    });
+  }
+
   createGrupo(body: any) {
     const url = 'http://localhost:3000/createGrupo';
     return this._http.post(url, body,{

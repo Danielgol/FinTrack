@@ -99,8 +99,9 @@ export class HomeComponent implements OnInit {
   }
 
   onSelectGrupo(grupo: any): void{
-    this.grupo_atual = this.grupos.indexOf(grupo);
-    this.calcularSaldoGrupo();
+    //this.grupo_atual = this.grupos.indexOf(grupo);
+    //this.calcularSaldoGrupo();
+    this.router.navigate(['grupo',grupo.name])
   }
 
   onDeleteGrupo(grupo: any): void{

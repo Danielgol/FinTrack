@@ -43,9 +43,9 @@
                     <div class="card-body">
                         <div id="carouselControl" class="carousel slide d-flex" data-ride="carousel">
                             
-                            <div class="carousel-inner ">
+                            <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <p>Selecione um grupo para visualizar o saldo.  </p>
+                                    <p>Selecione um grupo para visualizar o saldo.</p>
                                 </div>
                                 <div class="carousel-item"  *ngFor="let grupo of objectKeys(grupos)">
                                     <button (click)="onSelectGrupo(grupos[grupo])" class="btn btn-success">

@@ -145,6 +145,39 @@ module.exports = {
         return res.status(HTTP_OK).json(maleta);
     },
 
+    //GET
+    async getMaletasByGrupo(req, res) {
+
+        const token = req.headers["authorization"].replace("Bearer ","");
+        const decoded = jwt.verify(token, SERVER_HASHCODE);
+        const email = decoded.email
+
+        const { name } = req.params
+        
+        var grupo;
+
+        try{
+            grupo = await Grupo.findOne({email: email, name: name})
+        }catch(error){
+            console.log("Ocorreu um erro durante a solicitação!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        var data = [];
+
+        try{
+            for(var i = 0; i < grupo.maletas.length; i++){
+                const maleta = await Maleta.findOne({_id: grupo.maletas[i], email: email});
+                data.push(maleta);
+            }
+        }catch(error){
+            console.log("Ocorreu um erro durante a solicitação!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        return res.status(HTTP_OK).json(data);
+    },
+
 
     // DELETE
     async removeMaletaByName(req, res) {
@@ -318,6 +351,27 @@ module.exports = {
         }
 
         return res.status(HTTP_OK).json(data);
+    },
+
+    // GET
+    async getGrupoByName(req, res) {
+
+        const token = req.headers["authorization"].replace("Bearer ","");
+        const decoded = jwt.verify(token, SERVER_HASHCODE);
+        const email = decoded.email
+
+        const { name } = req.params
+        
+        var grupo;
+
+        try{
+            grupo = await Grupo.findOne({email: email, name: name})
+        }catch(error){
+            console.log("Ocorreu um erro durante a solicitação!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        return res.status(HTTP_OK).json(grupo);
     },
 
 
