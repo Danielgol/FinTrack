@@ -452,7 +452,9 @@ module.exports = {
 
         const { currency, prefix } = req.params;
 
-        const url = "";
+        const point = "https://economia.awesomeapi.com.br/json/last/"
+
+        const url = point + currency + "-" + prefix;
 
         https.get(url, (resp) => {
             let data = '';
@@ -462,10 +464,9 @@ module.exports = {
             });
 
             resp.on('end', () => {
-                var value = 0
                 data = JSON.parse(data);
-
-                res.send({value: value});
+                console.log(currency+""+prefix+":"+data[currency+""+prefix].low)
+                res.send({value: data[currency+""+prefix].low});
             });
         });
 

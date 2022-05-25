@@ -69,7 +69,6 @@ export class HomeComponent implements OnInit {
     this._maletaService.getMaletas().subscribe(res => {
       this.maletas = res;
       this.calcularSaldoGeral("BRL");
-      console.log(this.maletas);
     });
   }
 
@@ -103,13 +102,10 @@ export class HomeComponent implements OnInit {
       price = await this._apiService.getCriptoPrice(prefix, generalPrefix);
       return price.value * value;
     }else{
-      //var price: any;
-      //price = await this._apiService.getCurrencyPrice(prefix, generalPrefix);
-      //return price.value * value
+      var price: any;
+      price = await this._apiService.getCurrencyPrice(prefix, generalPrefix);
+      return price.value * value
     }
-
-
-
 
     /*
     if(generalPrefix === "BTC" || generalPrefix === "ETH"){
