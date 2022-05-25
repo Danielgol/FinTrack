@@ -53,11 +53,16 @@ export class MaletaComponent implements OnInit {
   }
 
   clickPlus(): void{
-    this.createRegistro(1);
+    if ((<HTMLInputElement>document.getElementById("value")).value !== ''  && ((<HTMLInputElement>document.getElementById("value")).value[0]) !== '-'){
+      this.createRegistro(1);
+    }
+    
   }
 
   clickMinus(): void{
-    this.createRegistro(-1);
+    if ((<HTMLInputElement>document.getElementById("value")).value !== '' && ((<HTMLInputElement>document.getElementById("value")).value[0]) !== '-'){
+      this.createRegistro(-1);
+    }
   }
 
   createRegistro(signal: number): void{
