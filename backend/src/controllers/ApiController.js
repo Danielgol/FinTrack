@@ -252,12 +252,13 @@ module.exports = {
                 }
             }
             await grupo.save()
-            return res.status(HTTP_OK).send()
+            return res.status(HTTP_OK).send(grupo)
         }catch(error){
             console.log("Ocorreu um erro durante a remoção da maleta!");
-            return res.status(HTTP_INTERNAL_ERROR).send(grupo);
+            return res.status(HTTP_INTERNAL_ERROR).send();
         }
     },
+
 
     // GET
     async getRegistros(req, res) {
@@ -354,6 +355,11 @@ module.exports = {
         const { name, value, prefix } = req.body;
 
         console.log(email, name, value, prefix)
+
+        if (!(name && value && prefix)) {
+            console.log("Erro na criação da maleta!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
 
         const maleta = {
             email,

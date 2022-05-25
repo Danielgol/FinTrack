@@ -39,6 +39,15 @@ export class GrupoComponent implements OnInit {
     });
   }
 
+  removeMaleta(maleta: any): void {
+    this._maletaService.removeMaletaFromGrupo(this.grupo.name, maleta._id).subscribe(res => {
+      this.grupo = res;
+      const index = this.maletas.indexOf(maleta);
+      this.maletas.splice(index, 1);
+      this.calcularSaldoGrupo();
+    });
+  }
+
   calcularSaldoGrupo(): void{
     var saldo = 0;
 
@@ -48,14 +57,6 @@ export class GrupoComponent implements OnInit {
 
     console.log(saldo)
     this.saldo_grupo = saldo;
-  }
-
-  removeMaleta(maleta: any): void {
-    this._maletaService.removeMaletaFromGrupo(this.grupo.name, maleta._id).subscribe(res => {
-      this.grupo = res;
-      const index = this.maletas.indexOf(maleta);
-      this.maletas.splice(index, 1);
-    });
   }
 
 }
