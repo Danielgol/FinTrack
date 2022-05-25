@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
+  hasToken: any;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.hasToken = !!localStorage.getItem('token')
   }
 
 }

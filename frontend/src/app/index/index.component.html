@@ -24,7 +24,13 @@
                             </li>
                         </ul>
                         <form class="d-flex" style="margin: 0px;">
-                            <button id="btn-entrar" class="btn btn-outline-success alpha me-2" type="button"  routerLink="/login" routerLinkActive="active">Entrar</button>
+                            <ul *ngIf="hasToken; else entrarLogin">
+                                <button id="btn-entrar" class="btn btn-outline-success alpha me-2" type="button"  routerLink="/home" routerLinkActive="active">Home</button>
+                            </ul>
+                            <ng-template #entrarLogin>
+                                <button id="btn-entrar" class="btn btn-outline-success alpha me-2" type="button"  routerLink="/login" routerLinkActive="active">Entrar</button>
+                            </ng-template>
+                            
                             <button id="btn-registrar" class="btn btn-sm btn-outline-secondary" type="button"  routerLink="/register" routerLinkActive="active">Registre-se</button>
                         </form>
                     </div>

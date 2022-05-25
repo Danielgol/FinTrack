@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
+    localStorage.removeItem('email');
+    localStorage.removeItem('token');
     this.form = this.formBuilder.group({
       email: '',
       password: ''

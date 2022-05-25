@@ -24,10 +24,10 @@
                 <div class="card bg-dark mb-3">
                     <ul *ngIf="grupos.length > 0; else templateName" class="card-header">
                         <div class="card-header">
-                            Saldo {{grupos[grupo_atual].name}}
+                            Saldo Geral
                         </div>
                         <div class="card-body">
-                            {{grupos[grupo_atual].prefix}} {{saldo_grupo}}
+                            BRL {{saldo_geral}}
                         </div>
                     </ul>
 
@@ -75,7 +75,7 @@
                 </div>
                 <div class="card bg-dark mb-3">
                     <div class="card-header">
-                        Cotação do Bitcoin
+                        Cotação do Bitcoin: BRL {{btc_current}}
                     </div>
                     <div class="card-body">
                         <div id="divChart" class="img-fluid" style="display: block;">
@@ -92,19 +92,24 @@
                     <div class="card-body scroll">
 
                         <div *ngIf="maletas">
-                          <div id="maleta-container" *ngFor="let maleta of objectKeys(maletas)">
-                            <h3>
-                              <button style="width: 200px;" (click)="onSelectMaleta(maletas[maleta].name)" class="btn btn-success" >
-                                <span class="label label-primary">{{maletas[maleta].name}}</span>
-                                <span class="label label-primary">
-                                    {{maletas[maleta].prefix}}
-                                    {{maletas[maleta].value}}
-                                </span>
-                              </button>
-                              <button (click)="onDeleteMaleta(maletas[maleta].name)" class="excluir btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
-                              <!--<span> {{ cryptos[crypto].USD | currency:'USD':true }}</span>-->
-                            </h3>
-                          </div>
+                            <ul *ngIf="maletas.length > 0; else noMaletas">
+                                <div id="maleta-container" *ngFor="let maleta of objectKeys(maletas)">
+                                    <h3>
+                                        <button style="width: 200px;" (click)="onSelectMaleta(maletas[maleta].name)" class="btn btn-success" >
+                                        <span class="label label-primary">{{maletas[maleta].name}}</span>
+                                        <span class="label label-primary">
+                                                {{maletas[maleta].prefix}}
+                                                {{maletas[maleta].value}}
+                                        </span>
+                                        </button>
+                                        <button (click)="onDeleteMaleta(maletas[maleta].name)" class="excluir btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                                        <!--<span> {{ cryptos[crypto].USD | currency:'USD':true }}</span>-->
+                                    </h3>
+                                </div>
+                            </ul>
+                            <ng-template #noMaletas class="d-flex align-text-middle card-header">
+                                <p style="margin: auto;">Você não possui nenhuma Maleta!</p>
+                            </ng-template>
                         </div>
 
                     </div>

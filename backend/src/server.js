@@ -53,31 +53,15 @@ app.use((req, res, next) => {
 
 
 
-
-
-/*
-ATENÇÃO: PESSOA QUE ESTÁ LOGADA ESTÁ CONSEGUINDO PEGAR O PRÓPRIO TOKEN E FAZER
-UMA REQUISIÇÃO GET/OUTRO_EMAIL E IRÁ CONSEGUIR PEGAR AS INFORMAÇÕES.
-*/
-
-
-
-
 function verifyToken(token){
     try{
-        const decoded = jwt.verify(token, 'hash_unica_do_servidor');
+        const decoded = jwt.verify(token, 'hash_unica_do_servidor'); // process.env.SERVER_HASHCODE
         return true;
     }catch(error){
         console.log("Token Inválido!");
         return false;
     }
 }
-
-
-
-
-
-
 
 
 

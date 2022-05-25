@@ -22,7 +22,8 @@ export class HomeComponent implements OnInit {
   maletas: any;
   grupos: any;
   grupo_atual: any;
-  saldo_grupo: any;
+  saldo_geral: any;
+  btc_current: any;
 
   chart: any;
   coin_data = [];
@@ -94,19 +95,20 @@ export class HomeComponent implements OnInit {
   onDeleteMaleta(name: any): void{
     this._maletaService.removeMaletaByName(name).subscribe(res => {
       this.maletas = res;
-      this.calcularSaldoGrupo();
+      //this.calcularSaldoGrupo();
     });
   }
 
   onSelectGrupo(grupo: any): void{
     this.grupo_atual = this.grupos.indexOf(grupo);
-    this.calcularSaldoGrupo();
+    //this.calcularSaldoGrupo();
   }
 
   onDeleteGrupo(grupo: any): void{
+    const index = this.grupos.indexOf(grupo);
     this._grupoService.removeGrupo(grupo._id).subscribe(res => {
-      this.grupos = res;
-      this.grupo_atual = 0;
+      // Gambiarra  \(*U*)/
+      window.location.reload();
     });
   }
 
@@ -122,12 +124,13 @@ export class HomeComponent implements OnInit {
       this.grupos = res;
       if(this.grupos.length > 0){
         this.grupo_atual = 0;
-        this.calcularSaldoGrupo();
+        //this.calcularSaldoGrupo();
       }
       console.log(this.grupos);
     });
   }
 
+  /*
   calcularSaldoGrupo(): void{
     var saldo = 0;
 
@@ -143,6 +146,7 @@ export class HomeComponent implements OnInit {
     console.log(saldo)
     this.saldo_grupo = saldo;
   }
+  */
 
   getCriptoPrice(cripto: any): void{
     this._apiService.getCriptoPrice(cripto).subscribe(res => {
@@ -157,6 +161,7 @@ export class HomeComponent implements OnInit {
 
       console.log(resp_json)
 
+      this.btc_current = resp_json[0].current_price
       this.coin_data = resp_json[0].sparkline_in_7d.price
       var labels = []
 
