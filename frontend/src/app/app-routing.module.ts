@@ -11,6 +11,7 @@ import { MainComponent } from './components/main/main.component';
 import { AuthGuard } from './services/authguard/auth-guard.service';
 import { MaletaComponent } from './maleta/maleta.component';
 import { PageNotFoundComponent } from './components/notfound/notfound.component';
+import { GrupoComponent } from './grupo/grupo.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
       {path: "createGrupo", component: CreateGrupoComponent},
       {path: "createMaleta", component: CreateMaletaComponent},
       {path: "maleta/:id", component: MaletaComponent},
+      {path: "grupo/:id", component: GrupoComponent},
       {path: '**', component: PageNotFoundComponent}
     ],
   },

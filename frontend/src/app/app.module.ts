@@ -19,6 +19,7 @@ import { MaletaComponent } from './maleta/maleta.component';
 import { PageNotFoundComponent } from './components/notfound/notfound.component';
 
 import { TokenInterceptorService } from './services/token-interceptor/token-interceptor.service';
+import { GrupoComponent } from './grupo/grupo.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { TokenInterceptorService } from './services/token-interceptor/token-inte
     SideBarComponent,
     MaletaComponent,
     PageNotFoundComponent,
+    GrupoComponent,
   ],
   imports: [
     BrowserModule,

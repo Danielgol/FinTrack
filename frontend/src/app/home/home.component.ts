@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   objectKeys = Object.keys;
   maletas: any;
   grupos: any;
-  grupo_atual: any;
+  //grupo_atual: any;
   saldo_geral: any;
   btc_current: any;
 
@@ -100,8 +100,11 @@ export class HomeComponent implements OnInit {
   }
 
   onSelectGrupo(grupo: any): void{
-    this.grupo_atual = this.grupos.indexOf(grupo);
+    //this.grupo_atual = this.grupos.indexOf(grupo);
     //this.calcularSaldoGrupo();
+    //this.grupo_atual = this.grupos.indexOf(grupo);
+    //this.calcularSaldoGrupo();
+    this.router.navigate(['grupo',grupo.name])
   }
 
   onDeleteGrupo(grupo: any): void{
@@ -123,7 +126,7 @@ export class HomeComponent implements OnInit {
     this._grupoService.getGrupos().subscribe(res => {
       this.grupos = res;
       if(this.grupos.length > 0){
-        this.grupo_atual = 0;
+        //this.grupo_atual = 0;
         //this.calcularSaldoGrupo();
       }
       console.log(this.grupos);
