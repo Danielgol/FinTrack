@@ -13,7 +13,7 @@
                     </div>
                     <div class="card bg-dark mb-3">
                         <div class="card-header">
-                            titulo do gráfico AQUI
+                            Cotação do(a) 
                         </div>
                         <div class="card-body">
                             <div id="divChart" class="img-fluid" style="display: block;">
@@ -35,21 +35,20 @@
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-center">
-                            <form [formGroup]="form"> <!-- (submit)="createRegistro()" -->
-                                
+                            <form [formGroup]="form" ngNativeValidate> <!-- (submit)="createRegistro()" -->    
                                 <div class="form-group">
                                     <input formControlName="descricao" type="text" class="form-control form-control-user" id="descricao" placeholder="Descrição">
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-text">{{maleta.prefix}}</span>
-                                        <input formControlName="value" type="number" class="form-control form-control-user" min="0" id="value" placeholder="Valor">
+                                        <input formControlName="value" type="number" class="form-control form-control-user" step="any" id="value" placeholder="Valor" required>
                                     </div>
                                 </div>
                                 <br>
                                 <div class="d-flex justify-content-center">
-                                    <button (click)="clickPlus()" class="btn btn-success"><i class="fa-solid fa-plus"></i></button>
-                                    <button (click)="clickMinus()" class="btn btn-danger"><i class="fa-solid fa-minus"></i></button>
+                                    <button type="submit" (click)="clickPlus()" class="btn btn-success"><i class="fa-solid fa-plus"></i></button>
+                                    <button type="submit" (click)="clickMinus()" class="btn btn-danger"><i class="fa-solid fa-minus"></i></button>
                                 </div>
                                 
                             </form>
