@@ -21,19 +21,11 @@ export class HomeComponent implements OnInit {
   objectKeys = Object.keys;
   maletas: any;
   grupos: any;
-  //grupo_atual: any;
   saldo_geral: any;
   btc_current: any;
 
   chart: any;
   coin_data = [];
-
-  /*
-  cryptos: any;
-  chart: any;
-  btc_data = [null];
-  time_data = ['','','',''];
-  */
 
   constructor(private _authService: AuthService,
               private _maletaService: MaletaService,
@@ -41,46 +33,8 @@ export class HomeComponent implements OnInit {
               private _apiService: ApiService,
               private router: Router) {}
 
-  /*
-  ngOnInit(){
-    this.chart = document.getElementById('myCanvas');
-    Chart.register(...registerables);
-    this.refreshData();
-    var btc_chart = this.loadChart();
 
-    this.cryptos = setInterval(() => {
-      this.refreshData();
-      btc_chart.update();
-    }, 10000);
-  }
-  */
 
-  /*
-  refreshData(){
-    this._data.getPrices().subscribe(res => {
-      this.cryptos = res;
-      var resp_json = JSON.parse(JSON.stringify(res));
-      this.btc_data.push(resp_json.BTC.USD);
-      this.time_data.push('');
-    });
-  }
-
-  loadChart() {
-    return new Chart(this.chart, {
-      type: 'line',
-      data: {
-        labels: this.time_data,
-        datasets: [
-          {
-            data: this.btc_data,
-            borderColor: '#00AEFF',
-            fill: false
-          }
-        ]
-      },
-    });
-  }
-  */
 
   ngOnInit(): void {
     this.getMaletas();
@@ -100,10 +54,6 @@ export class HomeComponent implements OnInit {
   }
 
   onSelectGrupo(grupo: any): void{
-    //this.grupo_atual = this.grupos.indexOf(grupo);
-    //this.calcularSaldoGrupo();
-    //this.grupo_atual = this.grupos.indexOf(grupo);
-    //this.calcularSaldoGrupo();
     this.router.navigate(['grupo',grupo.name])
   }
 
@@ -118,6 +68,7 @@ export class HomeComponent implements OnInit {
   getMaletas(): void{
     this._maletaService.getMaletas().subscribe(res => {
       this.maletas = res;
+      this.calcularSaldoGeral("BRL");
       console.log(this.maletas);
     });
   }
@@ -125,44 +76,57 @@ export class HomeComponent implements OnInit {
   getGrupos(): void{
     this._grupoService.getGrupos().subscribe(res => {
       this.grupos = res;
-      if(this.grupos.length > 0){
-        //this.grupo_atual = 0;
-        //this.calcularSaldoGrupo();
-      }
-      console.log(this.grupos);
     });
   }
 
-  /*
-  calcularSaldoGrupo(): void{
+  async calcularSaldoGeral(generalPrefix: any): Promise<any>{
     var saldo = 0;
+    for(var i=0; i<this.maletas.length; i++) {
+      const value = this.maletas[i].value;
+      const prefix = this.maletas[i].prefix;
+      // Awaits devem ser colocados no local onde será feita a operação
+      // real, se não ele dará resposta promise. PS: O código está correto.
+      const resp = await this.convertToPrefix(value, prefix, generalPrefix);
+      saldo += resp;
+    }
+    this.saldo_geral = saldo;
+  }
 
-    for(var i=0; i<this.grupos[this.grupo_atual].maletas.length; i++){
-      for(var j=0; j<this.maletas.length; j++){
-        if(this.grupos[this.grupo_atual].maletas[i] === this.maletas[j]._id){
-          saldo += this.maletas[j].value
-          break;
-        }
-      }
+  async convertToPrefix(value: any, prefix: any, generalPrefix: any): Promise<number>{
+
+    if(generalPrefix === prefix){
+      return value;
     }
 
-    console.log(saldo)
-    this.saldo_grupo = saldo;
-  }
-  */
+    if(prefix === "BTC" || prefix === "ETH"){
+      var price: any;
+      price = await this._apiService.getCriptoPrice(prefix, generalPrefix);
+      return price.value * value;
+    }else{
+      //var price: any;
+      //price = await this._apiService.getCurrencyPrice(prefix, generalPrefix);
+      //return price.value * value
+    }
 
-  getCriptoPrice(cripto: any): void{
-    this._apiService.getCriptoPrice(cripto).subscribe(res => {
-      console.log(res)
-    })
+
+
+
+    /*
+    if(generalPrefix === "BTC" || generalPrefix === "ETH"){
+      var price: any;
+      price = await this._apiService.getCriptoPrice(generalPrefix, prefix);
+      return price.value * value;
+    }
+    */
+
+    return 0;
+
   }
 
   getCriptoHistory(cripto: any): void{
     this._apiService.getCriptoHistory(cripto).subscribe(res => {
 
       var resp_json = JSON.parse(JSON.stringify(res));
-
-      console.log(resp_json)
 
       this.btc_current = resp_json[0].current_price
       this.coin_data = resp_json[0].sparkline_in_7d.price
@@ -184,7 +148,8 @@ export class HomeComponent implements OnInit {
             }]
         },
       });
-    })
+
+    });
   }
 
   logout(): void{

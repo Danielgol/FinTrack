@@ -145,7 +145,8 @@ module.exports = {
         return res.status(HTTP_OK).json(maleta);
     },
 
-    //GET
+
+    // GET
     async getMaletasByGrupo(req, res) {
 
         const token = req.headers["authorization"].replace("Bearer ","");
@@ -353,6 +354,7 @@ module.exports = {
         return res.status(HTTP_OK).json(data);
     },
 
+
     // GET
     async getGrupoByName(req, res) {
 
@@ -446,13 +448,13 @@ module.exports = {
 
 
     // GET
-    getCriptoPrice(req, res) {
+    getCurrencyPrice(req, res) {
 
-        const { id } = req.params
+        const { currency, prefix } = req.params;
 
-        const apiUrl = 'https://api.coindesk.com/v1/bpi/currentprice.json';
+        const url = "";
 
-        https.get(apiUrl, (resp) => {
+        https.get(url, (resp) => {
             let data = '';
 
             resp.on('data', (chunk) => {
@@ -460,10 +462,45 @@ module.exports = {
             });
 
             resp.on('end', () => {
+                var value = 0
                 data = JSON.parse(data);
-                var btc_value = parseFloat(data.bpi.USD.rate.replace(',',''));
-                console.log(btc_value);
-                res.send(btc_value+'');
+
+                res.send({value: value});
+            });
+        });
+
+    },
+
+
+    // GET
+    getCriptoPrice(req, res) {
+
+        const site = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=";
+        const settings = "&order=market_cap_desc&per_page=20&page=1&sparkline=true&price_change_percentage=";
+        const price_change_percentage = "7d";
+
+        const { cripto, prefix } = req.params;
+
+        const url = site + prefix + settings + price_change_percentage;
+
+        https.get(url, (resp) => {
+            let data = '';
+
+            resp.on('data', (chunk) => {
+                data += chunk;
+            });
+
+            resp.on('end', () => {
+                var value = 0
+                data = JSON.parse(data);
+
+                if(cripto === "BTC"){
+                    value = data[0].current_price;
+                }else{
+                    value = data[1].current_price;
+                }
+
+                res.send({value: value});
             });
         });
     },

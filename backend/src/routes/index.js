@@ -35,7 +35,8 @@ router.get('/getGrupo/:name', ApiController.getGrupoByName)
 router.post('/createGrupo', ApiController.createGrupo)
 router.delete('/removeGrupo/:id', ApiController.removeGrupo)
 
-router.get('/getCriptoPrice/:id', ApiController.getCriptoPrice)
+router.get('/getCurrencyPrice/:currency/:prefix', ApiController.getCurrencyPrice)
+router.get('/getCriptoPrice/:cripto/:prefix', ApiController.getCriptoPrice)
 router.get('/getCriptoHistory/:id', ApiController.getCriptoHistory)
 
 

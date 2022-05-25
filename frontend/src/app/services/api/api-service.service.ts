@@ -13,11 +13,18 @@ export class ApiService {
 
   constructor(private _http: HttpClient) { }
 
-  getCriptoPrice(cripto: any) {
-    const url = 'http://localhost:3000/getCriptoPrice/'+cripto;
-    return this._http.get<any>(url,{
+  async getCurrencyPrice(curr: any, prefix: any) {
+    const url = 'http://localhost:3000/getCurrencyPrice/'+curr+'/'+prefix;
+    return await this._http.get<any>(url,{
       observe:'body'
-    });
+    }).toPromise();
+  }
+
+  async getCriptoPrice(cripto: any, prefix: any) {
+    const url = 'http://localhost:3000/getCriptoPrice/'+cripto+'/'+prefix;
+    return await this._http.get<any>(url,{
+      observe:'body'
+    }).toPromise();
   }
 
   getCriptoHistory(cripto: any) {
