@@ -29,15 +29,13 @@ export class GrupoComponent implements OnInit {
   getGrupo(name: any): void{
     this._grupoService.getGrupo(name).subscribe(res => {
       this.grupo = res;
-      console.log(this.grupo);
     });
   }
 
-  getMaletas(name:any): void{
+  getMaletas(name: any): void{
     this._maletaService.getMaletasByGrupo(name).subscribe(res => {
       this.maletas = res;
       this.calcularSaldoGrupo();
-      console.log(this.maletas);
     });
   }
 
@@ -52,5 +50,12 @@ export class GrupoComponent implements OnInit {
     this.saldo_grupo = saldo;
   }
 
+  removeMaleta(maleta: any): void {
+    this._maletaService.removeMaletaFromGrupo(this.grupo.name, maleta._id).subscribe(res => {
+      this.grupo = res;
+      const index = this.maletas.indexOf(maleta);
+      this.maletas.splice(index, 1);
+    });
+  }
 
 }

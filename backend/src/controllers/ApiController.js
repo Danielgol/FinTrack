@@ -190,10 +190,12 @@ module.exports = {
         const { name } = req.params
         
         var maleta;
+        var id_maleta;
 
         try{
             maleta = await Maleta.findOne({email: email, name: name})
-            var grupos = Grupo.find({email: email})
+            id_maleta = maleta._id;
+            var grupos = await Grupo.find({email: email})
             for(var i=0; i<grupos.length; i++){
                 const index = grupos[i].maletas.indexOf(maleta._id);
                 if(index >= 0){
@@ -202,6 +204,16 @@ module.exports = {
                 }
             }
             await maleta.remove();
+        }catch(error){
+            console.log("Ocorreu um erro durante a remoção da maleta!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        try{
+            var registros = await Registro.find({email: email, id_maleta: id_maleta})
+            for(var i=0; i<registros.length; i++){
+                await registros[i].remove();
+            }
         }catch(error){
             console.log("Ocorreu um erro durante a remoção da maleta!");
             return res.status(HTTP_INTERNAL_ERROR).send();
@@ -219,6 +231,33 @@ module.exports = {
         return res.status(HTTP_OK).json(data);
     },
 
+
+    // PUT
+    async removeMaletaFromGrupo(req, res){
+
+        const token = req.headers["authorization"].replace("Bearer ","");
+        const decoded = jwt.verify(token, SERVER_HASHCODE);
+        const email = decoded.email    
+
+        const { name, id } = req.params;
+
+        var grupo = {}
+
+        try{
+            grupo = await Grupo.findOne({email: email, name: name});
+            for(var i=0; i<grupo.maletas.length; i++){
+                if(grupo.maletas[i] === id){
+                    grupo.maletas.splice(i, 1)
+                    break;
+                }
+            }
+            await grupo.save()
+            return res.status(HTTP_OK).send()
+        }catch(error){
+            console.log("Ocorreu um erro durante a remoção da maleta!");
+            return res.status(HTTP_INTERNAL_ERROR).send(grupo);
+        }
+    },
 
     // GET
     async getRegistros(req, res) {
@@ -453,7 +492,6 @@ module.exports = {
         const { currency, prefix } = req.params;
 
         const point = "https://economia.awesomeapi.com.br/json/last/"
-
         const url = point + currency + "-" + prefix;
 
         https.get(url, (resp) => {
@@ -465,23 +503,21 @@ module.exports = {
 
             resp.on('end', () => {
                 data = JSON.parse(data);
-                console.log(currency+""+prefix+":"+data[currency+""+prefix].low)
+                //console.log(currency+""+prefix+":"+data[currency+""+prefix].low)
                 res.send({value: data[currency+""+prefix].low});
             });
         });
-
     },
 
 
     // GET
     getCriptoPrice(req, res) {
 
+        const { cripto, prefix } = req.params;
+
         const site = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=";
         const settings = "&order=market_cap_desc&per_page=20&page=1&sparkline=true&price_change_percentage=";
         const price_change_percentage = "7d";
-
-        const { cripto, prefix } = req.params;
-
         const url = site + prefix + settings + price_change_percentage;
 
         https.get(url, (resp) => {
@@ -528,7 +564,6 @@ module.exports = {
                 res.send(data);
             });
         });
-
     }
 
     

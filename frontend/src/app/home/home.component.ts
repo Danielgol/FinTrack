@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
   onDeleteMaleta(name: any): void{
     this._maletaService.removeMaletaByName(name).subscribe(res => {
       this.maletas = res;
-      //this.calcularSaldoGrupo();
+      this.calcularSaldoGeral("BRL");
     });
   }
 

@@ -39,7 +39,7 @@
                         <div class="card-body" *ngFor="let maleta of objectKeys(maletas)">
                             <span>{{maletas[maleta].name}} {{maletas[maleta].value}}</span>
                           <!--<button class="btn btn-warning"><i class="fa-solid fa-rotate-left"></i></button>-->
-                            <button style="margin-left: 5px;" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                            <button (click)="removeMaleta(maletas[maleta])" style="margin-left: 5px;" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
                         </div>
                     </div>
                       

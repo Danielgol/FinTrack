@@ -15,6 +15,13 @@ export class MaletaService {
   constructor(private _http: HttpClient,
               private _authService: AuthService) { }
 
+  removeMaletaFromGrupo(name: any, id: any) {
+    const url = 'http://localhost:3000/removeMaletaFromGrupo/'+name+'/'+id;
+    return this._http.delete<any>(url,{
+      observe:'body'
+    });
+  }
+
   removeMaletaByName(name: any) {
     const url = 'http://localhost:3000/removeMaleta/'+name;
     return this._http.delete<any>(url,{
