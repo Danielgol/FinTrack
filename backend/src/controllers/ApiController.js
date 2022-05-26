@@ -1,5 +1,6 @@
 const https = require('https');
 const jwt = require('jsonwebtoken')
+const bcrypt = require("bcrypt");
 
 const Grupo = require('../models/Grupo');
 const Maleta = require('../models/Maleta');
@@ -17,7 +18,7 @@ const {
     HTTP_INTERNAL_ERROR
 } = require('../utils/Constants');
 
-const SERVER_HASHCODE = 'hash_unica_do_servidor';
+const SERVER_HASHCODE = process.env.SERVER_HASHCODE;
 
 
 
@@ -36,9 +37,8 @@ module.exports = {
 
         try{
             const usuario = await Usuario.findOne({email: email});
-            const hash_password = encryptPassword(password);
-
-            if(usuario.hash_password === hash_password){
+            const result = await bcrypt.compare(password, usuario.hash_password);
+            if(result){
                 console.log("Login Success: "+email);
                 const token = generateToken({email, password});
                 return res.status(HTTP_OK).json({'email': email ,'token': token});
@@ -63,7 +63,7 @@ module.exports = {
             return res.status(HTTP_INTERNAL_ERROR).send();
         }catch(error){}
 
-        const hash_password = encryptPassword(password);
+        const hash_password = await encryptPassword(password);
         
         if (!(name && email && password)) {
             console.log("Erro no registro do usuário!");
@@ -99,6 +99,7 @@ module.exports = {
 
         console.log("Erro na criação do usuário!");
         return res.status(HTTP_INTERNAL_ERROR).send();
+        
     },
 
 
@@ -564,7 +565,7 @@ module.exports = {
                 }
 
                 //console.log(cripto+prefix+" --- "+value)
-                
+
                 res.send({value: value});
             });
         });
@@ -597,10 +598,12 @@ module.exports = {
     
 }
 
-function generateToken(obj){
+function generateToken(obj) {
     return jwt.sign(obj, SERVER_HASHCODE , {expiresIn: "10m"});
 }
 
-function encryptPassword(password){
-    return password;
+async function encryptPassword(password) {
+    const salt = await bcrypt.genSalt();
+    const hash = await bcrypt.hash(password, salt);
+    return hash;
 }

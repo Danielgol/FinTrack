@@ -55,7 +55,7 @@ app.use((req, res, next) => {
 
 function verifyToken(token){
     try{
-        const decoded = jwt.verify(token, 'hash_unica_do_servidor'); // process.env.SERVER_HASHCODE
+        const decoded = jwt.verify(token, process.env.SERVER_HASHCODE);
         return true;
     }catch(error){
         console.log("Token Inválido!");
