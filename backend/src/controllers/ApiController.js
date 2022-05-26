@@ -64,6 +64,26 @@ module.exports = {
         }catch(error){}
 
         const hash_password = encryptPassword(password);
+        
+        if (!(name && email && password)) {
+            console.log("Erro no registro do usuário!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        if (/\d/.test(name)) {
+            console.log("Erro no registro do nome!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        if(!(email.includes("@") && (email.endsWith(".com") || email.endsWith(".br"))) ){
+            console.log("Erro no email fornecido!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+
+        if(password.length < 6){
+            console.log("Senha com menos de 6 caracteres!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
 
         const usuario = {
             name,

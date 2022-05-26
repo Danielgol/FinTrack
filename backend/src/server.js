@@ -32,7 +32,7 @@ app.use((req, res, next) => {
         next();
     }else{
         //console.log("POP: "+req.method+" --- "+req.originalUrl+" --- "+req.headers["authorization"]);
-        if(req.originalUrl === "/login"){
+        if(req.originalUrl === "/login" || req.originalUrl === "/register"){
             next();
         }else{
             if(req.headers["authorization"]){

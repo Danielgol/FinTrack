@@ -11,15 +11,15 @@
         </section>
         <div id="register-container">
             <h1>Registre-se</h1>
-            <form [formGroup]="form" (submit)="submit()">
+            <form [formGroup]="form" (submit)="submit()" ngNativeValidate>
                 <label for="nome">Digite seu nome</label>
-                <input formControlName="name" type="text" name="nome" id="nome" placeholder="Digite seu nome" autocomplete="off">
+                <input formControlName="name" type="text" name="nome" id="nome" placeholder="Digite seu nome" autocomplete="off" required>
                 <label for="email">E-mail</label>
-                <input formControlName="email" type="email" name="email" id="email" placeholder="Digite seu e-mail" autocomplete="off">
+                <input formControlName="email" type="email" name="email" id="email" placeholder="Digite seu e-mail" autocomplete="off" required>
                 <label for="password">Digite uma senha</label>
-                <input formControlName="password" type="password" name="password" id="password" placeholder="Digite sua senha">
+                <input formControlName="password" type="password" name="password" id="password" placeholder="Digite sua senha" required>
                 <label for="password">Confirme sua senha</label>
-                <input formControlName="confirmedPassword" type="password" name="confirmedPassword" id="confirmedPassword" placeholder="Confirme sua senha">
+                <input formControlName="confirmedPassword" type="password" name="confirmedPassword" id="confirmedPassword" placeholder="Confirme sua senha" required>
                 <input type="submit" value="Registrar">
             </form>
             <div id="social-container">
