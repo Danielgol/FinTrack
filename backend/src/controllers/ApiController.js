@@ -563,6 +563,8 @@ module.exports = {
                     value = data[1].current_price;
                 }
 
+                //console.log(cripto+prefix+" --- "+value)
+                
                 res.send({value: value});
             });
         });

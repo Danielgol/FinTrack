@@ -36,8 +36,8 @@
                           Maletas
                       </div>
                       <div class="card-body scroll">
-                        <div class="card-body" *ngFor="let maleta of objectKeys(maletas)">
-                            <span>{{maletas[maleta].name}} {{maletas[maleta].value}}</span>
+                        <div class="card-body" *ngFor="let index of objectKeys(maletas)">
+                            <span>{{maletas[index].name}} {{maletas[index].prefix}} {{maletas[index].value}}</span>
                         </div>
                     </div>
                       
