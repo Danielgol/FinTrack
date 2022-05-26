@@ -1,38 +1,40 @@
-<div id="principal" class="col-md-12">
-    <div id="criarGrupo" class="container">
-            <img src="../../assets/Logo-completa.png" alt="" max-width="100" height="100" class="d-inline-block align-text-center">
-        <div id="login-container">
-            <h1>Criar Grupo</h1>
-            <form [formGroup]="form">
-                <label for="name">Nome:</label>
-                <input formControlName="name" type="text" name="name" id="name" placeholder="Digite o nome do grupo" autocomplete="off">
+<body>
+    <div id="principal" class="col-md-12">
+        <div id="criarGrupo" class="container">
+                <img src="../../assets/Logo-completa.png" alt="" max-width="100" height="100" class="d-inline-block align-text-center">
+            <div id="login-container">
+                <h1>Criar Grupo</h1>
+                <form [formGroup]="form">
+                    <label for="name">Nome:</label>
+                    <input formControlName="name" type="text" name="name" id="name" placeholder="Digite o nome do grupo" autocomplete="off">
+        
+                    <label for="prefix">Moeda</label>
+                    <select formControlName="prefix" name="prefix" id="prefix">
+                        <option value="BRL">R$(Real)</option>
+                        <option value="USD">$(Dólar)</option>
+                        <option value="GBP">£(Libra)</option>
+                        <option value="EUR">€(Euro)</option>
+                        <option value="BTC">BTC(Bitcoin)</option>
+                        <option value="ETH">ETH(Ethereum)</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+        
     
-                <label for="prefix">Moeda</label>
-                <select formControlName="prefix" name="prefix" id="prefix">
-                    <option value="BRL">R$(Real)</option>
-                    <option value="USD">$(Dólar)</option>
-                    <option value="GBP">£(Libra)</option>
-                    <option value="EUR">€(Euro)</option>
-                    <option value="BTC">BTC(Bitcoin)</option>
-                    <option value="ETH">ETH(Ethereum)</option>
-                </select>
+        <div id="maleta-container" class="col-md-7">
+            <h1>Selecione as maletas</h1>
+            <div class="card-maleta scroll" *ngIf="maletas">
+                <div class="form-check" *ngFor="let maleta of objectKeys(maletas)">
+                    <label class="form-check-label" for="inlineCheckbox1">{{maletas[maleta].name}}</label>
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" [value]="maletas[maleta]._id" (change)="OnCheckboxSelect(maletas[maleta]._id, $event)">
+                    
+                </div>
+                <!--<span> {{ cryptos[crypto].USD | currency:'USD':true }}</span>-->
+            </div>
+            <form [formGroup]="form" (submit)="submit()">
+                <input type="submit" value="Salvar">
             </form>
         </div>
     </div>
-    
-
-    <div id="maleta-container" class="col-md-7">
-        <h1>Selecione as maletas</h1>
-        <div class="card-maleta scroll" *ngIf="maletas">
-            <div class="form-check" *ngFor="let maleta of objectKeys(maletas)">
-                <label class="form-check-label" for="inlineCheckbox1">{{maletas[maleta].name}}</label>
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" [value]="maletas[maleta]._id" (change)="OnCheckboxSelect(maletas[maleta]._id, $event)">
-                
-            </div>
-            <!--<span> {{ cryptos[crypto].USD | currency:'USD':true }}</span>-->
-        </div>
-        <form [formGroup]="form" (submit)="submit()">
-            <input type="submit" value="Salvar">
-        </form>
-    </div>
-</div>
+</body>

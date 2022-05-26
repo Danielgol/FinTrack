@@ -28,6 +28,26 @@
     font-family: WorkBold, sans-serif;
 }
 
+body{
+    min-height: 90vh;
+    background: linear-gradient(45deg, #233329,#383939, #383939, #343a40, #343a40 , #2d4f70);
+    background-size: 400% 400%;
+    position: relative;
+    animation: change 10s ease-in-out infinite;
+}
+
+@keyframes change{
+    0%{
+      background-position: 0 50%;
+    }
+    50%{
+      background-position: 100% 50%;
+    }
+    100%{
+      background-position: 0 50%;
+    }
+  }
+
 textarea:focus, input:focus{
     outline:none;
 }
@@ -46,7 +66,7 @@ a:hover{
     50% {box-shadow: 0px 0px 20px .4vw #aee637;}
   }*/
 
-#login-container{
+#criar-maleta-container{
     background-color: #343a40;
     width: 400px;
     margin-left: auto;
@@ -59,7 +79,7 @@ a:hover{
     margin-bottom: 20px;
 }
 
-#login-container h1{
+#criar-maleta-container h1{
     margin-top: 5px;
     margin-bottom: 5px;
     font-family: SourceBold;
@@ -159,7 +179,7 @@ header{
         padding-top: 10vh;
     }
 
-    #login-container{
+    #criar-maleta-container{
         width: 90vw;
         margin-left: auto;
         margin-right: auto;

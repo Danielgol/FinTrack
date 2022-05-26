@@ -1,29 +1,31 @@
-<div id="principal">
-    <div id="login-container">
-        <h1>Criar Maleta</h1>
-        <form [formGroup]="form" (submit)="submit()">
-            <label for="name">Nome:</label>
-            <input formControlName="name" type="text" name="name" id="name" placeholder="Digite o nome da maleta" autocomplete="off">
-            <label for="value">Valor</label>
-            <input formControlName="value" type="number" name="value" id="value" min="0" placeholder="Digite o valor">
-            <label for="prefix">Moeda</label>
-                <select formControlName="prefix" name="prefix" id="prefix">
-                    <option value="BRL">R$(Real)</option>
-                    <option value="USD">$(Dólar)</option>
-                    <option value="GBP">£(Libra)</option>
-                    <option value="EUR">€(Euro)</option>
-                    <option value="BTC">BTC(Bitcoin)</option>
-                    <option value="ETH">ETH(Ethereum)</option>
-                 </select>
-            <!--<label for="bank">Banco</label>
-            <input formControlName="bank" type="text" list="banks" name="bank" id="bank" placeholder="Digite o banco">
-            <datalist id="banks">
-                <option value="Banco do Brasil"></option>
-                <option value="Itaú"></option>
-                <option value="Santander"></option>
-                <option value="Bradesco"></option>
-            </datalist>-->
-            <input type="submit" value="Salvar">
-        </form>
+<body>
+    <div id="principal">
+        <div id="criar-maleta-container">
+            <h1>Criar Maleta</h1>
+            <form [formGroup]="form" (submit)="submit()">
+                <label for="name">Nome:</label>
+                <input formControlName="name" type="text" name="name" id="name" placeholder="Digite o nome da maleta" autocomplete="off">
+                <label for="value">Valor</label>
+                <input formControlName="value" type="number" name="value" id="value" min="0" placeholder="Digite o valor">
+                <label for="prefix">Moeda</label>
+                    <select formControlName="prefix" name="prefix" id="prefix">
+                        <option value="BRL">R$(Real)</option>
+                        <option value="USD">$(Dólar)</option>
+                        <option value="GBP">£(Libra)</option>
+                        <option value="EUR">€(Euro)</option>
+                        <option value="BTC">BTC(Bitcoin)</option>
+                        <option value="ETH">ETH(Ethereum)</option>
+                     </select>
+                <!--<label for="bank">Banco</label>
+                <input formControlName="bank" type="text" list="banks" name="bank" id="bank" placeholder="Digite o banco">
+                <datalist id="banks">
+                    <option value="Banco do Brasil"></option>
+                    <option value="Itaú"></option>
+                    <option value="Santander"></option>
+                    <option value="Bradesco"></option>
+                </datalist>-->
+                <input type="submit" value="Salvar">
+            </form>
+        </div>
     </div>
-</div>
+</body>

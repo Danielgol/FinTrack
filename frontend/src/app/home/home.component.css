@@ -3,7 +3,24 @@ body {
   color: #aee637;
   overflow-x: hidden;
   min-height: 90vh;
+  background: linear-gradient(45deg, #233329,#383939, #383939, #343a40, #343a40 , #2d4f70);
+  background-size: 400% 400%;
+  position: relative;
+  animation: change 10s ease-in-out infinite;
   }
+
+
+@keyframes change{
+  0%{
+    background-position: 0 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+    background-position: 0 50%;
+  }
+}
 
   
 .carousel-item{
