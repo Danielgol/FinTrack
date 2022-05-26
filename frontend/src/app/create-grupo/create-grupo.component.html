@@ -35,6 +35,15 @@
             <form [formGroup]="form" (submit)="submit()">
                 <input type="submit" value="Salvar">
             </form>
+
+            <div>
+                <ul *ngIf="errorMessage !== null;">
+                    <h3>
+                        {{errorMessage}}
+                    </h3>
+                </ul>
+            </div>
+
         </div>
     </div>
 </body>

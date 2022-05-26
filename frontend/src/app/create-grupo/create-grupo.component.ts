@@ -21,6 +21,8 @@ export class CreateGrupoComponent implements OnInit {
   objectKeys = Object.keys;
   maletas: any;
 
+  errorMessage: any;
+
   constructor(private formBuilder: FormBuilder,
     private _grupoService: GrupoService,
     private _maletaService: MaletaService,
@@ -71,7 +73,7 @@ export class CreateGrupoComponent implements OnInit {
       this._grupoService.createGrupo(this.form.getRawValue()).subscribe(res => {
         this.router.navigate(['/home']);
       }, error => {
-        console.log("Grupo não foi criado!")
+        this.errorMessage = error.error.message
       });
     }
 

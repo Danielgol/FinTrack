@@ -377,7 +377,9 @@ module.exports = {
 
         if (!(name && value && prefix)) {
             console.log("Erro na criação da maleta!");
-            return res.status(HTTP_INTERNAL_ERROR).send();
+            return res.status(HTTP_INTERNAL_ERROR).send(
+                {message: "Todos os campos devem ser preenchidos!"}
+            );
         }
 
         try{
@@ -460,19 +462,25 @@ module.exports = {
 
         if (!(name && prefix && maletas)) {
             console.log("Erro na criação do grupo!");
-            return res.status(HTTP_INTERNAL_ERROR).send();
+            return res.status(HTTP_INTERNAL_ERROR).send(
+                {message: "Todos os campos devem ser preenchidos!"}
+            );
         }
 
         if(maletas.length == 0){
             console.log("Erro na criação do grupo!");
-            return res.status(HTTP_INTERNAL_ERROR).send();
+            return res.status(HTTP_INTERNAL_ERROR).send(
+                {message: "Adicione pelo menos 1 Maleta!"}
+            );
         }
 
         try{
             const grupo = await Grupo.exists({email: email, name: name})
             if(grupo){
                 console.log("Já existe um grupo com esse nome!");
-                return res.status(HTTP_INTERNAL_ERROR).send();
+                return res.status(HTTP_INTERNAL_ERROR).send(
+                    {message: "Já existe um Grupo com esse nome!"}
+                );
             }
         }catch(error){ }
 
@@ -490,7 +498,9 @@ module.exports = {
         }catch(error){}
 
         console.log("Erro na criação do grupo!");
-        return res.status(HTTP_INTERNAL_ERROR).send();
+        return res.status(HTTP_INTERNAL_ERROR).send(
+            {message: "Houve um erro na criação do Grupo!"}
+        );
     },
 
 
