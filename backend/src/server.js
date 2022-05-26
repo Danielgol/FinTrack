@@ -51,8 +51,6 @@ app.use((req, res, next) => {
 });
 
 
-
-
 function verifyToken(token){
     try{
         const decoded = jwt.verify(token, process.env.SERVER_HASHCODE);
@@ -62,8 +60,6 @@ function verifyToken(token){
         return false;
     }
 }
-
-
 
 
 app.use(cors());

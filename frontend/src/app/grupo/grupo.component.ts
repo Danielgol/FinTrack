@@ -89,16 +89,6 @@ export class GrupoComponent implements OnInit {
     var price: any;
     price = await this._apiService.getCurrencyPrice(prefix, generalPrefix);
     return price.value * value
-    
-    /*
-    if(generalPrefix === "BTC" || generalPrefix === "ETH"){
-      var price: any;
-      price = await this._apiService.getCriptoPrice(generalPrefix, prefix);
-      return price.value * value;
-    }
-    */
-
-    return 0;
 
   }
 

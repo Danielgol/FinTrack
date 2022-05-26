@@ -375,12 +375,18 @@ module.exports = {
 
         const { name, value, prefix } = req.body;
 
-        console.log(email, name, value, prefix)
-
         if (!(name && value && prefix)) {
             console.log("Erro na criação da maleta!");
             return res.status(HTTP_INTERNAL_ERROR).send();
         }
+
+        try{
+            const maleta = await Maleta.exists({email: email, name: name})
+            if(maleta){
+                console.log("Já existe uma maleta com esse nome!");
+                return res.status(HTTP_INTERNAL_ERROR).send();
+            }
+        }catch(error){ }
 
         const maleta = {
             email,
@@ -461,6 +467,14 @@ module.exports = {
             console.log("Erro na criação do grupo!");
             return res.status(HTTP_INTERNAL_ERROR).send();
         }
+
+        try{
+            const grupo = await Grupo.exists({email: email, name: name})
+            if(grupo){
+                console.log("Já existe um grupo com esse nome!");
+                return res.status(HTTP_INTERNAL_ERROR).send();
+            }
+        }catch(error){ }
 
         const grupo = {
             email,
