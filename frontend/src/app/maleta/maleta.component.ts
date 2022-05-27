@@ -15,6 +15,8 @@ export class MaletaComponent implements OnInit {
   form: any;
   maleta: any;
   registros: any;
+
+  errorMessage: any;
   
   constructor(private router: ActivatedRoute,
               private formBuilder: FormBuilder,
@@ -39,7 +41,7 @@ export class MaletaComponent implements OnInit {
 
         this.getRegistros(this.maleta._id);
     }, error => {
-      console.log("Não foi possível encontrar as informações da maleta!")
+      this.errorMessage = error.error.message;
     });
   }
 

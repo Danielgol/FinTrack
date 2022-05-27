@@ -22,7 +22,7 @@
             <div class="col-md-5 grid">
 
                 <div class="card bg-dark mb-3">
-                    <ul *ngIf="maletas.length > 0; else templateName" class="card-header">
+                    <ul *ngIf="maletas != null && maletas.length > 0; else templateName" class="card-header">
                         <div class="card-header">
                             Saldo Geral
                         </div>
@@ -36,7 +36,7 @@
                     </ng-template>
                 </div>
 
-                <div class="card bg-dark mb-3">
+                <div *ngIf="grupos" class="card bg-dark mb-3">
                     <div class="card-header">
                         Grupos
                     </div>

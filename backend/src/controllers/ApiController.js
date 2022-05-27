@@ -158,6 +158,11 @@ module.exports = {
 
         try{
             maleta = await Maleta.findOne({email: email, name: name})
+            if(maleta == null){
+                return res.status(HTTP_INTERNAL_ERROR).send(
+                    {message: "Não existe uma maleta com o nome "+name+"!"}
+                );
+            }
         }catch(error){
             console.log("Ocorreu um erro durante a solicitação!");
             return res.status(HTTP_INTERNAL_ERROR).send();
@@ -442,6 +447,11 @@ module.exports = {
 
         try{
             grupo = await Grupo.findOne({email: email, name: name})
+            if(grupo == null){
+                return res.status(HTTP_INTERNAL_ERROR).send(
+                    {message: "Não existe um grupo com o nome "+name+"!"}
+                );
+            }
         }catch(error){
             console.log("Ocorreu um erro durante a solicitação!");
             return res.status(HTTP_INTERNAL_ERROR).send();

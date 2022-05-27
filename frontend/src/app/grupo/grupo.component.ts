@@ -17,6 +17,8 @@ export class GrupoComponent implements OnInit {
   maletas: any;
   saldo_grupo: any;
 
+  errorMessage: any;
+
   constructor(private _grupoService: GrupoService,
     private _maletaService: MaletaService,
     private _apiService: ApiService,
@@ -25,12 +27,14 @@ export class GrupoComponent implements OnInit {
   ngOnInit(): void {
     const name = this.router.snapshot.paramMap.get('id');
     this.getGrupo(name);
-    this.getMaletas(name);
   }
 
   getGrupo(name: any): void{
     this._grupoService.getGrupo(name).subscribe(res => {
       this.grupo = res;
+      this.getMaletas(name);
+    }, error => {
+      this.errorMessage = error.error.message;
     });
   }
 
