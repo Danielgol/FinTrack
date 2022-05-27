@@ -48,7 +48,7 @@ export class MaletaComponent implements OnInit {
   getRegistros(id: any): void{
     this._registroService.getRegistros(id).subscribe(res =>{
       this.registros = res;
-      console.log(this.registros)
+      //console.log(this.registros)
     }, error => {
       console.log("Não foi possível encontrar os registros!")
     });

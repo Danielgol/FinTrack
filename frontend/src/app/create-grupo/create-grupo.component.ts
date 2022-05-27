@@ -41,18 +41,18 @@ export class CreateGrupoComponent implements OnInit {
     getMaletas(): void{
       this._maletaService.getMaletas().subscribe(res => {
         this.maletas = res;
-        console.log(this.maletas);
+        //console.log(this.maletas);
       });
     }
 
     OnCheckboxSelect(id: any, event: any): void{
       if (event.target.checked === true) {
         this.selectedMaletas.push({id: id, checked: event.target.checked});
-        console.log('Selected Ids ', this.selectedMaletas);
+        //console.log('Selected Ids ', this.selectedMaletas);
       }
       if (event.target.checked === false) {
         this.selectedMaletas = this.selectedMaletas.filter((item: any) => item.id !== id);
-        console.log('Selected Ids ', this.selectedMaletas);
+        //console.log('Selected Ids ', this.selectedMaletas);
       }
     }
 

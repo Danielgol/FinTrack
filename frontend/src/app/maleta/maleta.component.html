@@ -32,7 +32,7 @@
                             <div class="card-header">
                                 Histórico
                             </div>
-                            <div class="card-body scroll">
+                            <div *ngIf="registros" class="card-body scroll">
                                 <div class="card-body" *ngFor="let reg of objectKeys(registros)">
                                     <span>{{registros[reg].value}} {{registros[reg].descricao}}</span>
                                   <!--<button class="btn btn-warning"><i class="fa-solid fa-rotate-left"></i></button>-->

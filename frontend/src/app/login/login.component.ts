@@ -15,6 +15,7 @@ import { faAnglesLeft, faCoffee } from '@fortawesome/free-solid-svg-icons';
 export class LoginComponent implements OnInit {
 
   form: any;
+  errorMessage: any;
 
   constructor(private formBuilder: FormBuilder,
               private _authservice: AuthService,
@@ -29,38 +30,15 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  
-
   submit(): void{
     this._authservice.login(this.form.getRawValue()).subscribe(res => {
       localStorage.setItem('email', res.email);
       localStorage.setItem('token', res.token);
-
       this.router.navigate(['/home']);
     }, error => {
-      console.log("LOGIN_FAILED!")
+      this.errorMessage = error.error.message;
     });
-
-    /*
-    const url = 'http://localhost:3000/login';
-    this.http.post(url, this.form.getRawValue()).subscribe(res => {
-      console.log(res)
-      this.router.navigate(['home'])
-    });
-    */
   }
-
-
-  /*
-  submit(): void{
-    const out = this._authservice.login(this.form.getRawValue());
-    if(out === true){
-      this.router.navigate(['/home']);
-    }else{
-      console.log("HTTP_UNAUTHORIZED");
-    }
-  }
-  */
 
   faFacebookFa = faFacebookF;
   faLinkedinIn = faLinkedinIn;

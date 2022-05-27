@@ -35,6 +35,12 @@ module.exports = {
     async login(req, res) {
         const { email, password } = req.body;
 
+        if(!(email && password)) {
+            return res.status(HTTP_UNAUTHORIZED).send(
+                {message: "Digite um email e senha!"}
+            );
+        }
+
         try{
             const usuario = await Usuario.findOne({email: email});
             const result = await bcrypt.compare(password, usuario.hash_password);
@@ -43,13 +49,20 @@ module.exports = {
                 const token = generateToken({email, password});
                 return res.status(HTTP_OK).json({'email': email ,'token': token});
             }
+            return res.status(HTTP_UNAUTHORIZED).send(
+                {message: "Senha incorreta!"}
+            );
         }catch(error){
-            console.log(email+" não autenticado!");
-            return res.status(HTTP_UNAUTHORIZED).send();
+            //console.log(email+" não autenticado!");
+            return res.status(HTTP_UNAUTHORIZED).send(
+                {message: "Usuário não existe!"}
+            );
         }
 
-        console.log(email+" não autenticado!");
-        return res.status(HTTP_UNAUTHORIZED).send();
+        //console.log(email+" não autenticado!");
+        return res.status(HTTP_UNAUTHORIZED).send(
+            {message: "Ocorreu um erro durante a autenticação!"}
+        );
     },
 
 
@@ -203,6 +216,48 @@ module.exports = {
         }
 
         return res.status(HTTP_OK).json(data);
+    },
+
+
+    // POST
+    async createMaleta(req, res) {
+
+        const token = req.headers["authorization"].replace("Bearer ","");
+        const decoded = jwt.verify(token, SERVER_HASHCODE);
+        const email = decoded.email
+
+        const { name, value, prefix } = req.body;
+
+        if (!(name && value && prefix)) {
+            console.log("Erro na criação da maleta!");
+            return res.status(HTTP_INTERNAL_ERROR).send(
+                {message: "Todos os campos devem ser preenchidos!"}
+            );
+        }
+
+        try{
+            const maleta = await Maleta.exists({email: email, name: name})
+            if(maleta){
+                console.log("Já existe uma maleta com esse nome!");
+                return res.status(HTTP_INTERNAL_ERROR).send();
+            }
+        }catch(error){ }
+
+        const maleta = {
+            email,
+            name,
+            value,
+            prefix,
+        }
+
+        try{
+            await Maleta.create(maleta);
+            console.log("Maleta Criada: "+maleta.name);
+            return res.status(HTTP_CREATED).send();
+        }catch(error){}
+
+        console.log("Erro na criação da maleta!");
+        return res.status(HTTP_INTERNAL_ERROR).send();
     },
 
 
@@ -371,48 +426,6 @@ module.exports = {
     },
 
 
-    // POST
-    async createMaleta(req, res) {
-
-        const token = req.headers["authorization"].replace("Bearer ","");
-        const decoded = jwt.verify(token, SERVER_HASHCODE);
-        const email = decoded.email
-
-        const { name, value, prefix } = req.body;
-
-        if (!(name && value && prefix)) {
-            console.log("Erro na criação da maleta!");
-            return res.status(HTTP_INTERNAL_ERROR).send(
-                {message: "Todos os campos devem ser preenchidos!"}
-            );
-        }
-
-        try{
-            const maleta = await Maleta.exists({email: email, name: name})
-            if(maleta){
-                console.log("Já existe uma maleta com esse nome!");
-                return res.status(HTTP_INTERNAL_ERROR).send();
-            }
-        }catch(error){ }
-
-        const maleta = {
-            email,
-            name,
-            value,
-            prefix,
-        }
-
-        try{
-            await Maleta.create(maleta);
-            console.log("Maleta Criada: "+maleta.name);
-            return res.status(HTTP_CREATED).send();
-        }catch(error){}
-
-        console.log("Erro na criação da maleta!");
-        return res.status(HTTP_INTERNAL_ERROR).send();
-    },
-
-
     // GET
     async getGrupos(req, res) {
 
@@ -471,14 +484,14 @@ module.exports = {
         const { name, prefix, maletas } = req.body;
 
         if (!(name && prefix && maletas)) {
-            console.log("Erro na criação do grupo!");
+            //console.log("Erro na criação do grupo!");
             return res.status(HTTP_INTERNAL_ERROR).send(
                 {message: "Todos os campos devem ser preenchidos!"}
             );
         }
 
         if(maletas.length == 0){
-            console.log("Erro na criação do grupo!");
+            //console.log("Erro na criação do grupo!");
             return res.status(HTTP_INTERNAL_ERROR).send(
                 {message: "Adicione pelo menos 1 Maleta!"}
             );
@@ -487,7 +500,7 @@ module.exports = {
         try{
             const grupo = await Grupo.exists({email: email, name: name})
             if(grupo){
-                console.log("Já existe um grupo com esse nome!");
+                //console.log("Já existe um grupo com esse nome!");
                 return res.status(HTTP_INTERNAL_ERROR).send(
                     {message: "Já existe um Grupo com esse nome!"}
                 );
@@ -629,7 +642,6 @@ module.exports = {
         });
     }
 
-    
 }
 
 function generateToken(obj) {

@@ -54,6 +54,9 @@
                 <input formControlName="email" type="email" name="email" id="email" placeholder="Digite seu e-mail" autocomplete="off" required>
                 <label for="password">Digite uma senha</label>
                 <input formControlName="password" type="password" name="password" id="password" placeholder="Digite sua senha" required>
+                <div *ngIf="errorMessage != null">
+                    {{errorMessage}}
+                </div>
                 <input type="submit" value="Entrar">
             </form>
             <div id="social-container">
