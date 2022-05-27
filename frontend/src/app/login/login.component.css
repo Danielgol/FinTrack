@@ -33,6 +33,7 @@ body{
     background-size: cover;
     position: relative;
     z-index: 2;
+    height: 100vh;
 }
 
 textarea:focus, input:focus{
