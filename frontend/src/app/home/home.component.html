@@ -2,21 +2,7 @@
 
   <!--Main layout-->
   <main>
-      <!--
-    <div class="container">
-        <div class="grid col">
-            <div class="row">
-                adasd
-            </div>
-            <div class="row">
-                sasdf   
-            </div>
-        </div>
-        <div class="grid col">
-            <div class="row"></div>
-        </div>
-    </div>
-    -->
+
     <div class="container mt-2">
         <div class="row d-flex justify-content-around">
             <div class="col-md-5 grid">
@@ -40,8 +26,12 @@
                     </ul>
 
                     <ng-template #loading class="d-flex align-text-middle card-header">
-                        <mat-spinner color="primary"></mat-spinner>
+                        <div class="card-header"></div>
+                        <div class="card-body">
+                            <mat-spinner [diameter]="30" color="primary"></mat-spinner>
+                        </div>
                     </ng-template>
+
                 </div>
 
                 <div *ngIf="grupos" class="card bg-dark mb-3">
