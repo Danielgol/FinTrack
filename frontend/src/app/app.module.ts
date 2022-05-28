@@ -21,6 +21,9 @@ import { PageNotFoundComponent } from './components/notfound/notfound.component'
 import { TokenInterceptorService } from './services/token-interceptor/token-interceptor.service';
 import { GrupoComponent } from './grupo/grupo.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,9 @@ import { GrupoComponent } from './grupo/grupo.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -22,17 +22,25 @@
             <div class="col-md-5 grid">
 
                 <div class="card bg-dark mb-3">
-                    <ul *ngIf="maletas != null && maletas.length > 0; else templateName" class="card-header">
-                        <div class="card-header">
-                            Saldo Geral
-                        </div>
-                        <div class="card-body">
-                            BRL {{saldo_geral}}
-                        </div>
+                    <ul *ngIf="saldo_geral != null; else loading" class="card-header">
+
+                        <ul *ngIf="maletas != null && maletas.length > 0; else semMaletas" class="card-header">
+                            <div class="card-header">
+                                Saldo Geral
+                            </div>
+                            <div class="card-body">
+                                BRL {{saldo_geral}}
+                            </div>
+                        </ul>
+
+                        <ng-template #semMaletas class="d-flex align-text-middle card-header">
+                            <p style="margin: auto;">Começe criando uma maleta!</p>
+                        </ng-template>
+                        
                     </ul>
 
-                    <ng-template #templateName class="d-flex align-text-middle card-header">
-                        <p style="margin: auto;">Você não possui nenhum Grupo!</p>
+                    <ng-template #loading class="d-flex align-text-middle card-header">
+                        <mat-spinner color="primary"></mat-spinner>
                     </ng-template>
                 </div>
 
