@@ -23,11 +23,18 @@
                         <div class="card-header">
                             Maletas
                         </div>
-                        <div *ngIf="maletas != null" class="card-body scroll">
+
+                        <div *ngIf="maletas != null && maletas.length > 0; else noMaletas" class="card-body scroll">
                           <div class="card-body" *ngFor="let index of objectKeys(maletas)">
                               <span>{{maletas[index].name}} {{maletas[index].prefix}} {{maletas[index].value}}</span>
                           </div>
-                      </div>
+                        </div>
+
+                        <ng-template #noMaletas class="d-flex align-text-middle card-header">
+                            <div class="card-body">
+                              <span>As Maletas deste grupo foram excluídas!</span>
+                            </div>
+                        </ng-template>
                         
                     </div>
                 </div>
