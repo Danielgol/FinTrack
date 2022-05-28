@@ -8,14 +8,24 @@
         <div class="container mt-2">
             <div class="row d-flex justify-content-around">
                 <div class="col-md-5 grid">
-    
                     <div class="card bg-dark mb-3">
-                      <div class="card-header">
-                          Saldo {{grupo.name}}
-                      </div>
-                      <div class="card-body">
-                          {{grupo.prefix}} {{saldo_grupo}}
-                      </div>
+
+                        <ul *ngIf="saldo_grupo != null; else loading" class="card-header">
+                            <div class="card-header">
+                                Saldo {{grupo.name}}
+                            </div>
+                            <div class="card-body">
+                                {{grupo.prefix}} {{saldo_grupo}}
+                            </div>
+                        </ul>
+
+                        <ng-template #loading>
+                            <div class="d-flex align-text-middle card-header"></div>
+                            <div class="card-body">
+                                <mat-spinner [diameter]="30" color="primary"></mat-spinner>
+                            </div>
+                        </ng-template>
+
                     </div>
                 </div>
                 <div class="col-md-5 grid">
@@ -24,17 +34,23 @@
                             Maletas
                         </div>
 
-                        <div *ngIf="maletas != null && maletas.length > 0; else noMaletas" class="card-body scroll">
-                          <div class="card-body" *ngFor="let index of objectKeys(maletas)">
-                              <span>{{maletas[index].name}} {{maletas[index].prefix}} {{maletas[index].value}}</span>
-                          </div>
-                        </div>
-
-                        <ng-template #noMaletas class="d-flex align-text-middle card-header">
-                            <div class="card-body">
-                              <span>As Maletas deste grupo foram excluídas!</span>
+                        <ul *ngIf="maletas">
+                            <div *ngIf="maletas.length > 0; else noMaletas" class="card-body scroll">
+                              <div class="card-body" *ngFor="let index of objectKeys(maletas)">
+                                  <span>{{maletas[index].name}} {{maletas[index].prefix}} {{maletas[index].value}}</span>
+                              </div>
                             </div>
-                        </ng-template>
+
+                            <ng-template #noMaletas class="d-flex align-text-middle card-header">
+                                <div class="card-body">
+                                  <span>As Maletas deste grupo foram excluídas!</span>
+                                </div>
+                                <div>
+                                    <span>Excluir Grupo!</span>
+                                    <button (click)="deleteGrupo()" class="excluir btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                                </div>
+                            </ng-template>
+                        </ul>
                         
                     </div>
                 </div>

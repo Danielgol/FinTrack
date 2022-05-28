@@ -43,7 +43,7 @@
                             
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <p>Selecione um grupo para visualizar o saldo.</p>
+                                    <p>Selecione um grupo para visualizá-lo.</p>
                                 </div>
                                 <div class="carousel-item"  *ngFor="let grupo of objectKeys(grupos)">
                                     <button (click)="onSelectGrupo(grupos[grupo])" class="btn btn-success">
@@ -71,6 +71,7 @@
                         </div>         
                     </div>
                 </div>
+
                 <div class="card bg-dark mb-3">
                     <div class="card-header">
                         Cotação do Bitcoin: BRL {{btc_current}}
@@ -81,7 +82,9 @@
                         </div>
                     </div>
                 </div>
+
             </div>
+
             <div class="col-md-5 grid">
                 <div class="card bg-dark mb-3">
                     <div class="card-header">
@@ -109,9 +112,8 @@
                                 <p style="margin: auto;">Você não possui nenhuma Maleta!</p>
                             </ng-template>
                         </div>
-
+                        
                     </div>
-                    
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GrupoService } from '../services/grupo/grupo-service.service';
 import { MaletaService } from '../services/maleta/maleta-service.service';
 import { ApiService } from '../services/api/api-service.service';
@@ -22,10 +22,11 @@ export class GrupoComponent implements OnInit {
   constructor(private _grupoService: GrupoService,
     private _maletaService: MaletaService,
     private _apiService: ApiService,
-    private router: ActivatedRoute) { }
+    private activatedRouter: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
-    const name = this.router.snapshot.paramMap.get('id');
+    const name = this.activatedRouter.snapshot.paramMap.get('id');
     this.getGrupo(name);
   }
 
@@ -35,6 +36,12 @@ export class GrupoComponent implements OnInit {
       this.getMaletas(name);
     }, error => {
       this.errorMessage = error.error.message;
+    });
+  }
+
+  deleteGrupo(): void{
+    this._grupoService.removeGrupo(this.grupo._id).subscribe(res => {
+      this.router.navigate(['/home']);
     });
   }
 

@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   btc_current: any;
 
   chart: any;
-  coin_data = [];
+  coin_data: any;
 
   constructor(private _authService: AuthService,
               private _maletaService: MaletaService,
