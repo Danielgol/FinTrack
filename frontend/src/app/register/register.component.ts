@@ -13,6 +13,7 @@ import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons';
 export class RegisterComponent implements OnInit {
 
   form: any;
+  errorMessage: any;
 
   constructor(private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -34,6 +35,8 @@ export class RegisterComponent implements OnInit {
 
     this.http.post(url, this.form.getRawValue()).subscribe(res => {
       this.router.navigate(['login']);
+    }, error => {
+      this.errorMessage = error.error.message
     });
   }
   faFacebook = faFacebookF;

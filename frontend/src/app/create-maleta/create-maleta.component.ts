@@ -15,6 +15,7 @@ import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons';
 export class CreateMaletaComponent implements OnInit {
 
   form: any;
+  errorMessage: any;
 
   constructor(private formBuilder: FormBuilder,
               private _maletaservice: MaletaService,
@@ -32,7 +33,7 @@ export class CreateMaletaComponent implements OnInit {
     this._maletaservice.createMaleta(this.form.getRawValue()).subscribe(res => {
       this.router.navigate(['/home']);
     }, error => {
-      console.log("Maleta não foi criada!")
+      this.errorMessage = error.error.message
     });
   }
 

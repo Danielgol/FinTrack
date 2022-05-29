@@ -18,10 +18,12 @@
                 <input formControlName="email" type="email" name="email" id="email" placeholder="Digite seu e-mail" autocomplete="off" required>
                 <label for="password">Digite uma senha</label>
                 <input formControlName="password" type="password" name="password" id="password" placeholder="Digite sua senha" required>
-                <label for="password">Confirme sua senha</label>
-                <input formControlName="confirmedPassword" type="password" name="confirmedPassword" id="confirmedPassword" placeholder="Confirme sua senha" required>
+                <div *ngIf="errorMessage != null" style="color: rgb(231, 71, 71);">
+                    {{errorMessage}}
+                </div>
                 <input type="submit" value="Registrar">
             </form>
+            
             <div id="social-container">
                 <p>Ou entre pelas suas redes sociais</p>
                 <fa-icon [icon]="faFacebook" id="logo-facebook" [fixedWidth]="true"></fa-icon>
@@ -31,6 +33,7 @@
                 <p>Já possui uma conta?</p>
                 <a href="#" routerLink="/login" routerLinkActive="active">Login</a>
             </div>
+            
         </div>
     </div>
 </body>
