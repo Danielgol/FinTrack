@@ -51,13 +51,7 @@
                                     </button>
                                     <button (click)="onDeleteGrupo(grupos[grupo])" class="excluir btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
                                 </div>
-                                <!--<ul *ngFor="let grupo of objectKeys(grupos); let i = index; let active = ">
-                                    <div [ngClass]="i == 0 ? 'carousel-item active' : 'carousel-item' ">
-                                        <button class="btn btn-success">
-                                            {{grupos[grupo].name}}
-                                        </button>
-                                    </div>
-                                </ul>-->
+
                             </div>
 
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselControl" data-bs-slide="prev">
@@ -126,7 +120,6 @@
                                         </span>
                                         </button>
                                         <button (click)="onDeleteMaleta(maletas[maleta].name)" class="excluir btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
-                                        <!--<span> {{ cryptos[crypto].USD | currency:'USD':true }}</span>-->
                                     </h3>
                                 </div>
                             </ul>
@@ -140,16 +133,7 @@
             </div>
         </div>
         
-        <!--
-        <div class="cotacao-card">
-            <div class="row justify-content-center" >
-                <div class="col-sm-6 grid">
-                    
-                </div>
-                
-            </div>
-        </div>
-        -->
+       
         
     </div>
 

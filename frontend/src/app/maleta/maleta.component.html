@@ -38,12 +38,11 @@
                             <div *ngIf="registros" class="card-body scroll">
                                 <div class="card-body" *ngFor="let reg of objectKeys(registros)">
                                     <span>{{registros[reg].value}} {{registros[reg].descricao}}</span>
-                                  <!--<button class="btn btn-warning"><i class="fa-solid fa-rotate-left"></i></button>-->
                                     <button (click)="removeRegistro(registros[reg])" style="margin-left: 5px;" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
                                 </div>
                             </div>
                             <div class="card-footer d-flex justify-content-center">
-                                <form [formGroup]="form" ngNativeValidate> <!-- (submit)="createRegistro()" -->    
+                                <form [formGroup]="form" ngNativeValidate>   
                                     <div class="form-group">
                                         <input formControlName="descricao" type="text" class="form-control form-control-user" id="descricao" placeholder="Descrição">
                                     </div>
