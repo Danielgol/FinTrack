@@ -37,7 +37,7 @@ module.exports = {
 
         if(!(email && password)) {
             return res.status(HTTP_UNAUTHORIZED).send(
-                {message: "Digite um email e senha!"}
+                {message: "Digite um email e senha válidos!"}
             );
         }
 
@@ -55,7 +55,7 @@ module.exports = {
         }catch(error){
             //console.log(email+" não autenticado!");
             return res.status(HTTP_UNAUTHORIZED).send(
-                {message: "Usuário não existe!"}
+                {message: "Este email não está cadastrado!"}
             );
         }
 
@@ -73,29 +73,39 @@ module.exports = {
         try{
             const usuario = await Usuario.findOne({email: email});
             console.log(usuario.email+" já está sendo utilizado!")
-            return res.status(HTTP_INTERNAL_ERROR).send();
+            return res.status(HTTP_INTERNAL_ERROR).send(
+                {message: "Esse email já está sendo utilizado!"}
+            );
         }catch(error){}
 
         const hash_password = await encryptPassword(password);
         
         if (!(name && email && password)) {
             console.log("Erro no registro do usuário!");
-            return res.status(HTTP_INTERNAL_ERROR).send();
+            return res.status(HTTP_INTERNAL_ERROR).send(
+                {message: "Preencha todos os campos!"}
+            );
         }
 
         if (/\d/.test(name)) {
             console.log("Erro no registro do nome!");
-            return res.status(HTTP_INTERNAL_ERROR).send();
+            return res.status(HTTP_INTERNAL_ERROR).send(
+                {message: "Nome inválido!"}
+            );
         }
 
         if(!(email.includes("@") && (email.endsWith(".com") || email.endsWith(".br"))) ){
-            console.log("Erro no email fornecido!");
-            return res.status(HTTP_INTERNAL_ERROR).send();
+            return res.status(HTTP_INTERNAL_ERROR).send(
+                {message: "Erro no email fornecido!"}
+            );
         }
 
         if(password.length < 6){
             console.log("Senha com menos de 6 caracteres!");
-            return res.status(HTTP_INTERNAL_ERROR).send();
+            return res.status(HTTP_INTERNAL_ERROR).send(
+                {message: "Sua senha precisa ter pelo menos 6 caracteres!"}
+            );
+            
         }
 
         const usuario = {
@@ -111,7 +121,7 @@ module.exports = {
         }catch(error){}
 
         console.log("Erro na criação do usuário!");
-        return res.status(HTTP_INTERNAL_ERROR).send();
+        return res.status(HTTP_INTERNAL_ERROR).send({message: "Ocorreu um erro no registro"});
         
     },
 

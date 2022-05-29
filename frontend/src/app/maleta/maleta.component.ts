@@ -86,7 +86,7 @@ export class MaletaComponent implements OnInit {
       const name = this.router.snapshot.paramMap.get('id');
       this.getMaletaInfo(name);
     }, error => {
-      console.log("Houve um erro no cadastro do registro!")
+      this.errorMessage = error.error.message
     });
   }
 
