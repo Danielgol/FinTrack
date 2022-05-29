@@ -73,14 +73,36 @@
                 </div>
 
                 <div class="card bg-dark mb-3">
-                    <div class="card-header">
-                        Cotação do Bitcoin: BRL {{btc_current}}
-                    </div>
+
+                    <ul *ngIf="shown_data">
+                        <div *ngIf="cripto_atual === 'BTC'; else otherCotacao" class="card-header">
+                            Cotação do Bitcoin: BRL {{btc_current}}
+                        </div>
+
+                        <ng-template #otherCotacao>
+                            <div class="card-header">
+                                Cotação do Ethereum: BRL {{eth_current}}
+                            </div>
+                        </ng-template>
+                    </ul>
+
                     <div class="card-body">
                         <div id="divChart" class="img-fluid" style="display: block;">
                             <canvas id="myChart" ></canvas>
                         </div>
                     </div>
+
+                    <ul *ngIf="shown_data">
+                        <div *ngIf="cripto_atual === 'BTC'; else other">
+                            <button (click)="changeCripto()" class="btn btn-success"> ETH </button>
+                        </div>
+                        <ng-template #other class>
+                            <div>
+                                <button (click)="changeCripto()" class="btn btn-success"> BTC </button>
+                            </div>
+                        </ng-template>
+                    </ul>
+
                 </div>
 
             </div>
@@ -118,6 +140,7 @@
             </div>
         </div>
         
+        <!--
         <div class="cotacao-card">
             <div class="row justify-content-center" >
                 <div class="col-sm-6 grid">
@@ -126,6 +149,7 @@
                 
             </div>
         </div>
+        -->
         
     </div>
 

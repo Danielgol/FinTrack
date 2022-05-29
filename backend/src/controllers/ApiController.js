@@ -53,13 +53,11 @@ module.exports = {
                 {message: "Senha incorreta!"}
             );
         }catch(error){
-            //console.log(email+" não autenticado!");
             return res.status(HTTP_UNAUTHORIZED).send(
                 {message: "Usuário não existe!"}
             );
         }
 
-        //console.log(email+" não autenticado!");
         return res.status(HTTP_UNAUTHORIZED).send(
             {message: "Ocorreu um erro durante a autenticação!"}
         );
@@ -193,29 +191,20 @@ module.exports = {
         const email = decoded.email
 
         const { name } = req.params
-        
-        var grupo;
 
         try{
-            grupo = await Grupo.findOne({email: email, name: name})
-        }catch(error){
-            console.log("Ocorreu um erro durante a solicitação!");
-            return res.status(HTTP_INTERNAL_ERROR).send();
-        }
-
-        var data = [];
-
-        try{
+            var data = [];
+            var grupo = await Grupo.findOne({email: email, name: name})
             for(var i = 0; i < grupo.maletas.length; i++){
                 const maleta = await Maleta.findOne({_id: grupo.maletas[i], email: email});
                 data.push(maleta);
             }
+            return res.status(HTTP_OK).json(data);
         }catch(error){
             console.log("Ocorreu um erro durante a solicitação!");
             return res.status(HTTP_INTERNAL_ERROR).send();
         }
-
-        return res.status(HTTP_OK).json(data);
+        
     },
 
 
@@ -322,10 +311,8 @@ module.exports = {
 
         const { name, id } = req.params;
 
-        var grupo = {}
-
         try{
-            grupo = await Grupo.findOne({email: email, name: name});
+            var grupo = await Grupo.findOne({email: email, name: name});
             for(var i=0; i<grupo.maletas.length; i++){
                 if(grupo.maletas[i] === id){
                     grupo.maletas.splice(i, 1)
@@ -349,18 +336,16 @@ module.exports = {
         const email = decoded.email
 
         const { id } = req.params
-        
-        var data = [];
 
         try{
             const registros = await Registro.find({id_maleta: id, email: email});
-            data = registros;
+            const data = registros;
+            return res.status(HTTP_OK).json(data);
         }catch(error){
             console.log("Ocorreu um erro durante a solicitação!");
             return res.status(HTTP_INTERNAL_ERROR).send();
         }
 
-        return res.status(HTTP_OK).json(data);
     },
 
 
@@ -381,25 +366,18 @@ module.exports = {
             value,
         }
 
-        var maleta = {};
-
         try{
-            maleta = await Maleta.findOne({email: email, _id: id_maleta});
-        }catch(error){
-            console.log("Ocorreu um erro durante a solicitação!");
-            return res.status(HTTP_INTERNAL_ERROR).send();
-        }
-
-        try{
+            var maleta = await Maleta.findOne({email: email, _id: id_maleta});
             maleta.value += value
             await maleta.save();
             await Registro.create(registro);
             console.log("Historico Criado: "+registro.value);
             return res.status(HTTP_CREATED).send();
-        }catch(error){}
+        }catch(error){
+            console.log("Erro na criação do Registro!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
 
-        console.log("Erro na criação do Registro!");
-        return res.status(HTTP_INTERNAL_ERROR).send();
     },
 
 
@@ -417,12 +395,12 @@ module.exports = {
         try{
             registro = await Registro.findOne({email: email, _id: id})
             await registro.remove();
+            return res.status(HTTP_OK).send();
         }catch(error){
             console.log("Ocorreu um erro durante a remoção do Registro!");
             return res.status(HTTP_INTERNAL_ERROR).send();
         }
 
-        return res.status(HTTP_OK).send();
     },
 
 
@@ -491,7 +469,6 @@ module.exports = {
         }
 
         if(maletas.length == 0){
-            //console.log("Erro na criação do grupo!");
             return res.status(HTTP_INTERNAL_ERROR).send(
                 {message: "Adicione pelo menos 1 Maleta!"}
             );
@@ -500,7 +477,6 @@ module.exports = {
         try{
             const grupo = await Grupo.exists({email: email, name: name})
             if(grupo){
-                //console.log("Já existe um grupo com esse nome!");
                 return res.status(HTTP_INTERNAL_ERROR).send(
                     {message: "Já existe um Grupo com esse nome!"}
                 );
@@ -568,19 +544,24 @@ module.exports = {
         const point = "https://economia.awesomeapi.com.br/json/last/"
         const url = point + currency + "-" + prefix;
 
-        https.get(url, (resp) => {
-            let data = '';
+        try{
+            https.get(url, (resp) => {
+                let data = '';
 
-            resp.on('data', (chunk) => {
-                data += chunk;
-            });
+                resp.on('data', (chunk) => {
+                    data += chunk;
+                });
 
-            resp.on('end', () => {
-                data = JSON.parse(data);
-                //console.log(currency+""+prefix+":"+data[currency+""+prefix].low)
-                res.send({value: data[currency+""+prefix].low});
+                resp.on('end', () => {
+                    data = JSON.parse(data);
+                    res.send({value: data[currency+""+prefix].low});
+                });
             });
-        });
+        }catch(error){
+            console.log("Ocorreu um erro durante a comunicação com a API de preços!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+        
     },
 
 
@@ -594,28 +575,32 @@ module.exports = {
         const price_change_percentage = "7d";
         const url = site + prefix + settings + price_change_percentage;
 
-        https.get(url, (resp) => {
-            let data = '';
+        try{
+            https.get(url, (resp) => {
+                let data = '';
 
-            resp.on('data', (chunk) => {
-                data += chunk;
+                resp.on('data', (chunk) => {
+                    data += chunk;
+                });
+
+                resp.on('end', () => {
+                    var value = 0
+                    data = JSON.parse(data);
+
+                    if(cripto === "BTC"){
+                        value = data[0].current_price;
+                    }else{
+                        value = data[1].current_price;
+                    }
+
+                    res.send({value: value});
+                });
             });
+        }catch(error){
+            console.log("Ocorreu um erro durante a comunicação com a API de preços!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
 
-            resp.on('end', () => {
-                var value = 0
-                data = JSON.parse(data);
-
-                if(cripto === "BTC"){
-                    value = data[0].current_price;
-                }else{
-                    value = data[1].current_price;
-                }
-
-                //console.log(cripto+prefix+" --- "+value)
-
-                res.send({value: value});
-            });
-        });
     },
 
 
@@ -628,18 +613,24 @@ module.exports = {
         const price_change_percentage = "7d";
         const url = site + currency + settings + price_change_percentage;
 
-        https.get(url, (resp) => {
-            let data = '';
+        try{
+            https.get(url, (resp) => {
+                let data = '';
 
-            resp.on('data', (chunk) => {
-                data += chunk;
-            });
+                resp.on('data', (chunk) => {
+                    data += chunk;
+                });
 
-            resp.on('end', () => {
-                data = JSON.parse(data);
-                res.send(data);
+                resp.on('end', () => {
+                    data = JSON.parse(data);
+                    res.send(data);
+                });
             });
-        });
+        }catch(error){
+            console.log("Ocorreu um erro durante a comunicação com a API de preços!");
+            return res.status(HTTP_INTERNAL_ERROR).send();
+        }
+        
     }
 
 }

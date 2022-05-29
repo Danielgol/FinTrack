@@ -22,10 +22,16 @@ export class HomeComponent implements OnInit {
   maletas: any;
   grupos: any;
   saldo_geral: any;
+
   btc_current: any;
+  eth_current: any;
 
   chart: any;
-  coin_data: any;
+  btc_data: any;
+  eth_data: any;
+  shown_data: any;
+
+  cripto_atual: any;
 
   constructor(private _authService: AuthService,
               private _maletaService: MaletaService,
@@ -124,37 +130,65 @@ export class HomeComponent implements OnInit {
 
       var resp_json = JSON.parse(JSON.stringify(res));
 
-      this.btc_current = resp_json[0].current_price
-      this.coin_data = resp_json[0].sparkline_in_7d.price
-      var labels = []
+      this.cripto_atual = "BTC";
 
-      for(var i=0; i<this.coin_data.length; i++){
-        labels.push("")
-      }
+      this.btc_current = resp_json[0].current_price;
+      this.btc_data = resp_json[0].sparkline_in_7d.price;
+
+      this.eth_current = resp_json[1].current_price;
+      this.eth_data = resp_json[1].sparkline_in_7d.price;
+
+      this.shown_data = this.btc_data;
 
       Chart.register(...registerables);
-      this.chart = new Chart("myChart", {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-              data: this.coin_data,
-              borderColor: '#00AEFF',
-              fill: false
-            }]
-        },
-      });
+      this.chart = this.loadChart();
 
     });
+  }
+
+  loadChart(): any{
+    var labels = []
+    for(var i=0; i<this.shown_data.length; i++){
+      labels.push("")
+    }
+
+    return new Chart("myChart", {
+      type: 'line',
+      data: {
+          labels: labels,
+          datasets: [{
+            data: this.shown_data,
+            borderColor: '#00AEFF',
+            fill: false
+          }]
+      },
+      options: {
+        plugins: {
+          legend: {
+            labels: {
+              filter: (legendItem, data) => (typeof legendItem.text !== 'undefined')
+            }
+          }
+        }
+      }
+    });
+  }
+
+  changeCripto(): void{
+    if(this.cripto_atual === "BTC"){
+      this.cripto_atual = "ETH";
+      this.shown_data = this.eth_data;
+    }else{
+      this.cripto_atual = "BTC";
+      this.shown_data = this.btc_data;
+    }
+    this.chart.destroy();
+    this.chart = this.loadChart();
   }
 
   logout(): void{
     this._authService.logout();
     this.router.navigate(['/']);
-  }
-
-  loadChart() {
-    return 
   }
 
   anglesLeft = faAnglesLeft;
