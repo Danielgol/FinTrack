@@ -23,22 +23,19 @@ export class RegisterComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: '',
       email: '',
-      password: '',
-      confirmedPassword: ''
+      password: ''
     });
   }
 
   submit(): void{
-    console.log(this.form.getRawValue());
-
     const url = 'http://localhost:3000/register';
-
     this.http.post(url, this.form.getRawValue()).subscribe(res => {
       this.router.navigate(['login']);
     }, error => {
       this.errorMessage = error.error.message
     });
   }
+
   faFacebook = faFacebookF;
   faLinkedin = faLinkedinIn;
   anglesLeft = faAnglesLeft;

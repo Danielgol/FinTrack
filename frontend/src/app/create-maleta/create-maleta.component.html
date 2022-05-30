@@ -1,7 +1,8 @@
-<body>
+<main>
     <div id="principal">
         <div id="criar-maleta-container">
             <h1>Criar Maleta</h1>
+            
             <form [formGroup]="form" (submit)="submit()">
                 <label for="name">Nome:</label>
                 <input formControlName="name" type="text" name="name" id="name" placeholder="Digite o nome da maleta" autocomplete="off">
@@ -24,4 +25,4 @@
             
         </div>
     </div>
-</body>
+</main>

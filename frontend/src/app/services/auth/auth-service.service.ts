@@ -20,7 +20,7 @@ export class AuthService {
       const some = await this._http.get(url).toPromise();
       return true;
     }catch(error){
-      console.log(error);
+      //console.log(error);
       return false;
     }
   }

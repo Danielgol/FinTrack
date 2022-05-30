@@ -228,7 +228,7 @@ module.exports = {
         const { name, value, prefix } = req.body;
 
         if (!(name && value && prefix)) {
-            console.log("Erro na criação da maleta!");
+            //console.log("Erro na criação da maleta!");
             return res.status(HTTP_INTERNAL_ERROR).send(
                 {message: "Todos os campos devem ser preenchidos!"}
             );
@@ -237,8 +237,10 @@ module.exports = {
         try{
             const maleta = await Maleta.exists({email: email, name: name})
             if(maleta){
-                console.log("Já existe uma maleta com esse nome!");
-                return res.status(HTTP_INTERNAL_ERROR).send();
+                //console.log("Já existe uma maleta com esse nome!");
+                return res.status(HTTP_INTERNAL_ERROR).send(
+                    {message: "Já existe uma Maleta com esse nome!"}
+                );
             }
         }catch(error){ }
 
@@ -256,7 +258,9 @@ module.exports = {
         }catch(error){}
 
         console.log("Erro na criação da maleta!");
-        return res.status(HTTP_INTERNAL_ERROR).send();
+        return res.status(HTTP_INTERNAL_ERROR).send(
+            {message: "Houve um erro durante a criação da Maleta!"}
+        );
     },
 
 

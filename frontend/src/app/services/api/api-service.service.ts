@@ -15,7 +15,6 @@ export class ApiService {
 
   async getCurrencyPrice(curr: any, prefix: any) {
     const url = 'http://localhost:3000/getCurrencyPrice/'+curr+'/'+prefix;
-    console.log(url)
     return await this._http.get<any>(url,{
       observe:'body'
     }).toPromise();

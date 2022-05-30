@@ -28,8 +28,8 @@
     font-family: WorkBold, sans-serif;
 }
 
-body{
-    min-height: 90vh;
+main{
+    min-height: 100vh;
     background: linear-gradient(45deg, #233329,#383939, #383939, #343a40, #343a40 , #2d4f70);
     background-size: 400% 400%;
     position: relative;
