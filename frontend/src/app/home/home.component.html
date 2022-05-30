@@ -38,31 +38,26 @@
                     <div class="card-header">
                         Grupos
                     </div>
-                    <div class="card-body">
-                        <div id="carouselControl" class="carousel slide d-flex" data-ride="carousel">
-                            
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
+                    <div class="card-body scroll">
+                        <div *ngIf="grupos">
+                            <ul *ngIf="grupos.length > 0; else noGrupos">
+                                <div class="d-flex justify-content-center">
                                     <p>Selecione um grupo para visualizá-lo.</p>
                                 </div>
-                                <div class="carousel-item"  *ngFor="let grupo of objectKeys(grupos)">
-                                    <button (click)="onSelectGrupo(grupos[grupo])" class="btn btn-success">
-                                        {{grupos[grupo].name}} 
-                                    </button>
-                                    <button (click)="onDeleteGrupo(grupos[grupo])" class="excluir btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                                <div *ngFor="let grupo of objectKeys(grupos)">
+                                    <h3>
+                                        <button (click)="onSelectGrupo(grupos[grupo])" class="btn btn-success">
+                                            {{grupos[grupo].name}} 
+                                        </button>
+                                        <button (click)="onDeleteGrupo(grupos[grupo])" class="excluir btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                                    </h3>
                                 </div>
-
-                            </div>
-
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselControl" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                              </button>
-                              <button class="carousel-control-next" type="button" data-bs-target="#carouselControl" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                              </button>
-                        </div>         
+                            </ul>
+                            <ng-template #noGrupos class="d-flex align-text-middle card-header">
+                                <p style="margin: auto;">Você não possui nenhum Grupo!</p>
+                            </ng-template>
+                        </div>
+                            
                     </div>
                 </div>
 
